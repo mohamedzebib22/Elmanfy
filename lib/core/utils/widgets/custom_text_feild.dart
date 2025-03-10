@@ -14,7 +14,9 @@ class CustomTextFeild extends StatelessWidget {
       this.maxLines = 1,
       this.onChanged,
       this.controller,
+      this.isFill = false,
       this.security = false,
+      this.fillColor = Colors.transparent,
       this.validator});
 
   MyValidator? validator;
@@ -27,11 +29,14 @@ class CustomTextFeild extends StatelessWidget {
   Color? borderColor;
   int maxLines;
   bool security;
+  bool? isFill;
+  Color? fillColor;
   Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       style: TextStyle(color: AppColor.primaryColor,),
+
       obscureText: security,
       initialValue: text,
       controller: controller,
@@ -39,6 +44,8 @@ class CustomTextFeild extends StatelessWidget {
       validator: validator,
       maxLines: maxLines,
       decoration: InputDecoration(
+        filled:isFill ,
+        fillColor:fillColor ,
         hintText: hintText,
         hintStyle:const TextStyle(color:AppColor.primaryColor,fontSize: 20),
         prefixIcon: prefix,

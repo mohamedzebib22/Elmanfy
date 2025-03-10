@@ -11,6 +11,7 @@ class Constant {
  static const String forgetPasswordPage = 'نسيت كلمة السر';
  static const String backToLoginPage = 'رجوع الى تسجيل الدخول';
  static const String sendLink = 'ارسال رابط اعادة تعين كلمة السر';
+ static const String noDebtsCurrently = 'لايوجد ديون حاليا';
 
 
 }

@@ -1,0 +1,48 @@
+import 'package:elmanfy/core/constants/constant.dart';
+import 'package:elmanfy/core/theme/custom_style_text.dart';
+import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+  static String id = 'HomePage';
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container();
+                });
+          }),
+      body: SafeArea(
+        child: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: width*0.04),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: height*0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Expanded(child: CustomTextFeild(hintText: 'Search',isFill: true,fillColor: Colors.white,)),
+                Icon(Icons.search_off_sharp ,color: const Color.fromARGB(255, 110, 108, 108),),
+              ],),
+              SizedBox(height: height/ 2.5),
+              Text(
+                Constant.noDebtsCurrently,
+                style: CustomStyleText.whiteColorBold,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
