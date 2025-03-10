@@ -8,5 +8,9 @@ class Constant {
  static const String fullName= 'الاسم الكامل';
  static const String submitPassword= 'تاكيد كلمة المرور';
  static const String doYouHaveAccount= 'هل لديك حساب؟ سجل الدخول';
- 
+ static const String forgetPasswordPage = 'نسيت كلمة السر';
+ static const String backToLoginPage = 'رجوع الى تسجيل الدخول';
+ static const String sendLink = 'ارسال رابط اعادة تعين كلمة السر';
+
+
 }

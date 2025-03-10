@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      CustomBotton(),
+                      CustomBotton(title:Constant.login,),
                       SizedBox(
                         height: height * 0.04,
                       ),

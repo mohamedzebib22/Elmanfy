@@ -84,7 +84,7 @@ class RegisterPage extends StatelessWidget {
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      CustomBotton(),
+                      CustomBotton(title: Constant.createAccount,),
                       SizedBox(
                         height: height * 0.02,
                       ),

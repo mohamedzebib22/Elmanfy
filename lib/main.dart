@@ -1,3 +1,4 @@
+import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
 import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/Features/register_page/presentation/views/register_page.dart';
 import 'package:elmanfy/core/theme/app_theme.dart';
@@ -18,8 +19,9 @@ class Elmanfy extends StatelessWidget {
       routes: {
         LoginPage.id : (context) => LoginPage(),
         RegisterPage.id : (context) => RegisterPage(),
+        ForgetPasswordPage.id : (context) => ForgetPasswordPage(),
       },
-      initialRoute: RegisterPage.id,
+      initialRoute: ForgetPasswordPage.id,
     );
   }
 }

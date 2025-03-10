@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class CustomBotton extends StatelessWidget {
   const CustomBotton({
-    super.key,
+    super.key, required this.title,
     
   });
 
-
+  final String title;
   @override
   Widget build(BuildContext context) {
      var width = MediaQuery.of(context).size.width;
@@ -20,7 +20,7 @@ class CustomBotton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.primaryColor
         ),
-        onPressed: (){}, child:const Center(child: Text(Constant.login,style:CustomStyleText.whiteColorBold,),)),
+        onPressed: (){}, child: Center(child: Text(title,style:CustomStyleText.whiteColorBold,),)),
     );
   }
 }
