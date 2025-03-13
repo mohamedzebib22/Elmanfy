@@ -12,6 +12,10 @@ class Constant {
  static const String backToLoginPage = 'رجوع الى تسجيل الدخول';
  static const String sendLink = 'ارسال رابط اعادة تعين كلمة السر';
  static const String noDebtsCurrently = 'لايوجد ديون حاليا';
+ static const String customerName = 'اسـم الزبون';
+ static const String phoneNumber = 'رقـم الهاتف';
+ static const String dateOfAdded = 'تاريخ الاضافه';
+ static const String addNewCustomer = 'اضافة زبون جديد';
 
 
 }

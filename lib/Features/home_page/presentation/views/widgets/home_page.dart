@@ -1,3 +1,4 @@
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_bottom_sheet.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
@@ -15,9 +16,14 @@ class HomePage extends StatelessWidget {
           child: Icon(Icons.add),
           onPressed: () {
             showModalBottomSheet(
+             isScrollControlled: true,
+              backgroundColor: Color(0xff19181E),
                 context: context,
                 builder: (context) {
-                  return Container();
+                  return Padding(
+                    padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: SingleChildScrollView(child: CustomBottomSheet()),
+                  );
                 });
           }),
       body: SafeArea(

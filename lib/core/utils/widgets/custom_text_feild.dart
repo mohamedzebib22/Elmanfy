@@ -9,8 +9,12 @@ class CustomTextFeild extends StatelessWidget {
       required this.hintText,
       this.prefix,
       this.text,
+      this.labelText,
       this.sufix,
       this.borderColor = AppColor.primaryColor,
+      this.textStyleColor = AppColor.primaryColor,
+      this.hintColor = AppColor.primaryColor,
+      this.foucusBorder,
       this.maxLines = 1,
       this.onChanged,
       this.controller,
@@ -25,18 +29,20 @@ class CustomTextFeild extends StatelessWidget {
   Widget? prefix;
   Widget? sufix;
   TextEditingController? controller;
-  
+  String? labelText;
   Color? borderColor;
+  Color? hintColor;
   int maxLines;
   bool security;
   bool? isFill;
   Color? fillColor;
+  Color? textStyleColor;
+  Color? foucusBorder;
   Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: AppColor.primaryColor,),
-
+      style: TextStyle(color: textStyleColor,),
       obscureText: security,
       initialValue: text,
       controller: controller,
@@ -44,16 +50,18 @@ class CustomTextFeild extends StatelessWidget {
       validator: validator,
       maxLines: maxLines,
       decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: TextStyle(color: Colors.white,fontSize: 16),
         filled:isFill ,
         fillColor:fillColor ,
         hintText: hintText,
-        hintStyle:const TextStyle(color:AppColor.primaryColor,fontSize: 20),
+        hintStyle: TextStyle(color:hintColor,fontSize: 14),
         prefixIcon: prefix,
         suffixIcon: sufix,
         disabledBorder: makeAllBorder(color: Colors.grey, radius: 16),
         enabledBorder: makeAllBorder(color: borderColor!, radius: 16),
         focusedBorder:
-            makeAllBorder(color: AppColor.primaryColor, radius: 16),
+            makeAllBorder(color: foucusBorder ??AppColor.primaryColor , radius: 16),
         focusedErrorBorder:
             makeAllBorder(color: Colors.red, radius: 16),
         errorBorder: makeAllBorder(color: Colors.red, radius: 16),
