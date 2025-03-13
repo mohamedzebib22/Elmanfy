@@ -1,4 +1,4 @@
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/debt_details.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/debt_details.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';

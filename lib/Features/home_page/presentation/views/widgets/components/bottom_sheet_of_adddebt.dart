@@ -26,7 +26,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
         SizedBox(height: height*0.02,),
         CustomTextFeild(hintColor: Colors.white,hintText: Constant.historyOfReligion,labelText: Constant.historyOfReligion,textStyleColor: Colors.white,foucusBorder:Colors.white,borderColor:Colors.white ,sufix: IconButton(onPressed: (){}, icon: Icon(Icons.event,color: Colors.white,)),),
         SizedBox(height: height*0.04,),
-        CustomBotton(title: Constant.addNewCustomer),
+        CustomBotton(title: Constant.addNewCustomer,onTap: (){},),
         SizedBox(height: height*0.04,),
       ],),
     );

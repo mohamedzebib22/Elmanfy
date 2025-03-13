@@ -1,3 +1,4 @@
+import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
@@ -54,13 +55,18 @@ class ForgetPasswordPage extends StatelessWidget {
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      CustomBotton(title: Constant.sendLink,),
+                      CustomBotton(title: Constant.sendLink,onTap: (){},),
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      const CustomText(
-                        title: Constant.backToLoginPage,
-                        textStyle: CustomStyleText.bold18Primary,
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushReplacementNamed(context, LoginPage.id);
+                        },
+                        child: const CustomText(
+                          title: Constant.backToLoginPage,
+                          textStyle: CustomStyleText.bold18Primary,
+                        ),
                       )
                     ],
                   ),

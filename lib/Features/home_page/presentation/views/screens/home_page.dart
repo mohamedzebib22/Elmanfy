@@ -1,6 +1,9 @@
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_bottom_sheet.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_card_info.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_bottom_sheet.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_card_info.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/home_page_body.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/show_data_section.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
@@ -29,34 +32,11 @@ class HomePage extends StatelessWidget {
                     );
                   });
             }),
-        body:  Padding(
-            padding:  EdgeInsets.symmetric(horizontal: width*0.04),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: height*0.02),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  Expanded(child: CustomTextFeild(hintText: 'Search',isFill: true,fillColor: Colors.white,)),
-                  Icon(Icons.search_off_sharp ,color: const Color.fromARGB(255, 110, 108, 108),),
-                ],),
-                SizedBox(height: height/ 2.5),
-                InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, CustomerdetailsPage.id);
-                  },
-                  child: CustomCardInfo()),
-                // Text(
-                //   Constant.noDebtsCurrently,
-                //   style: CustomStyleText.whiteColorBold,
-                //   textAlign: TextAlign.center,
-                // ),
-              ],
-            ),
-          ),
+        body:  HomePageBody(),
         
       ),
     );
   }
 }
+
+

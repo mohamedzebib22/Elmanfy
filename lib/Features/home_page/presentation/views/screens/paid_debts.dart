@@ -1,4 +1,4 @@
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/payment_done.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/payment_done.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';

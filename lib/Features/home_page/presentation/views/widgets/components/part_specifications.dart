@@ -1,11 +1,11 @@
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_icon_button.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_icon_button.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class PartSpecifications extends StatelessWidget {
-  const PartSpecifications({
+class ProductDetails extends StatelessWidget {
+  const ProductDetails({
     super.key,
     
   });
