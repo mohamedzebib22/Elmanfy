@@ -16,6 +16,16 @@ class Constant {
  static const String phoneNumber = 'رقـم الهاتف';
  static const String dateOfAdded = 'تاريخ الاضافه';
  static const String addNewCustomer = 'اضافة زبون جديد';
+ static const String customerDetails = 'تفاصيل الزبون';
+ static const String debts = 'الـديـون';
+ static const String discount = 'الـديـون';
+ static const String payment = 'الـديـون';
+ static const String delete = 'الـديـون';
+ static const String nameOfThePiece = 'اسم القطعه';
+ static const String priceOfThePiece = 'سعر القطعه';
+ static const String count = 'الكمية';
+ static const String historyOfReligion = 'تاريخ الدين';
+ static const String totalPrice = 'اجمالى الدين';
 
 
 }
