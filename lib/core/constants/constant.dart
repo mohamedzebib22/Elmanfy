@@ -18,14 +18,18 @@ class Constant {
  static const String addNewCustomer = 'اضافة زبون جديد';
  static const String customerDetails = 'تفاصيل الزبون';
  static const String debts = 'الـديـون';
- static const String discount = 'الـديـون';
- static const String payment = 'الـديـون';
- static const String delete = 'الـديـون';
+ static const String discount = 'خصم';
+ static const String payment = 'الدفع';
+ static const String delete = 'حذف';
  static const String nameOfThePiece = 'اسم القطعه';
  static const String priceOfThePiece = 'سعر القطعه';
  static const String count = 'الكمية';
  static const String historyOfReligion = 'تاريخ الدين';
  static const String totalPrice = 'اجمالى الدين';
+ static const String addDebt = 'اضافة دين';
+ static const String viewAllDebt ='مشاهدة الديون المدفوعه';
+ static const String payTheAmount ='تم تسديد المبلغ بنجاح';
+ static const String debtDone ='الديون المدفوعه';
 
 
 }

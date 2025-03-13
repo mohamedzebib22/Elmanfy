@@ -12,44 +12,45 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            showModalBottomSheet(
-             isScrollControlled: true,
-              backgroundColor: Color(0xff19181E),
-                context: context,
-                builder: (context) {
-                  return Padding(
-                    padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: SingleChildScrollView(child: CustomBottomSheet()),
-                  );
-                });
-          }),
-      body: SafeArea(
-        child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: width*0.04),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: height*0.02),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Expanded(child: CustomTextFeild(hintText: 'Search',isFill: true,fillColor: Colors.white,)),
-                Icon(Icons.search_off_sharp ,color: const Color.fromARGB(255, 110, 108, 108),),
-              ],),
-              SizedBox(height: height/ 2.5),
-              CustomCardInfo(),
-              // Text(
-              //   Constant.noDebtsCurrently,
-              //   style: CustomStyleText.whiteColorBold,
-              //   textAlign: TextAlign.center,
-              // ),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              showModalBottomSheet(
+               isScrollControlled: true,
+                backgroundColor: Color(0xff19181E),
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: SingleChildScrollView(child: CustomBottomSheet()),
+                    );
+                  });
+            }),
+        body:  Padding(
+            padding:  EdgeInsets.symmetric(horizontal: width*0.04),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: height*0.02),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Expanded(child: CustomTextFeild(hintText: 'Search',isFill: true,fillColor: Colors.white,)),
+                  Icon(Icons.search_off_sharp ,color: const Color.fromARGB(255, 110, 108, 108),),
+                ],),
+                SizedBox(height: height/ 2.5),
+                CustomCardInfo(),
+                // Text(
+                //   Constant.noDebtsCurrently,
+                //   style: CustomStyleText.whiteColorBold,
+                //   textAlign: TextAlign.center,
+                // ),
+              ],
+            ),
           ),
-        ),
+        
       ),
     );
   }

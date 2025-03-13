@@ -12,28 +12,31 @@ class DetailsCardUser extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Card(
         color: Color(0xffD6D6D6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            CustomText(
-              title: '${Constant.customerName}:محمد سمير',
-              textStyle: CustomStyleText.bold16Black,
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            CustomText(
-              title: '${Constant.phoneNumber}:01064328893',
-              textStyle: CustomStyleText.bold16Black,
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            CustomText(
-              title: '${Constant.dateOfAdded}:13/3/2025',
-              textStyle: CustomStyleText.bold16Black,
-            ),
-          ],
+        child: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: width*0.02,vertical: height*0.01),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              CustomText(
+                title: '${Constant.customerName}:محمد سمير',
+                textStyle: CustomStyleText.bold16Black,
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              CustomText(
+                title: '${Constant.phoneNumber}:01064328893',
+                textStyle: CustomStyleText.bold16Black,
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              CustomText(
+                title: '${Constant.dateOfAdded}:13/3/2025',
+                textStyle: CustomStyleText.bold16Black,
+              ),
+            ],
+          ),
         ));
   }
 }
