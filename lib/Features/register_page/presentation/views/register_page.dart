@@ -1,3 +1,4 @@
+import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
@@ -88,9 +89,14 @@ class RegisterPage extends StatelessWidget {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      const CustomText(
-                        title: Constant.doYouHaveAccount,
-                        textStyle: CustomStyleText.primaryColorBold,
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushReplacementNamed(context, LoginPage.id);
+                        },
+                        child: const CustomText(
+                          title: Constant.doYouHaveAccount,
+                          textStyle: CustomStyleText.primaryColorBold,
+                        ),
                       ),
                       
                     ],

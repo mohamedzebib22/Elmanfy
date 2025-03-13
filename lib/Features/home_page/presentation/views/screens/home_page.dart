@@ -1,3 +1,4 @@
+import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_bottom_sheet.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_card_info.dart';
 import 'package:elmanfy/core/constants/constant.dart';
@@ -41,7 +42,11 @@ class HomePage extends StatelessWidget {
                   Icon(Icons.search_off_sharp ,color: const Color.fromARGB(255, 110, 108, 108),),
                 ],),
                 SizedBox(height: height/ 2.5),
-                CustomCardInfo(),
+                InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, CustomerdetailsPage.id);
+                  },
+                  child: CustomCardInfo()),
                 // Text(
                 //   Constant.noDebtsCurrently,
                 //   style: CustomStyleText.whiteColorBold,

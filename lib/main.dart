@@ -27,7 +27,7 @@ class Elmanfy extends StatelessWidget {
         CustomerdetailsPage.id : (context) => CustomerdetailsPage(),
         PaidDebtsPage.id : (context) => PaidDebtsPage(),
       },
-      initialRoute: CustomerdetailsPage.id,
+      initialRoute: LoginPage.id,
     );
   }
 }

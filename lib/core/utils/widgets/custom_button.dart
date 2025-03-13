@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 class CustomBotton extends StatelessWidget {
   const CustomBotton({
-    super.key, required this.title,
+    super.key, required this.title,this.onTap,
     
   });
-
+  final VoidCallback? onTap;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CustomBotton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.primaryColor
         ),
-        onPressed: (){}, child: Center(child: Text(title,style:CustomStyleText.whiteColorBold,),)),
+        onPressed: onTap, child: Center(child: Text(title,style:CustomStyleText.whiteColorBold,),)),
     );
   }
 }

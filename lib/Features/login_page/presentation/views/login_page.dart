@@ -1,3 +1,6 @@
+import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
+import 'package:elmanfy/Features/register_page/presentation/views/register_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
@@ -65,20 +68,32 @@ class LoginPage extends StatelessWidget {
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      CustomBotton(title:Constant.login,),
+                      CustomBotton(title:Constant.login,onTap: (){
+                        Navigator.pushReplacementNamed(context, HomePage.id);
+                      },),
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      const CustomText(
-                        title: Constant.forgetpass,
-                        textStyle: CustomStyleText.primaryColorBold,
+                      InkWell(
+                        onTap: (){
+                           Navigator.pushNamed(context, ForgetPasswordPage.id);
+                        },
+                        child: const CustomText(
+                          title: Constant.forgetpass,
+                          textStyle: CustomStyleText.primaryColorBold,
+                        ),
                       ),
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      const CustomText(
-                        title: Constant.noHaveAccount,
-                        textStyle: CustomStyleText.bold18Primary,
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushReplacementNamed(context, RegisterPage.id);
+                        },
+                        child: const CustomText(
+                          title: Constant.noHaveAccount,
+                          textStyle: CustomStyleText.bold18Primary,
+                        ),
                       )
                     ],
                   ),
