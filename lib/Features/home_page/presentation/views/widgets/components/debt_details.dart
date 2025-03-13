@@ -14,6 +14,7 @@ class DebtDetails extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         CustomText(
           title: 'كيبورد',
@@ -29,6 +30,7 @@ class DebtDetails extends StatelessWidget {
         ),
         CustomBotton(
           title: Constant.payTheAmount,
+          onTap: () {},
         ),
       ],
     );

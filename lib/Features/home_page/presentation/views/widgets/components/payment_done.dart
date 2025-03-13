@@ -19,7 +19,7 @@ class PaymentDone extends StatelessWidget {
     return Card(
      
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             'المجموع :${500}',
