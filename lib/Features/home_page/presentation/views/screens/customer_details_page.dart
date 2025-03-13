@@ -1,3 +1,4 @@
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/bottom_sheet_of_adddebt.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_divider.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/custom_icon_button.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/details_card_user.dart';
@@ -76,7 +77,17 @@ class CustomerdetailsPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: MaterialButton(
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet(
+                          isScrollControlled:true,
+                          backgroundColor:Color(0xff19181E), 
+                          context: context, builder: (context){
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                            child: SingleChildScrollView(child: BottomSheetOfAdddebt()),
+                          );
+                        });
+                      },
                       child: Center(
                         child: Text(Constant.addDebt,
                             style: CustomStyleText.bold18Primary),
