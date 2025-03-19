@@ -3,47 +3,68 @@ import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class InputDataSection extends StatelessWidget {
   const InputDataSection({super.key});
 
+ 
   @override
   Widget build(BuildContext context) {
+    TextEditingController email= TextEditingController();
+    TextEditingController password= TextEditingController();
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        SizedBox(
-          height: height / 6,
-        ),
-        CustomTextFeild(
-          hintText: Constant.email,
-          sufix: const Icon(
-            Icons.email_sharp,
-            color: AppColor.primaryColor,
+    var formkey = GlobalKey<FormState>();
+    return Form(
+      key: formkey,
+      child: Column(
+        children: [
+          SizedBox(
+            height: height / 6,
           ),
-        ),
-        SizedBox(
-          height: height * 0.02,
-        ),
-        CustomTextFeild(
-          hintText: Constant.password,
-          sufix: const Icon(
-            Icons.visibility_off_sharp,
-            color: AppColor.primaryColor,
+          CustomTextFeild(
+            validator: (email){
+              if(email==null || email.isEmpty){
+                return 'Please Enter Email';
+              }
+            },
+            controller: email,
+            hintText: Constant.email,
+            sufix: const Icon(
+              Icons.email_sharp,
+              color: AppColor.primaryColor,
+            ),
           ),
-        ),
-        SizedBox(
-          height: height * 0.04,
-        ),
-        CustomBotton(
-          title: Constant.login,
-          onTap: () {
-            Navigator.pushReplacementNamed(context, HomePage.id);
-          },
-        ),
-      ],
+          SizedBox(
+            height: height * 0.02,
+          ),
+          CustomTextFeild(
+            validator: (password){
+              if(password==null || password.isEmpty){
+                return 'Please Enter password';
+              }
+            },
+            controller: password,
+            hintText: Constant.password,
+            sufix: const Icon(
+              Icons.visibility_off_sharp,
+              color: AppColor.primaryColor,
+            ),
+          ),
+          SizedBox(
+            height: height * 0.04,
+          ),
+          CustomBotton(
+            title: Constant.login,
+            onTap: ()  {
+              
+              Navigator.pushReplacementNamed(context, HomePage.id);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
