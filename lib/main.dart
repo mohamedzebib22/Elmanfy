@@ -5,9 +5,15 @@ import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts
 import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/Features/register_page/presentation/views/register_page.dart';
 import 'package:elmanfy/core/theme/app_theme.dart';
+import 'package:elmanfy/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const Elmanfy());
 }
 class Elmanfy extends StatelessWidget {
