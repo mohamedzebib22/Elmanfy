@@ -33,19 +33,17 @@ class InputRegisterDataSection extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(36), topRight: Radius.circular(36))),
         child: BlocConsumer<RegisterCubit, RegisterState>(
-          listener: (context,state){
-            if(state is RegisterSucsess){
-               ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('register Sucsess')));
-            }else if(state is RegisterFailuer){
-               ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.faliures.errMessage)));
+          listener: (context, state) {
+            if (state is RegisterSucsess) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text('register Sucsess')));
+            } else if (state is RegisterFailuer) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.faliures.errMessage)));
             }
           },
           builder: (context, state) {
-           if(state is RegisterFailuer){
-
-           }
+            if (state is RegisterFailuer) {}
             return Column(
               children: [
                 SizedBox(
@@ -137,13 +135,8 @@ class InputRegisterDataSection extends StatelessWidget {
                               .formkey
                               .currentState!
                               .validate()) {
-                            RegisterCubit.get(context).register(
-                                email:
-                                    RegisterCubit.get(context).userEmail.text,
-                                password: RegisterCubit.get(context)
-                                    .userPassword
-                                    .text,
-                                context: context);
+                            RegisterCubit.get(context)
+                                .register(context: context);
                           }
                         },
                       ),
@@ -167,4 +160,3 @@ class InputRegisterDataSection extends StatelessWidget {
     );
   }
 }
-

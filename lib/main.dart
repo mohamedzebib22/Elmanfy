@@ -1,7 +1,9 @@
+import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_password_cubit.dart';
 import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts.dart';
+import 'package:elmanfy/Features/login_page/data/cubit/login_cubit.dart';
 import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/Features/register_page/data/cubit/register_cubit.dart';
 import 'package:elmanfy/Features/register_page/presentation/views/register_page.dart';
@@ -22,6 +24,8 @@ void main() async {
   runApp(MultiBlocProvider(
     providers: [
        BlocProvider(create:(context)  => getIt<RegisterCubit>()),
+       BlocProvider(create:(context)  => getIt<LoginCubit>()),
+       BlocProvider(create:(context)  => getIt<ForegetPasswordCubit>()),
     ],
     child: const Elmanfy()));
 }

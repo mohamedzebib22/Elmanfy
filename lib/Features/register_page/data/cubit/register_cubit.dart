@@ -21,12 +21,11 @@ class RegisterCubit extends Cubit<RegisterState> {
   static RegisterCubit get(context) => BlocProvider.of(context);
 
   register(
-      {required String email,
-      required String password,
+      {
       required BuildContext context}) async {
     emit(RegisterLoading());
     var either =
-        await registerRepo.registerUser(email: email, password: password);
+        await registerRepo.registerUser(email: userEmail.text, password: userPassword.text);
     return either.fold((error) {
       emit(RegisterFailuer(faliures: error));
     }, (response) {
