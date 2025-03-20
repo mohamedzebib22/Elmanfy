@@ -11,12 +11,11 @@ import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class InputRegisterDataSection extends StatelessWidget {
   InputRegisterDataSection({super.key});
-  
 
- 
   @override
   Widget build(BuildContext context) {
     RegisterCubit viewModel = getIt<RegisterCubit>();
@@ -24,7 +23,7 @@ class InputRegisterDataSection extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Form(
-      key:RegisterCubit.get(context).formkey ,
+      key: RegisterCubit.get(context).formkey,
       child: Container(
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.04, vertical: height * 0.02),
@@ -33,8 +32,20 @@ class InputRegisterDataSection extends StatelessWidget {
             color: AppColor.containerColor,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(36), topRight: Radius.circular(36))),
-        child: BlocBuilder<RegisterCubit, RegisterState>(
+        child: BlocConsumer<RegisterCubit, RegisterState>(
+          listener: (context,state){
+            if(state is RegisterSucsess){
+               ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('register Sucsess')));
+            }else if(state is RegisterFailuer){
+               ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.faliures.errMessage)));
+            }
+          },
           builder: (context, state) {
+           if(state is RegisterFailuer){
+
+           }
             return Column(
               children: [
                 SizedBox(
@@ -99,7 +110,8 @@ class InputRegisterDataSection extends StatelessWidget {
                   validator: (rePassword) {
                     if (rePassword == null || rePassword.isEmpty) {
                       return 'برجاء ادخال تاكيد كلمة السـر';
-                    } else if (rePassword != RegisterCubit.get(context).userRePaswword.text) {
+                    } else if (rePassword !=
+                        RegisterCubit.get(context).userPassword.text) {
                       return 'كلمة السر غير متطابقة';
                     } else {
                       return null;
@@ -114,18 +126,27 @@ class InputRegisterDataSection extends StatelessWidget {
                 SizedBox(
                   height: height * 0.04,
                 ),
-               state is RegisterLoading ? Center(child: CircularProgressIndicator(),) :
-                CustomBotton(
-                  title: Constant.createAccount,
-                  onTap: () {
-                    if (RegisterCubit.get(context).formkey.currentState!.validate()) {
-                      RegisterCubit.get(context).register(
-                          email: RegisterCubit.get(context).userEmail.text,
-                          password: RegisterCubit.get(context).userPassword.text, 
-                          context: context);
-                    }
-                  },
-                ),
+                state is RegisterLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : CustomBotton(
+                        title: Constant.createAccount,
+                        onTap: () {
+                          if (RegisterCubit.get(context)
+                              .formkey
+                              .currentState!
+                              .validate()) {
+                            RegisterCubit.get(context).register(
+                                email:
+                                    RegisterCubit.get(context).userEmail.text,
+                                password: RegisterCubit.get(context)
+                                    .userPassword
+                                    .text,
+                                context: context);
+                          }
+                        },
+                      ),
                 SizedBox(
                   height: height * 0.02,
                 ),
@@ -146,3 +167,4 @@ class InputRegisterDataSection extends StatelessWidget {
     );
   }
 }
+
