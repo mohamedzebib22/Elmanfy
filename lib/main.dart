@@ -1,5 +1,6 @@
 import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_password_cubit.dart';
 import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
+import 'package:elmanfy/Features/home_page/data/cubit/add_user_cubit.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts.dart';
@@ -26,6 +27,7 @@ void main() async {
        BlocProvider(create:(context)  => getIt<RegisterCubit>()),
        BlocProvider(create:(context)  => getIt<LoginCubit>()),
        BlocProvider(create:(context)  => getIt<ForegetPasswordCubit>()),
+       BlocProvider(create:(context)  => getIt<AddUserCubit>()),
     ],
     child: const Elmanfy()));
 }

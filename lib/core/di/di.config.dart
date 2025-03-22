@@ -21,6 +21,13 @@ import '../../Features/forget_password_page/data/Repositories/forget_passwod_rep
     as _i587;
 import '../../Features/forget_password_page/data/Repositories/forget_password_impl.dart'
     as _i44;
+import '../../Features/home_page/data/cubit/add_user_cubit.dart' as _i95;
+import '../../Features/home_page/data/Data_Source/add_user_remote.dart'
+    as _i722;
+import '../../Features/home_page/data/Data_Source/add_user_remote_impl.dart'
+    as _i778;
+import '../../Features/home_page/data/Repos/add_user_impl.dart' as _i1025;
+import '../../Features/home_page/data/Repos/add_user_repo.dart' as _i378;
 import '../../Features/login_page/data/cubit/login_cubit.dart' as _i435;
 import '../../Features/login_page/data/Data_Source/remote/login_remote.dart'
     as _i765;
@@ -50,8 +57,13 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i765.LoginRemote>(() => _i1040.LoginRemoteImpl());
+    gh.factory<_i722.AddUserRemote>(() => _i778.AddUserRemoteImpl());
+    gh.factory<_i378.AddUserRepo>(
+        () => _i1025.AddUserImpl(addUserRemote: gh<_i722.AddUserRemote>()));
     gh.factory<_i920.ForgetPasswordRemote>(() => _i647.ForgetPasswordImpl());
     gh.factory<_i908.RegisterUserRemote>(() => _i452.RegisterUserRemoteImpl());
+    gh.factory<_i95.AddUserCubit>(
+        () => _i95.AddUserCubit(gh<_i378.AddUserRepo>()));
     gh.factory<_i587.ForgetPasswordRepo>(() => _i44.ForgetPasswordImpl(
         forgetPasswordRemote: gh<_i920.ForgetPasswordRemote>()));
     gh.factory<_i211.LoginRepo>(

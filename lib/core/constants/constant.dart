@@ -30,6 +30,7 @@ class Constant {
  static const String viewAllDebt ='مشاهدة الديون المدفوعه';
  static const String payTheAmount ='تم تسديد المبلغ بنجاح';
  static const String debtDone ='الديون المدفوعه';
+ static const String getCollection ='Users';
 
 
 }
