@@ -11,24 +11,33 @@ import 'package:quickalert/quickalert.dart';
 @injectable
 class ForegetPasswordCubit extends Cubit<ForegetPasswordState> {
   ForegetPasswordCubit(this.forgetPasswodRepo) : super(ForegetPasswordInitial());
-  final ForgetPasswodRepo forgetPasswodRepo;
+  final ForgetPasswordRepo forgetPasswodRepo;
   TextEditingController email = TextEditingController();
-  var formkey = GlobalKey<FormState>();
+
+  var keyFormState = GlobalKey<FormState>();
 
   static ForegetPasswordCubit get(context) => BlocProvider.of(context);
 
   foregetPassword({required BuildContext context})async{
-    emit(ForegetPasswordLoading());
-    if(formkey.currentState!.validate()){
+   
+   
+       emit(ForegetPasswordLoading());
       var either =await forgetPasswodRepo.forgetPassword(email: email.text);
       return either.fold((error){
+        print('======== Dont Send Email =========');
        emit(ForegetPasswordFaliure(faliures: error));
-       
+       ShowDialogMsg.showDialogtext(context: context, type: QuickAlertType.error, title: 'ارسال الرمز', body: error.errMessage, confirm: (){
+        
+      });
       }, (response){
+        print('========Send Email Sucsess=========');
       emit(ForegetPasswordSucsess());
-      Navigator.pushReplacementNamed(context, LoginPage.id);
+      ShowDialogMsg.showDialogtext(context: context, type: QuickAlertType.confirm, title: 'ارسال الرمز', body: response.toString(), confirm: (){
+       
+      });
+      
      });
-    }
+    
     
   }
 }

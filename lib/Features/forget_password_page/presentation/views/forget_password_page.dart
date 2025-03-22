@@ -23,7 +23,7 @@ class ForgetPasswordPage extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: width * .01),
             child: Form(
-              key: ForegetPasswordCubit.get(context).formkey,
+              key: ForegetPasswordCubit.get(context).keyFormState,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -53,6 +53,14 @@ class ForgetPasswordPage extends StatelessWidget {
                               height: height / 8,
                             ),
                             CustomTextFeild(
+                              controller: ForegetPasswordCubit.get(context).email,
+                              validator: (email){
+                                if(email == null || email.trim().isEmpty){
+                                  return 'برجاء ادخال الايميل';
+                                }else{
+                                  return null;
+                                }
+                              },
                               hintText: Constant.email,
                               sufix: const Icon(
                                 Icons.email_sharp,
@@ -62,7 +70,7 @@ class ForgetPasswordPage extends StatelessWidget {
                             SizedBox(
                               height: height * 0.04,
                             ),
-                            CustomBotton(
+                          state is ForegetPasswordLoading ? Center(child: CircularProgressIndicator(),) :  CustomBotton(
                               title: Constant.sendLink,
                               onTap: () {
                                 ForegetPasswordCubit.get(context).foregetPassword(context: context);

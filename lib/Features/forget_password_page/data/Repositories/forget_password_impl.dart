@@ -5,8 +5,8 @@ import 'package:elmanfy/Features/forget_password_page/data/Repositories/forget_p
 import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as:ForgetPasswodRepo )
-class ForgetPasswordImpl extends ForgetPasswodRepo{
+@Injectable(as:ForgetPasswordRepo )
+class ForgetPasswordImpl extends ForgetPasswordRepo{
   final ForgetPasswordRemote forgetPasswordRemote;
 
   ForgetPasswordImpl({required this.forgetPasswordRemote});

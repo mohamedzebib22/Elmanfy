@@ -4,16 +4,26 @@ import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quickalert/quickalert.dart';
 
 @Injectable(as: ForgetPasswordRemote)
-class ForegetPasswordImpl extends ForgetPasswordRemote{
+class ForgetPasswordImpl extends ForgetPasswordRemote {
   @override
-  Future<Either<Faliures, dynamic>> forgetPassword({required String email})async {
-    try{
-     await  FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      return Right('Password reset email sent successfully');
-    }catch(e){
+  Future<Either<Faliures, dynamic>> forgetPassword(
+      {required String email}) async {
+    try {
+     
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return const Right('تم ارسال الرمز الى البريد الالكترونى');
+    } catch (e) {
+     
+       if (e is FirebaseAuthException) {
+        
+        if (e.code == 'user-not-found') {
+          return Left(ServerError(errMessage: 'البريد الإلكتروني غير موجود في النظام'));
+        } else if (e.code == 'invalid-email') {
+          return Left(ServerError(errMessage: 'البريد الإلكتروني غير صالح'));
+        }
+      }
       return Left(ServerError(errMessage: e.toString()));
     }
   }

@@ -17,8 +17,9 @@ class LoginCubit extends Cubit<LoginState> {
   static LoginCubit get(context) => BlocProvider.of(context);
 
   loginUser({required BuildContext context})async{
-    emit(LoginLoading());
+  
     if(formkey.currentState!.validate()){
+        emit(LoginLoading());
       var either = await loginRepo.loginUser(email: email.text, password: password.text);
     return either.fold((error){
       emit(LoginFailure(faliures: error));
