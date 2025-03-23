@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 class ShowDataSection extends StatelessWidget {
   const ShowDataSection({
-    super.key,
+    super.key, required this.name, required this.phone, required this.dateOfAdded,
   });
-
+  final String name;
+  final String phone;
+  final String dateOfAdded;
   @override
   Widget build(BuildContext context) {
-    return CustomCardInfo();
+    return CustomCardInfo(name: name, phone: phone, dateOfAdded: dateOfAdded,);
   }
 }
 

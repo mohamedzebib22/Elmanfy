@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:elmanfy/Features/home_page/data/Data_Source/add_user_remote.dart';
-import 'package:elmanfy/Features/home_page/data/Repos/add_user_repo.dart';
+import 'package:elmanfy/Features/home_page/data/Data_Source/add_user/add_user_remote.dart';
+import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:injectable/injectable.dart';
 

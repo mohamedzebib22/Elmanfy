@@ -5,8 +5,10 @@ import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardInfo extends StatelessWidget {
-  const CustomCardInfo({super.key});
-  
+  const CustomCardInfo({super.key, required this.name, required this.phone, required this.dateOfAdded});
+  final String name;
+  final String phone;
+  final String dateOfAdded;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -25,11 +27,11 @@ class CustomCardInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-          CustomText(title: '${Constant.customerName}:محمد سمير',textStyle:CustomStyleText.bold16Black ,),
+          CustomText(title: '${Constant.customerName}:$name',textStyle:CustomStyleText.bold16Black ,),
           SizedBox(height: height*0.02,),
-          CustomText(title: '${Constant.phoneNumber}:01064328893',textStyle:CustomStyleText.bold16Black ,),
+          CustomText(title: '${Constant.phoneNumber}:$phone',textStyle:CustomStyleText.bold16Black ,),
           SizedBox(height: height*0.02,),
-          CustomText(title: '${Constant.dateOfAdded}:13/3/2025',textStyle:CustomStyleText.bold16Black ,),
+          CustomText(title: '${Constant.dateOfAdded}:$dateOfAdded',textStyle:CustomStyleText.bold16Black ,),
         ],)
       ],),
     );

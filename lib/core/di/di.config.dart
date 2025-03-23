@@ -21,13 +21,26 @@ import '../../Features/forget_password_page/data/Repositories/forget_passwod_rep
     as _i587;
 import '../../Features/forget_password_page/data/Repositories/forget_password_impl.dart'
     as _i44;
-import '../../Features/home_page/data/cubit/add_user_cubit.dart' as _i95;
-import '../../Features/home_page/data/Data_Source/add_user_remote.dart'
-    as _i722;
-import '../../Features/home_page/data/Data_Source/add_user_remote_impl.dart'
-    as _i778;
-import '../../Features/home_page/data/Repos/add_user_impl.dart' as _i1025;
-import '../../Features/home_page/data/Repos/add_user_repo.dart' as _i378;
+import '../../Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart'
+    as _i483;
+import '../../Features/home_page/data/cubits/get_user_cubit/get_user_cubit.dart'
+    as _i526;
+import '../../Features/home_page/data/Data_Source/add_user/add_user_remote.dart'
+    as _i781;
+import '../../Features/home_page/data/Data_Source/add_user/add_user_remote_impl.dart'
+    as _i413;
+import '../../Features/home_page/data/Data_Source/get_user/get_user_remote.dart'
+    as _i317;
+import '../../Features/home_page/data/Data_Source/get_user/get_user_remote_impl.dart'
+    as _i77;
+import '../../Features/home_page/data/Repos/add_user/add_user_impl.dart'
+    as _i607;
+import '../../Features/home_page/data/Repos/add_user/add_user_repo.dart'
+    as _i692;
+import '../../Features/home_page/data/Repos/get_user/get_user_impl.dart'
+    as _i282;
+import '../../Features/home_page/data/Repos/get_user/get_user_repo.dart'
+    as _i1053;
 import '../../Features/login_page/data/cubit/login_cubit.dart' as _i435;
 import '../../Features/login_page/data/Data_Source/remote/login_remote.dart'
     as _i765;
@@ -57,24 +70,29 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i765.LoginRemote>(() => _i1040.LoginRemoteImpl());
-    gh.factory<_i722.AddUserRemote>(() => _i778.AddUserRemoteImpl());
-    gh.factory<_i378.AddUserRepo>(
-        () => _i1025.AddUserImpl(addUserRemote: gh<_i722.AddUserRemote>()));
+    gh.factory<_i781.AddUserRemote>(() => _i413.AddUserRemoteImpl());
     gh.factory<_i920.ForgetPasswordRemote>(() => _i647.ForgetPasswordImpl());
+    gh.factory<_i317.GetUserRemote>(() => _i77.GetUserRemoteImpl());
     gh.factory<_i908.RegisterUserRemote>(() => _i452.RegisterUserRemoteImpl());
-    gh.factory<_i95.AddUserCubit>(
-        () => _i95.AddUserCubit(gh<_i378.AddUserRepo>()));
     gh.factory<_i587.ForgetPasswordRepo>(() => _i44.ForgetPasswordImpl(
         forgetPasswordRemote: gh<_i920.ForgetPasswordRemote>()));
     gh.factory<_i211.LoginRepo>(
         () => _i113.LoginImpl(loginRemote: gh<_i765.LoginRemote>()));
     gh.factory<_i409.RegisterRepo>(() =>
         _i68.RegisterImpl(registerUserRemote: gh<_i908.RegisterUserRemote>()));
+    gh.factory<_i1053.GetUserRepo>(
+        () => _i282.GetUserImpl(getUserRemote: gh<_i317.GetUserRemote>()));
+    gh.factory<_i526.GetUserCubit>(
+        () => _i526.GetUserCubit(gh<_i1053.GetUserRepo>()));
     gh.factory<_i1052.ForegetPasswordCubit>(
         () => _i1052.ForegetPasswordCubit(gh<_i587.ForgetPasswordRepo>()));
+    gh.factory<_i692.AddUserRepo>(
+        () => _i607.AddUserImpl(addUserRemote: gh<_i781.AddUserRemote>()));
     gh.factory<_i834.RegisterCubit>(
         () => _i834.RegisterCubit(gh<_i409.RegisterRepo>()));
     gh.factory<_i435.LoginCubit>(() => _i435.LoginCubit(gh<_i211.LoginRepo>()));
+    gh.factory<_i483.AddUserCubit>(
+        () => _i483.AddUserCubit(gh<_i692.AddUserRepo>()));
     return this;
   }
 }

@@ -1,5 +1,5 @@
-import 'package:elmanfy/Features/home_page/data/cubit/add_user_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubit/add_user_state.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/add_user_cubit/add_user_state.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';

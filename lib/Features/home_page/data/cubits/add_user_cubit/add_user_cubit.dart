@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:elmanfy/Features/home_page/data/Repos/add_user_repo.dart';
-import 'package:elmanfy/Features/home_page/data/cubit/add_user_state.dart';
+import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/add_user_cubit/add_user_state.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,41 +1,86 @@
+import 'package:elmanfy/Features/home_page/data/cubits/get_user_cubit/get_user_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_user_cubit/get_user_state.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/show_data_section.dart';
+import 'package:elmanfy/core/di/di.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePageBody extends StatelessWidget {
+class HomePageBody extends StatefulWidget {
   const HomePageBody({
     super.key,
-   
   });
 
-  
+  @override
+  State<HomePageBody> createState() => _HomePageBodyState();
+}
+
+class _HomePageBodyState extends State<HomePageBody> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetUserCubit.get(context).getUsersFromeFireStore(context: context);
+  }
 
   @override
   Widget build(BuildContext context) {
+    GetUserCubit viewModel = getIt<GetUserCubit>();
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Padding(
-        padding:  EdgeInsets.symmetric(horizontal: width*0.04),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: height*0.02),
-            SearchSection(),
-            SizedBox(height: height/ 2.5),
-            InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, CustomerdetailsPage.id);
-              },
-              child: ShowDataSection()),
-            // Text(
-            //   Constant.noDebtsCurrently,
-            //   style: CustomStyleText.whiteColorBold,
-            //   textAlign: TextAlign.center,
-            // ),
-          ],
-        ),
-      );
+      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(height: height * 0.02),
+          SearchSection(),
+         SizedBox(height: height * 0.02),
+          BlocBuilder<GetUserCubit, GetUserState>(
+            builder: (context, state) {
+              var userList = GetUserCubit.get(context).data;
+              if (state is GetUserSucsess) {
+                return Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: userList.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, CustomerdetailsPage.id);
+                        },
+                        child: ShowDataSection(
+                          name: '${userList[index]['full_name']}',
+                          phone: '${userList[index]['phone']}',
+                          dateOfAdded: '${userList[index]['dateOfAdded']}',
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }else if(state is GetUserLoading){
+                return Center(child: CircularProgressIndicator(),);
+              }else {
+                 return Center(
+                child: Text(state.toString()),
+              );
+              }
+              
+            },
+          ),
+
+          // Text(
+          //   Constant.noDebtsCurrently,
+          //   style: CustomStyleText.whiteColorBold,
+          //   textAlign: TextAlign.center,
+          // ),
+        ],
+      ),
+    );
   }
 }
-
+/**
+ BlocBuilder<GetUserCubit, GetUserState>(
+       
+ */
