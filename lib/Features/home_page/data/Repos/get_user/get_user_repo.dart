@@ -4,4 +4,5 @@ import 'package:flutter/cupertino.dart';
 
 abstract class GetUserRepo {
   Future<Either<Faliures , dynamic>> getUsers();
+  Future<Either<Faliures , dynamic>> deleteUsers({required String id});
 }

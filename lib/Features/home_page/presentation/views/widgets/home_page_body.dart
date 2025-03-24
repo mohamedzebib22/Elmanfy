@@ -1,14 +1,17 @@
-import 'package:elmanfy/Features/home_page/data/cubits/get_user_cubit/get_user_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_user_cubit/get_user_state.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_state.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/show_data_section.dart';
+import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
+import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickalert/quickalert.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({
@@ -29,8 +32,8 @@ class HomePageBody extends StatelessWidget {
           SizedBox(height: height * 0.02),
           SearchSection(),
           SizedBox(height: height * 0.02),
-          BlocBuilder<GetUserCubit, GetUserState>(
-            bloc: viewModel..getUsersFromeFireStore(context: context),
+          BlocBuilder<GetUserCubit, GetAndDeleteUserState>(
+            bloc: viewModel..getUsersFromeFireStore(),
             builder: (context, state) {
               
               if (state is GetUserLoading) {
@@ -55,7 +58,16 @@ class HomePageBody extends StatelessWidget {
                         child: ShowDataSection(
                           name: '${userList[index]['full_name']}',
                           phone: '${userList[index]['phone']}',
-                          dateOfAdded: '${userList[index]['dateOfAdded']}',
+                          dateOfAdded: '${userList[index]['dateOfAdded']}', 
+                          onTap: () {
+                            ShowDialogMsg.showDialogtext(context: context, 
+                            type: QuickAlertType.warning, 
+                            title: Constant.deleteUser,
+                             body: Constant.deleteUserConfirm, 
+                             confirm: (){
+                              viewModel.deleteUser(id: '${userList[index].id}', context: context);
+                             }) ;
+                           },
                         ),
                       );
                     },
@@ -72,7 +84,7 @@ class HomePageBody extends StatelessWidget {
                         title: 'اعادة المحاولة',
                         onTap: () {
                          viewModel
-                              .getUsersFromeFireStore(context: context);
+                              .getUsersFromeFireStore();
                         },
                       )
                     ],

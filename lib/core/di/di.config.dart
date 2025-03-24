@@ -23,16 +23,16 @@ import '../../Features/forget_password_page/data/Repositories/forget_password_im
     as _i44;
 import '../../Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart'
     as _i483;
-import '../../Features/home_page/data/cubits/get_user_cubit/get_user_cubit.dart'
-    as _i526;
+import '../../Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart'
+    as _i967;
 import '../../Features/home_page/data/Data_Source/add_user/add_user_remote.dart'
     as _i781;
 import '../../Features/home_page/data/Data_Source/add_user/add_user_remote_impl.dart'
     as _i413;
-import '../../Features/home_page/data/Data_Source/get_user/get_user_remote.dart'
-    as _i317;
-import '../../Features/home_page/data/Data_Source/get_user/get_user_remote_impl.dart'
-    as _i77;
+import '../../Features/home_page/data/Data_Source/get_and_delete_user/get_and_delete_user_remote.dart'
+    as _i594;
+import '../../Features/home_page/data/Data_Source/get_and_delete_user/get_and_delete_user_remote_impl.dart'
+    as _i640;
 import '../../Features/home_page/data/Repos/add_user/add_user_impl.dart'
     as _i607;
 import '../../Features/home_page/data/Repos/add_user/add_user_repo.dart'
@@ -70,20 +70,20 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i765.LoginRemote>(() => _i1040.LoginRemoteImpl());
+    gh.factory<_i594.GetUserRemote>(() => _i640.GetUserRemoteImpl());
     gh.factory<_i781.AddUserRemote>(() => _i413.AddUserRemoteImpl());
     gh.factory<_i920.ForgetPasswordRemote>(() => _i647.ForgetPasswordImpl());
-    gh.factory<_i317.GetUserRemote>(() => _i77.GetUserRemoteImpl());
     gh.factory<_i908.RegisterUserRemote>(() => _i452.RegisterUserRemoteImpl());
+    gh.factory<_i1053.GetUserRepo>(
+        () => _i282.GetUserImpl(getUserRemote: gh<_i594.GetUserRemote>()));
     gh.factory<_i587.ForgetPasswordRepo>(() => _i44.ForgetPasswordImpl(
         forgetPasswordRemote: gh<_i920.ForgetPasswordRemote>()));
     gh.factory<_i211.LoginRepo>(
         () => _i113.LoginImpl(loginRemote: gh<_i765.LoginRemote>()));
     gh.factory<_i409.RegisterRepo>(() =>
         _i68.RegisterImpl(registerUserRemote: gh<_i908.RegisterUserRemote>()));
-    gh.factory<_i1053.GetUserRepo>(
-        () => _i282.GetUserImpl(getUserRemote: gh<_i317.GetUserRemote>()));
-    gh.factory<_i526.GetUserCubit>(
-        () => _i526.GetUserCubit(gh<_i1053.GetUserRepo>()));
+    gh.factory<_i967.GetUserCubit>(
+        () => _i967.GetUserCubit(gh<_i1053.GetUserRepo>()));
     gh.factory<_i1052.ForegetPasswordCubit>(
         () => _i1052.ForegetPasswordCubit(gh<_i587.ForgetPasswordRepo>()));
     gh.factory<_i692.AddUserRepo>(

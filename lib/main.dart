@@ -1,7 +1,7 @@
 import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_password_cubit.dart';
 import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_user_cubit/get_user_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts.dart';
@@ -68,7 +68,7 @@ class _ElmanfyState extends State<Elmanfy> {
         CustomerdetailsPage.id: (context) => CustomerdetailsPage(),
         PaidDebtsPage.id: (context) => PaidDebtsPage(),
       },
-      initialRoute: HomePage.id,
+      initialRoute: LoginPage.id,
     );
   }
 }

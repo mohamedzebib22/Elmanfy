@@ -31,6 +31,8 @@ class Constant {
  static const String payTheAmount ='تم تسديد المبلغ بنجاح';
  static const String debtDone ='الديون المدفوعه';
  static const String getCollection ='Users';
+ static const String deleteUser ='حذف زبون';
+ static const String deleteUserConfirm =' هل تريد فعلا حذف هذا العميل';
 
 
 }

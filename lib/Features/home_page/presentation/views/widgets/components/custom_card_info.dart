@@ -5,10 +5,11 @@ import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardInfo extends StatelessWidget {
-  const CustomCardInfo({super.key, required this.name, required this.phone, required this.dateOfAdded});
+  const CustomCardInfo({super.key, required this.name, required this.phone, required this.dateOfAdded, required this.onTap});
   final String name;
   final String phone;
   final String dateOfAdded;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -17,7 +18,7 @@ class CustomCardInfo extends StatelessWidget {
       color: Color(0xffD6D6D6),
       child: Row(children: [
         Row(children: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.delete_forever_sharp,color: Colors.red,)),
+          IconButton(onPressed: onTap, icon: Icon(Icons.delete_forever_sharp,color: Colors.red,)),
           IconButton(onPressed: (){
             Navigator.pushNamed(context, CustomerdetailsPage.id);
           }, icon: Icon(Icons.edit_sharp,color: Colors.green,)),

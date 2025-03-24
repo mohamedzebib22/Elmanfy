@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:elmanfy/Features/home_page/data/Data_Source/add_user/add_user_remote.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddUserRemote)
@@ -15,7 +16,7 @@ class AddUserRemoteImpl extends AddUserRemote {
       required String dateOfAdded}) async {
     try {
       await users
-          .add({'full_name': name, 'phone': phone, 'dateOfAdded': dateOfAdded})
+          .add({'full_name': name, 'phone': phone, 'dateOfAdded': dateOfAdded ,'id' : FirebaseAuth.instance.currentUser!.uid})
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
 
