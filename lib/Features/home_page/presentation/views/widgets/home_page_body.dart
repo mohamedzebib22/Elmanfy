@@ -4,25 +4,17 @@ import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_d
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/show_data_section.dart';
 import 'package:elmanfy/core/di/di.dart';
+import 'package:elmanfy/core/theme/custom_style_text.dart';
+
+import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePageBody extends StatefulWidget {
+class HomePageBody extends StatelessWidget {
   const HomePageBody({
     super.key,
   });
 
-  @override
-  State<HomePageBody> createState() => _HomePageBodyState();
-}
-
-class _HomePageBodyState extends State<HomePageBody> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    GetUserCubit.get(context).getUsersFromeFireStore(context: context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +28,22 @@ class _HomePageBodyState extends State<HomePageBody> {
         children: [
           SizedBox(height: height * 0.02),
           SearchSection(),
-         SizedBox(height: height * 0.02),
+          SizedBox(height: height * 0.02),
           BlocBuilder<GetUserCubit, GetUserState>(
+            bloc: viewModel..getUsersFromeFireStore(context: context),
             builder: (context, state) {
-              var userList = GetUserCubit.get(context).data;
-              if (state is GetUserSucsess) {
-                return Expanded(
+              
+              if (state is GetUserLoading) {
+                return  Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is GetUserSucsess) {
+                var userList = viewModel.data;
+                print('========${userList.length}======');
+                if(userList.isEmpty){
+                  return Center(child: Text('لا نوجد ديون حاليا', style: CustomStyleText.whiteColorBold,),);
+                }else{
+                  return Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: userList.length,
@@ -59,14 +61,27 @@ class _HomePageBodyState extends State<HomePageBody> {
                     },
                   ),
                 );
-              }else if(state is GetUserLoading){
-                return Center(child: CircularProgressIndicator(),);
-              }else {
-                 return Center(
-                child: Text(state.toString()),
-              );
+                }
+                
+              } else if (state is GetUserFailuer) {
+                return Center(
+                  child: Column(
+                    children: [
+                      Text(state.faliures.errMessage),
+                      CustomBotton(
+                        title: 'اعادة المحاولة',
+                        onTap: () {
+                         viewModel
+                              .getUsersFromeFireStore(context: context);
+                        },
+                      )
+                    ],
+                  ),
+                );
               }
-              
+              return  Container(
+                child: const Text('Some Thing Went Wrong'),
+              );
             },
           ),
 
@@ -80,7 +95,7 @@ class _HomePageBodyState extends State<HomePageBody> {
     );
   }
 }
+
 /**
- BlocBuilder<GetUserCubit, GetUserState>(
-       
+ 
  */

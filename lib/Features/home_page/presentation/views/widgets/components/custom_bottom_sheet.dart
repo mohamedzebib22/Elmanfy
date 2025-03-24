@@ -44,7 +44,7 @@ class CustomBottomSheet extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
-                controller: AddUserCubit.get(context).phone,
+                  controller: AddUserCubit.get(context).phone,
                   hintColor: Colors.white,
                   hintText: Constant.phoneNumber,
                   labelText: Constant.phoneNumber,
@@ -72,12 +72,19 @@ class CustomBottomSheet extends StatelessWidget {
               SizedBox(
                 height: height * 0.04,
               ),
-             state is AddUserLoading ? Center(child: CircularProgressIndicator(),) : CustomBotton(
-                title: Constant.addNewCustomer,
-                onTap: () {
-                  AddUserCubit.get(context).addUser(context: context);
-                },
-              ),
+              state is AddUserLoading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : CustomBotton(
+                      title: Constant.addNewCustomer,
+                      onTap: () {
+                        AddUserCubit.get(context).addUser(context: context);
+                        AddUserCubit.get(context).name.text = '';
+                        AddUserCubit.get(context).phone.text = '';
+                        AddUserCubit.get(context).dateOfAdded.text = '';
+                      },
+                    ),
               SizedBox(
                 height: height * 0.04,
               ),

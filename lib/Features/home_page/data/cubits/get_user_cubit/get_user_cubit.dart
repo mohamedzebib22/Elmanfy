@@ -11,16 +11,17 @@ class GetUserCubit extends Cubit<GetUserState> {
   GetUserCubit(this.getUserRepo) : super(GetUserInitial());
   final GetUserRepo getUserRepo;
   List<QueryDocumentSnapshot> data = [];
-  static GetUserCubit get(context) => BlocProvider.of(context);
-   
-  
-  getUsersFromeFireStore({required BuildContext context})async{
+
+  //static GetUserCubit get(context) => BlocProvider.of(context);
+
+  getUsersFromeFireStore({required BuildContext context}) async {
     emit(GetUserLoading());
     var either = await getUserRepo.getUsers();
-    return either.fold((error){
-      emit(GetUserFailuer(faliures:error));
-    }, (response){
+    return either.fold((error) {
+      emit(GetUserFailuer(faliures: error));
+    }, (response) {
       data.addAll(response);
+
       emit(GetUserSucsess());
     });
   }
