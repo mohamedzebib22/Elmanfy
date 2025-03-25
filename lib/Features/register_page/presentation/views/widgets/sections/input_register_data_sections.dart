@@ -130,13 +130,13 @@ class InputRegisterDataSection extends StatelessWidget {
                       )
                     : CustomBotton(
                         title: Constant.createAccount,
-                        onTap: () {
+                        onTap: ()async {
                           if (RegisterCubit.get(context)
                               .formkey
                               .currentState!
                               .validate()) {
-                            RegisterCubit.get(context)
-                                .register(context: context);
+                          await  RegisterCubit.get(context).register(context: context);
+                          await  RegisterCubit.get(context).addAdminToFirestore();
                           }
                         },
                       ),

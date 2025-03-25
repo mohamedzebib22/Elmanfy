@@ -8,17 +8,17 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddUserRemote)
 class AddUserRemoteImpl extends AddUserRemote {
-  CollectionReference users = FirebaseFirestore.instance.collection(Constant.getCollection);
   @override
   Future<Either<Faliures, void>> addUser(
       {required String name,
       required String phone,
       required String dateOfAdded}) async {
+      
+      String uid = FirebaseAuth.instance.currentUser!.uid;
+      CollectionReference users = FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept);
     try {
       await users
-          .add({'full_name': name, 'phone': phone, 'dateOfAdded': dateOfAdded ,'id' : FirebaseAuth.instance.currentUser!.uid})
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
+          .add({'full_name': name, 'phone': phone, 'dateOfAdded': dateOfAdded ,'id' : uid});
 
         return const Right(null);
     } catch (e) {

@@ -14,4 +14,10 @@ class RegisterImpl extends RegisterRepo {
     var either = await registerUserRemote.registerUser(email: email, password: password);
     return either.fold((error)=>Left(error), (response)=>Right(response));
   }
+  
+  @override
+  Future<Either<Faliures, void>> addAdminUserToFirestore({required String name, required String email})async {
+    var either = await registerUserRemote.addAdminUserToFirestore(name: name, email: email);
+    return either.fold((error)=>Left(error), (response)=>Right(response));
+  }
 }

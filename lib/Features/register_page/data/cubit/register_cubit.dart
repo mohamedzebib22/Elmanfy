@@ -30,7 +30,18 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterFailuer(faliures: error));
     }, (response) {
       emit(RegisterSucsess());
+     
       Navigator.pushReplacementNamed(context, HomePage.id);
+    });
+  }
+  addAdminToFirestore()async{
+    var either = await registerRepo.addAdminUserToFirestore(name: userName.text, email: userEmail.text);
+    return either.fold((error){
+      print('======User Collection Not Added ==========');
+      emit(RegisterFailuer(faliures: error));
+    }, (response){
+      print('======User Collection Added Sucsess==========');
+      emit(RegisterSucsess());
     });
   }
 }

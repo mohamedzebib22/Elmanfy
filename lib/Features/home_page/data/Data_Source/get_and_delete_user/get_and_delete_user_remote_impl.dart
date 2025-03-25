@@ -15,8 +15,8 @@ class GetUserRemoteImpl extends GetUserRemote{
   Future<Either<Faliures, dynamic>> getUsers() async{
   
    try{
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(Constant.getCollection).where('id',isEqualTo: FirebaseAuth.instance.currentUser!.uid).get();
-    
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept).get();
     return  Right(querySnapshot.docs);
    }catch(e){
     return Left(ServerError(errMessage: e.toString()));
@@ -28,7 +28,9 @@ class GetUserRemoteImpl extends GetUserRemote{
   @override
   Future<Either<Faliures, dynamic>> deleteUsers({required String id}) async{
     try{
-       await FirebaseFirestore.instance.collection(Constant.getCollection).doc(id).delete();
+       String uid = FirebaseAuth.instance.currentUser!.uid;
+
+       await FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept).doc(id).delete();
     return Right(null) ;
     }catch(e){
      if (e is FirebaseException) {
