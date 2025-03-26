@@ -25,4 +25,28 @@ class AddUserRemoteImpl extends AddUserRemote {
       return Left(ServerError(errMessage: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Faliures, void>> addDept({required String userId,required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice})async {
+    try{
+       CollectionReference debts = FirebaseFirestore.instance
+          .collection(Constant.getCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Constant.collectionDept)
+          .doc(userId)
+          .collection("debts");
+
+        await debts.add({
+        'itemName': nameOfPiece,
+        'itemPrice': price,
+        'quantity': count,
+        'totalPrice': price * count,
+        'debtDate': dateOfAdded,
+      });
+
+      return const Right(null);
+    }catch(e){
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
 }

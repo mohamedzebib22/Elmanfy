@@ -53,7 +53,12 @@ class HomePageBody extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, CustomerdetailsPage.id);
+                          Navigator.pushNamed(context, CustomerdetailsPage.id,arguments: {
+                            'full_name' :userList[index]['full_name'],
+                            'phone' :userList[index]['phone'],
+                            'dateOfAdded' :userList[index]['dateOfAdded'],
+                            'id' :userList[index].id
+                          });
                         },
                         child: ShowDataSection(
                           name: '${userList[index]['full_name']}',

@@ -14,5 +14,11 @@ class AddUserImpl extends AddUserRepo {
      var either = await addUserRemote.addUser(name: name, phone: phone, dateOfAdded: dateOfAdded);
      return either.fold((error)=>Left(error), (response) =>Right(response));
   }
+  
+  @override
+  Future<Either<Faliures, void>> addDept({required String userId,required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice}) {
+    // TODO: implement addDept
+    throw UnimplementedError();
+  }
 
 }

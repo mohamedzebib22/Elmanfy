@@ -21,6 +21,8 @@ import '../../Features/forget_password_page/data/Repositories/forget_passwod_rep
     as _i587;
 import '../../Features/forget_password_page/data/Repositories/forget_password_impl.dart'
     as _i44;
+import '../../Features/home_page/data/cubits/add_dept/add_dept_cubit.dart'
+    as _i106;
 import '../../Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart'
     as _i483;
 import '../../Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart'
@@ -93,6 +95,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i435.LoginCubit>(() => _i435.LoginCubit(gh<_i211.LoginRepo>()));
     gh.factory<_i483.AddUserCubit>(
         () => _i483.AddUserCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i106.AddDeptCubit>(
+        () => _i106.AddDeptCubit(gh<_i692.AddUserRepo>()));
     return this;
   }
 }

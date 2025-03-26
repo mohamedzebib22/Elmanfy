@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
@@ -8,6 +9,7 @@ class DetailsCardUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments as  Map<String ,dynamic>;
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Card(
@@ -18,21 +20,21 @@ class DetailsCardUser extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               CustomText(
-                title: '${Constant.customerName}:محمد سمير',
+                title: '${Constant.customerName}:${args['full_name']}',
                 textStyle: CustomStyleText.bold16Black,
               ),
               SizedBox(
                 height: height * 0.02,
               ),
               CustomText(
-                title: '${Constant.phoneNumber}:01064328893',
+                title: '${Constant.phoneNumber}:${args['phone']}',
                 textStyle: CustomStyleText.bold16Black,
               ),
               SizedBox(
                 height: height * 0.02,
               ),
               CustomText(
-                title: '${Constant.dateOfAdded}:13/3/2025',
+                title: '${Constant.dateOfAdded}:${args['dateOfAdded']}',
                 textStyle: CustomStyleText.bold16Black,
               ),
             ],
