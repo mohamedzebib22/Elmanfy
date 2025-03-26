@@ -16,9 +16,9 @@ class AddUserImpl extends AddUserRepo {
   }
   
   @override
-  Future<Either<Faliures, void>> addDept({required String userId,required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice}) {
-    // TODO: implement addDept
-    throw UnimplementedError();
+  Future<Either<Faliures, void>> addDept({required String userId,required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice})async {
+    var either = await addUserRemote.addDept(userId: userId, nameOfPiece: nameOfPiece, price: price, count: count, dateOfAdded: dateOfAdded, totalPrice: totalPrice);
+    return either.fold((error)=>Left(error), (response)=>Right(response));
   }
 
 }

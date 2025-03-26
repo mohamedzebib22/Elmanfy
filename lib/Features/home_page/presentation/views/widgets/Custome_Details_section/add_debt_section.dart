@@ -8,9 +8,10 @@ class AddDeptSection extends StatelessWidget {
   const AddDeptSection({
     super.key,
   });
-
+  
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: MaterialButton(
@@ -22,7 +23,7 @@ class AddDeptSection extends StatelessWidget {
             context: context, builder: (context){
             return Padding(
               padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: SingleChildScrollView(child: BottomSheetOfAdddebt()),
+              child: SingleChildScrollView(child: BottomSheetOfAdddebt(userId:  args['id'],)),
             );
           });
         },

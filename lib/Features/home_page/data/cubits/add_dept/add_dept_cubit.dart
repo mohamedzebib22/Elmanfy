@@ -3,6 +3,7 @@ import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dar
 import 'package:elmanfy/Features/home_page/data/cubits/add_dept/add_dept_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -15,13 +16,22 @@ class AddDeptCubit extends Cubit<AddDeptState> {
   TextEditingController totalPrice = TextEditingController();
   final AddUserRepo addUserRepo;
 
-  addDepts({required String id})async{
+  //static AddDeptCubit get(context) => BlocProvider.of(context);
+  addDepts({required String id,required BuildContext context})async{
     emit(AddDeptLoading());
-    var either = await addUserRepo.addDept(userId: id, nameOfPiece: nameOfPiece.text, price:int.parse(price.text), count: int.parse(count.text), dateOfAdded: dateOfAdded.text, totalPrice: int.parse(totalPrice.text));
+    var either = await addUserRepo.addDept(userId: id,
+     nameOfPiece: nameOfPiece.text,
+      price:int.tryParse(price.text) ?? 0,
+      count: int.tryParse(count.text) ?? 0,
+      dateOfAdded: dateOfAdded.text,
+      totalPrice: int.tryParse(totalPrice.text) ?? 0);
     return either.fold((error){
+      print('=============Dept Not Added ==============');
       emit(AddDeptFailure(faliures: error));
     },(response){
+      print('=============Dept Added Sucsess==============');
       emit(AddDeptSucsess());
+      Navigator.pop(context);
     });
   }
 }
