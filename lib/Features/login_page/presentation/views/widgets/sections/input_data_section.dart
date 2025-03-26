@@ -36,6 +36,7 @@ class InputDataSection extends StatelessWidget {
                 height: height / 6,
               ),
               CustomTextFeild(
+               
                 validator: (email) {
                   if (email == null || email.isEmpty) {
                     return 'برجاء ادخال الايميل';
@@ -43,6 +44,7 @@ class InputDataSection extends StatelessWidget {
                     return null;
                   }
                 },
+                
                 controller: LoginCubit.get(context).email,
                 hintText: Constant.email,
                 sufix: const Icon(
@@ -54,6 +56,7 @@ class InputDataSection extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
+              
                 validator: (password) {
                   if (password == null || password.isEmpty) {
                     return 'برجاء ادخال كلمة السر';

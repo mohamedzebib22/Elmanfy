@@ -20,7 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
   
     if(formkey.currentState!.validate()){
         emit(LoginLoading());
-      var either = await loginRepo.loginUser(email: email.text, password: password.text);
+      var either = await loginRepo.loginUser(email: email.text.trim(), password: password.text);
     return either.fold((error){
       emit(LoginFailure(faliures: error));
     }, (response){

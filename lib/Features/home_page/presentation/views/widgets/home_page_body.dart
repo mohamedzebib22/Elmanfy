@@ -66,6 +66,7 @@ class HomePageBody extends StatelessWidget {
                              body: Constant.deleteUserConfirm, 
                              confirm: (){
                               viewModel.deleteUser(id: '${userList[index].id}', context: context);
+                          
                              }) ;
                            },
                         ),

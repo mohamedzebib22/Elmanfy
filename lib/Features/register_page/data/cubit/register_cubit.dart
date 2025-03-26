@@ -25,7 +25,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       required BuildContext context}) async {
     emit(RegisterLoading());
     var either =
-        await registerRepo.registerUser(email: userEmail.text, password: userPassword.text);
+        await registerRepo.registerUser(email: userEmail.text.trim(), password: userPassword.text);
     return either.fold((error) {
       emit(RegisterFailuer(faliures: error));
     }, (response) {
@@ -35,7 +35,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     });
   }
   addAdminToFirestore()async{
-    var either = await registerRepo.addAdminUserToFirestore(name: userName.text, email: userEmail.text);
+    var either = await registerRepo.addAdminUserToFirestore(name: userName.text.trim(), email: userEmail.text.trim());
     return either.fold((error){
       print('======User Collection Not Added ==========');
       emit(RegisterFailuer(faliures: error));

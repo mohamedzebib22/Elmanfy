@@ -20,7 +20,7 @@ class AddUserCubit extends Cubit<AddUserState> {
 
   addUser({required BuildContext context})async{
     emit(AddUserLoading());
-    var either = await addUserRepo.addUser(name: name.text, phone: phone.text, dateOfAdded: dateOfAdded.text);
+    var either = await addUserRepo.addUser(name: name.text.trim(), phone: phone.text.trim(), dateOfAdded: dateOfAdded.text);
     return either.fold((error){
       print('========User Not Added===========');
       emit(AddUserFaliure(faliures: error));
