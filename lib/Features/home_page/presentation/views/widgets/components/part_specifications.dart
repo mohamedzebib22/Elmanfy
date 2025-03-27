@@ -6,11 +6,15 @@ import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
   const ProductDetails({
-    super.key,
+    super.key, required this.nameOfThePiece, required this.priceOfThePiece, required this.count, required this.historyOfReligion, required this.totalPrice,
     
   });
 
-  
+  final String nameOfThePiece;
+  final int priceOfThePiece;
+  final int count;
+  final String historyOfReligion;
+  final int totalPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +40,11 @@ class ProductDetails extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-              CustomText(title: '${Constant.nameOfThePiece}:كيبورد',textStyle:CustomStyleText.bold16Black ,),
-              CustomText(title: '${Constant.priceOfThePiece}:100',textStyle:CustomStyleText.bold16Black ,),
-              CustomText(title: '${Constant.count}:5',textStyle:CustomStyleText.bold16Black ,),
-              CustomText(title: '${Constant.historyOfReligion}:1/1/2025',textStyle:CustomStyleText.bold16Black ,),
-              CustomText(title: '${Constant.totalPrice}:500',textStyle:CustomStyleText.bold18Primary ,),
+              CustomText(title: '${Constant.nameOfThePiece}:$nameOfThePiece',textStyle:CustomStyleText.bold16Black ,),
+              CustomText(title: '${Constant.priceOfThePiece}:$priceOfThePiece',textStyle:CustomStyleText.bold16Black ,),
+              CustomText(title: '${Constant.count}:$count',textStyle:CustomStyleText.bold16Black ,),
+              CustomText(title: '${Constant.historyOfReligion}:$historyOfReligion',textStyle:CustomStyleText.bold16Black ,),
+              CustomText(title: '${Constant.totalPrice}:$totalPrice',textStyle:CustomStyleText.bold18Primary ,),
             ],),
           ),
         ],

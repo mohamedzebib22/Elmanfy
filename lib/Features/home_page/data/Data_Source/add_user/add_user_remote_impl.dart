@@ -18,7 +18,11 @@ class AddUserRemoteImpl extends AddUserRemote {
       CollectionReference users = FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept);
     try {
       await users
-          .add({'full_name': name, 'phone': phone, 'dateOfAdded': dateOfAdded ,'id' : uid});
+          .add({
+          'full_name': name, 
+          'phone': phone, 
+          'dateOfAdded': dateOfAdded ,
+          'id' : uid});
 
         return const Right(null);
     } catch (e) {
@@ -49,4 +53,21 @@ class AddUserRemoteImpl extends AddUserRemote {
       return Left(ServerError(errMessage: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Faliures, dynamic>> getDepts({required String userId}) async{
+    try {
+    CollectionReference debts = FirebaseFirestore.instance
+        .collection(Constant.getCollection)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection(Constant.collectionDept)
+        .doc(userId)
+        .collection("debts");
+    QuerySnapshot querySnapshot = await debts.get();
+    return Right(querySnapshot.docs);
+       
+  }catch (e){
+    return Left(ServerError(errMessage: e.toString()));
+  }
+}
 }
