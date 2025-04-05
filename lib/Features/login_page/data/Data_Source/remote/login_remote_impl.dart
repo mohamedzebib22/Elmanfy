@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:LoginRemote )
-class LoginRemoteImpl extends LoginRemote {
+class LoginRemoteImpl implements LoginRemote {
   @override
   Future<Either<Faliures, dynamic>> loginUser(
       {required String email, required String password}) async {

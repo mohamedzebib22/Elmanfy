@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart';
 class AddUserCubit extends Cubit<AddUserState> {
   AddUserCubit(this.addUserRepo) : super(AddUserInitial());
   final AddUserRepo addUserRepo;
-
+  var selectDate;
   String userCollection = 'Users';
 
   static AddUserCubit get(context) => BlocProvider.of(context);
@@ -18,16 +18,31 @@ class AddUserCubit extends Cubit<AddUserState> {
   TextEditingController phone = TextEditingController();
   TextEditingController dateOfAdded = TextEditingController();
 
-  addUser({required BuildContext context})async{
+  addUser({required BuildContext context}) async {
     emit(AddUserLoading());
-    var either = await addUserRepo.addUser(name: name.text.trim(), phone: phone.text.trim(), dateOfAdded: dateOfAdded.text);
-    return either.fold((error){
+    var either = await addUserRepo.addUser(
+        name: name.text.trim(),
+        phone: phone.text.trim(),
+        dateOfAdded: dateOfAdded.text);
+    return either.fold((error) {
       print('========User Not Added===========');
       emit(AddUserFaliure(faliures: error));
-    }, (response){
+    }, (response) {
       print('========UserAdded Sucsess===========');
       emit(AddUserSucsess());
       Navigator.pop(context);
     });
+  }
+
+   chooseDate({required BuildContext context}) async {
+   var either =await addUserRepo.chooseDate(context: context );
+   return either.fold((error){
+    print('========date Not Added===========');
+    emit(AddUserFaliure(faliures: error));
+   }, (response){
+    print('========date Added Sucsess===========');
+    dateOfAdded.text = response;
+    emit(AddUserSucsess());
+   });
   }
 }

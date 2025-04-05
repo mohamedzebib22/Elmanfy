@@ -5,7 +5,7 @@ import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:LoginRepo )
-class LoginImpl extends LoginRepo{
+class LoginImpl implements LoginRepo{
   final LoginRemote loginRemote;
 
   LoginImpl({required this.loginRemote});

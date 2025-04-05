@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:GetUserRepo )
-class GetUserImpl extends GetUserRepo{
+class GetUserImpl implements GetUserRepo{
   final GetUserRemote getUserRemote;
 
   GetUserImpl({required this.getUserRemote});

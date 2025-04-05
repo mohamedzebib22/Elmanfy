@@ -5,7 +5,7 @@ import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:RegisterRepo )
-class RegisterImpl extends RegisterRepo {
+class RegisterImpl implements RegisterRepo {
   final RegisterUserRemote registerUserRemote;
 
   RegisterImpl({required this.registerUserRemote});

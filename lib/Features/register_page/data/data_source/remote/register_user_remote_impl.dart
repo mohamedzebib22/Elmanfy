@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart';
 
 
 @Injectable(as:RegisterUserRemote )
-class RegisterUserRemoteImpl extends RegisterUserRemote {
+class RegisterUserRemoteImpl implements RegisterUserRemote {
   @override
   Future<Either<Faliures, dynamic>> registerUser({required String email , required String password,context}) async{
    try {

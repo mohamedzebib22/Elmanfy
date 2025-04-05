@@ -34,4 +34,15 @@ class AddDeptCubit extends Cubit<AddDeptState> {
       Navigator.pop(context);
     });
   }
+  chooseDate({required BuildContext context}) async {
+   var either =await addUserRepo.chooseDate(context: context );
+   return either.fold((error){
+    print('========date Not Added===========');
+    emit(AddDeptFailure(faliures: error));
+   }, (response){
+    print('========date Added Sucsess===========');
+    dateOfAdded.text = response;
+    emit(AddDeptSucsess());
+   });
+  }
 }

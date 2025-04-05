@@ -4,10 +4,11 @@ import 'package:elmanfy/Features/home_page/data/Data_Source/add_user/add_user_re
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddUserRemote)
-class AddUserRemoteImpl extends AddUserRemote {
+class AddUserRemoteImpl implements AddUserRemote {
   @override
   Future<Either<Faliures, void>> addUser(
       {required String name,
@@ -35,7 +36,7 @@ class AddUserRemoteImpl extends AddUserRemote {
     try{
        CollectionReference debts = FirebaseFirestore.instance
           .collection(Constant.getCollection)
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(FirebaseAuth.instance.currentUser!.email)
           .collection(Constant.collectionDept)
           .doc(userId)
           .collection("debts");
@@ -59,7 +60,7 @@ class AddUserRemoteImpl extends AddUserRemote {
     try {
     CollectionReference debts = FirebaseFirestore.instance
         .collection(Constant.getCollection)
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(FirebaseAuth.instance.currentUser!.email)
         .collection(Constant.collectionDept)
         .doc(userId)
         .collection("debts");
@@ -70,4 +71,20 @@ class AddUserRemoteImpl extends AddUserRemote {
     return Left(ServerError(errMessage: e.toString()));
   }
 }
+
+  @override
+  Future<Either<Faliures, dynamic>> chooseDate({required BuildContext context}) async{
+    try{
+      var date = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(Duration(days: 365)));
+    String  formatDate = '${date!.day}/${date.month}/${date.year}';
+    return  Right(formatDate);
+    
+    }catch(e){
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
 }

@@ -63,7 +63,9 @@ class CustomBottomSheet extends StatelessWidget {
                 foucusBorder: Colors.white,
                 borderColor: Colors.white,
                 sufix: IconButton(
-                    onPressed: () {},
+                    onPressed: ()  {
+                      AddUserCubit.get(context).chooseDate(context: context);
+                    },
                     icon: Icon(
                       Icons.event,
                       color: Colors.white,

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: GetUserRemote)
-class GetUserRemoteImpl extends GetUserRemote{
+class GetUserRemoteImpl implements GetUserRemote{
   @override
   Future<Either<Faliures, dynamic>> getUsers() async{
   

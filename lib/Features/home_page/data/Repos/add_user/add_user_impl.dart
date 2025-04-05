@@ -2,10 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:elmanfy/Features/home_page/data/Data_Source/add_user/add_user_remote.dart';
 import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddUserRepo)
-class AddUserImpl extends AddUserRepo {
+class AddUserImpl implements AddUserRepo {
   final AddUserRemote addUserRemote;
 
   AddUserImpl({required this.addUserRemote});
@@ -25,6 +26,12 @@ class AddUserImpl extends AddUserRepo {
   Future<Either<Faliures, dynamic>> getDepts({required String userId}) async{
     var either = await addUserRemote.getDepts(userId: userId);
     return either.fold((error)=>Left(error) , (response)=>Right(response));
+  }
+  
+  @override
+  Future<Either<Faliures, dynamic>> chooseDate({required BuildContext context}) async{
+    var either = await addUserRemote.chooseDate(context: context);
+    return either.fold((error)=> Left(error), (response)=>Right(response));
   }
 
 }

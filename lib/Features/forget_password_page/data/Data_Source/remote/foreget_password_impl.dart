@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ForgetPasswordRemote)
-class ForgetPasswordImpl extends ForgetPasswordRemote {
+class ForgetPasswordImpl implements ForgetPasswordRemote {
   @override
   Future<Either<Faliures, dynamic>> forgetPassword(
       {required String email}) async {
