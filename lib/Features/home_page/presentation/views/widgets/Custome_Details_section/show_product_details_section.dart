@@ -17,8 +17,12 @@ class ShowProductDetailsSection extends StatelessWidget {
     var args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     GetDeptCubit viewModel = getIt<GetDeptCubit>();
+    if (viewModel.data.isEmpty) {
+      viewModel.getDepts(userId: args['id']);
+    }
     return BlocBuilder<GetDeptCubit, GetDeptState>(
-      bloc: viewModel..getDepts(userId: args['id']),
+      bloc:viewModel,
+      // viewModel..getDepts(userId: args['id']),
       builder: (context, state) {
         if (state is GetDeptLodaing) {
           return Center(
@@ -26,6 +30,7 @@ class ShowProductDetailsSection extends StatelessWidget {
           );
         } else if (state is GetDeptSucsess) {
           var deptList = viewModel.data;
+          
           if (deptList.isEmpty) {
             return Center(
               child: Text(

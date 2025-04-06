@@ -30,18 +30,20 @@ class HomePageBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: height * 0.02),
-          SearchSection(),
+          SearchSection(onTap: (title ) { 
+            viewModel.searchProduct(title);
+           },),
           SizedBox(height: height * 0.02),
           BlocBuilder<GetUserCubit, GetAndDeleteUserState>(
             bloc: viewModel..getUsersFromeFireStore(),
             builder: (context, state) {
               
               if (state is GetUserLoading) {
-                return  Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (state is GetUserSucsess) {
-                var userList = viewModel.data;
+                var userList = viewModel.filterData;
                 print('========${userList.length}======');
                 if(userList.isEmpty){
                   return Center(child: Text('لا نوجد ديون حاليا', style: CustomStyleText.whiteColorBold,),);

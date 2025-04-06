@@ -13,7 +13,8 @@ class GetUserCubit extends Cubit<GetAndDeleteUserState> {
   GetUserCubit(this.getUserRepo) : super(GetUserInitial());
   final GetUserRepo getUserRepo;
   List<QueryDocumentSnapshot> data = [];
-
+  List<QueryDocumentSnapshot> filterData = [];
+  TextEditingController filterTitle = TextEditingController();
   //static GetUserCubit get(context) => BlocProvider.of(context);
 
   getUsersFromeFireStore() async {
@@ -23,7 +24,7 @@ class GetUserCubit extends Cubit<GetAndDeleteUserState> {
       emit(GetUserFailuer(faliures: error));
     }, (response) {
       data.addAll(response);
-
+      filterData = List.from(data);
       emit(GetUserSucsess());
     });
   }
@@ -37,6 +38,17 @@ class GetUserCubit extends Cubit<GetAndDeleteUserState> {
       emit(GetUserSucsess());
       Navigator.pushNamedAndRemoveUntil(context, HomePage.id, (route) => false);
     });
+  }
+  searchProduct(String title) {
+    
+    filterData = data.where((item) {
+
+      if (item['full_name'] != null) {
+        return item['full_name'].toString().contains(title.toLowerCase());
+      }
+      return false;
+    }).toList();
+    emit(GetUserSucsess());   
   }
 }
 
