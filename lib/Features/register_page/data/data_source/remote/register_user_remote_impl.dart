@@ -39,10 +39,14 @@ class RegisterUserRemoteImpl implements RegisterUserRemote {
   
   @override
   Future<Either<Faliures, void>> addAdminUserToFirestore({required String name, required String email})async {
-    CollectionReference users = FirebaseFirestore.instance.collection(Constant.getCollection);
+    DocumentReference  admin = FirebaseFirestore.instance.collection(Constant.adminCollection).doc(FirebaseAuth.instance.currentUser!.uid);
     try{
-      await users
-          .add({'name': name,  'email': email,'id' : FirebaseAuth.instance.currentUser!.uid})
+      await admin
+          .set({
+          'name': name,  
+          'email': email,
+          'id' : FirebaseAuth.instance.currentUser!.uid
+          })
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
 
@@ -52,3 +56,4 @@ class RegisterUserRemoteImpl implements RegisterUserRemote {
     }
   }
 }
+

@@ -15,8 +15,9 @@ class AddDeptCubit extends Cubit<AddDeptState> {
   TextEditingController dateOfAdded = TextEditingController();
   TextEditingController totalPrice = TextEditingController();
   final AddUserRepo addUserRepo;
-
-  //static AddDeptCubit get(context) => BlocProvider.of(context);
+  
+  
+  static AddDeptCubit get(context) => BlocProvider.of(context);
   addDepts({required String id,required BuildContext context})async{
     emit(AddDeptLoading());
     var either = await addUserRepo.addDept(userId: id,

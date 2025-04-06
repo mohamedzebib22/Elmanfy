@@ -16,7 +16,7 @@ class GetUserRemoteImpl implements GetUserRemote{
   
    try{
     String uid = FirebaseAuth.instance.currentUser!.uid;
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept).get();
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(Constant.adminCollection).doc(uid).collection(Constant.collectionUsers).get();
     return  Right(querySnapshot.docs);
    }catch(e){
     return Left(ServerError(errMessage: e.toString()));
@@ -30,7 +30,7 @@ class GetUserRemoteImpl implements GetUserRemote{
     try{
        String uid = FirebaseAuth.instance.currentUser!.uid;
 
-       await FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept).doc(id).delete();
+       await FirebaseFirestore.instance.collection(Constant.adminCollection).doc(uid).collection(Constant.collectionUsers).doc(id).delete();
     return Right(null) ;
     }catch(e){
      if (e is FirebaseException) {

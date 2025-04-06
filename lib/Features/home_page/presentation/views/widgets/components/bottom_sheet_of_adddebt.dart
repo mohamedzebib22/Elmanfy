@@ -14,8 +14,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
   final String userId;
   @override
   Widget build(BuildContext context) {
-   
-    AddDeptCubit viewModel= getIt<AddDeptCubit>();
+    AddDeptCubit viewModel = getIt<AddDeptCubit>();
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -37,7 +36,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.04,
               ),
               CustomTextFeild(
-                controller:viewModel.nameOfPiece,
+                controller: AddDeptCubit.get(context).nameOfPiece,
                 hintColor: Colors.white,
                 hintText: Constant.nameOfThePiece,
                 labelText: Constant.nameOfThePiece,
@@ -49,7 +48,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
-                 controller: viewModel.count,
+                controller: AddDeptCubit.get(context).count,
                 hintColor: Colors.white,
                 hintText: Constant.count,
                 labelText: Constant.count,
@@ -61,7 +60,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
-                 controller: viewModel.price,
+                  controller: AddDeptCubit.get(context).price,
                   hintColor: Colors.white,
                   hintText: Constant.priceOfThePiece,
                   labelText: Constant.priceOfThePiece,
@@ -72,7 +71,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
-                 controller: viewModel.dateOfAdded,
+                controller: AddDeptCubit.get(context).dateOfAdded,
                 hintColor: Colors.white,
                 hintText: Constant.historyOfReligion,
                 labelText: Constant.historyOfReligion,
@@ -81,7 +80,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 borderColor: Colors.white,
                 sufix: IconButton(
                     onPressed: () {
-                      viewModel.chooseDate(context: context);
+                      AddDeptCubit.get(context).chooseDate(context: context);
                     },
                     icon: Icon(
                       Icons.event,
@@ -91,18 +90,21 @@ class BottomSheetOfAdddebt extends StatelessWidget {
               SizedBox(
                 height: height * 0.04,
               ),
-             state is AddDeptLoading ? Center(child: CircularProgressIndicator(),) : 
-             CustomBotton(
-                title: Constant.addNewCustomer,
-                onTap: () {
-                  print('${viewModel.nameOfPiece.text}');
-                  print('${viewModel.price.text}');
-                  print('${viewModel.count.text}');
-                  print('${viewModel.dateOfAdded.text}');
-                 
-                  viewModel.addDepts(id:userId, context: context);
-                },
-              ),
+              state is AddDeptLoading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : CustomBotton(
+                      title: Constant.addDebt,
+                      onTap: () {
+                        AddDeptCubit.get(context)
+                            .addDepts(id: userId, context: context);
+                        AddDeptCubit.get(context).nameOfPiece.text = '';
+                        AddDeptCubit.get(context).price.text = '';
+                        AddDeptCubit.get(context).count.text = '';
+                        AddDeptCubit.get(context).dateOfAdded.text = '';
+                      },
+                    ),
               SizedBox(
                 height: height * 0.04,
               ),

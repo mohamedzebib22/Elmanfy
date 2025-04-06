@@ -30,7 +30,8 @@ void main() async {
        BlocProvider(create:(context)  => getIt<LoginCubit>()),
        BlocProvider(create:(context)  => getIt<ForegetPasswordCubit>()),
        BlocProvider(create:(context)  => getIt<AddUserCubit>()),
-       BlocProvider(create:(context)  => getIt<GetUserCubit>()),
+       BlocProvider(create:(context)  => getIt<AddDeptCubit>()),
+    
       // BlocProvider(create:(context)  => getIt<AddDeptCubit>()),
     ],
     child: const Elmanfy()));

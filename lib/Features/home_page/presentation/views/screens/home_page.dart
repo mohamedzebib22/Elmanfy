@@ -1,5 +1,5 @@
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_bottom_sheet.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/bottom_sheet_of_users.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_card_info.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/home_page_body.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                   builder: (context) {
                     return Padding(
                       padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: SingleChildScrollView(child: CustomBottomSheet()),
+                      child: SingleChildScrollView(child: BottomSheetOfUsers()),
                     );
                   });
             }),

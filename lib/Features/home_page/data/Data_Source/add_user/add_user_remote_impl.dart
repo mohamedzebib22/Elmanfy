@@ -16,14 +16,15 @@ class AddUserRemoteImpl implements AddUserRemote {
       required String dateOfAdded}) async {
       
       String uid = FirebaseAuth.instance.currentUser!.uid;
-      CollectionReference users = FirebaseFirestore.instance.collection(Constant.getCollection).doc(uid).collection(Constant.collectionDept);
+      DocumentReference  users = FirebaseFirestore.instance.collection(Constant.adminCollection).doc(uid).collection(Constant.collectionUsers).doc();
+       String userId = users.id;
     try {
       await users
-          .add({
+          .set({
           'full_name': name, 
           'phone': phone, 
           'dateOfAdded': dateOfAdded ,
-          'id' : uid});
+          'id' : userId});
 
         return const Right(null);
     } catch (e) {
@@ -35,11 +36,11 @@ class AddUserRemoteImpl implements AddUserRemote {
   Future<Either<Faliures, void>> addDept({required String userId,required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice})async {
     try{
        CollectionReference debts = FirebaseFirestore.instance
-          .collection(Constant.getCollection)
-          .doc(FirebaseAuth.instance.currentUser!.email)
-          .collection(Constant.collectionDept)
+          .collection(Constant.adminCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Constant.collectionUsers)
           .doc(userId)
-          .collection("debts");
+          .collection(Constant.collectionDepts);
 
         await debts.add({
         'itemName': nameOfPiece,
@@ -59,11 +60,11 @@ class AddUserRemoteImpl implements AddUserRemote {
   Future<Either<Faliures, dynamic>> getDepts({required String userId}) async{
     try {
     CollectionReference debts = FirebaseFirestore.instance
-        .collection(Constant.getCollection)
-        .doc(FirebaseAuth.instance.currentUser!.email)
-        .collection(Constant.collectionDept)
+        .collection(Constant.adminCollection)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection(Constant.collectionUsers)
         .doc(userId)
-        .collection("debts");
+        .collection(Constant.collectionDepts);
     QuerySnapshot querySnapshot = await debts.get();
     return Right(querySnapshot.docs);
        

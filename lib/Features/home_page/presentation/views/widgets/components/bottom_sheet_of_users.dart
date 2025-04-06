@@ -7,8 +7,8 @@ import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomBottomSheet extends StatelessWidget {
-  const CustomBottomSheet({super.key});
+class BottomSheetOfUsers extends StatelessWidget {
+  const BottomSheetOfUsers({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +16,19 @@ class CustomBottomSheet extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: width * 0.04),
-      decoration: BoxDecoration(
+      decoration:const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/elmanfy.jpg'),
               fit: BoxFit.fill)),
       child: BlocBuilder<AddUserCubit, AddUserState>(
+       
         builder: (context, state) {
           return Column(
             children: [
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomText(title: Constant.addNewCustomer),
+            const  CustomText(title: Constant.addNewCustomer),
               SizedBox(
                 height: height * 0.04,
               ),
@@ -66,7 +67,7 @@ class CustomBottomSheet extends StatelessWidget {
                     onPressed: ()  {
                       AddUserCubit.get(context).chooseDate(context: context);
                     },
-                    icon: Icon(
+                    icon:const Icon(
                       Icons.event,
                       color: Colors.white,
                     )),
@@ -75,7 +76,7 @@ class CustomBottomSheet extends StatelessWidget {
                 height: height * 0.04,
               ),
               state is AddUserLoading
-                  ? Center(
+                  ?const Center(
                       child: CircularProgressIndicator(),
                     )
                   : CustomBotton(
