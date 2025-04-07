@@ -14,77 +14,113 @@ class AddUserRemoteImpl implements AddUserRemote {
       {required String name,
       required String phone,
       required String dateOfAdded}) async {
-      
-      String uid = FirebaseAuth.instance.currentUser!.uid;
-      DocumentReference  users = FirebaseFirestore.instance.collection(Constant.adminCollection).doc(uid).collection(Constant.collectionUsers).doc();
-       String userId = users.id;
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    DocumentReference users = FirebaseFirestore.instance
+        .collection(Constant.adminCollection)
+        .doc(uid)
+        .collection(Constant.collectionUsers)
+        .doc();
+    String userId = users.id;
     try {
-      await users
-          .set({
-          'full_name': name, 
-          'phone': phone, 
-          'dateOfAdded': dateOfAdded ,
-          'id' : userId});
+      await users.set({
+        'full_name': name,
+        'phone': phone,
+        'dateOfAdded': dateOfAdded,
+        'id': userId
+      });
 
-        return const Right(null);
+      return const Right(null);
     } catch (e) {
       return Left(ServerError(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Faliures, void>> addDept({required String userId,required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice})async {
-    try{
-       CollectionReference debts = FirebaseFirestore.instance
+  Future<Either<Faliures, void>> addDept(
+      {required String userId,
+      required String nameOfPiece,
+      required int price,
+      required int count,
+      required String dateOfAdded,
+      required int totalPrice}) async {
+    try {
+      CollectionReference debts = FirebaseFirestore.instance
           .collection(Constant.adminCollection)
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection(Constant.collectionUsers)
           .doc(userId)
           .collection(Constant.collectionDepts);
-
-        await debts.add({
+      DocumentReference debtDoc = debts.doc();
+      await debts.add({
         'itemName': nameOfPiece,
         'itemPrice': price,
         'quantity': count,
         'totalPrice': price * count,
         'debtDate': dateOfAdded,
+        'id': debtDoc.id,
       });
 
       return const Right(null);
-    }catch(e){
+    } catch (e) {
       return Left(ServerError(errMessage: e.toString()));
     }
   }
-  
-  @override
-  Future<Either<Faliures, dynamic>> getDepts({required String userId}) async{
-    try {
-    CollectionReference debts = FirebaseFirestore.instance
-        .collection(Constant.adminCollection)
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection(Constant.collectionUsers)
-        .doc(userId)
-        .collection(Constant.collectionDepts);
-    QuerySnapshot querySnapshot = await debts.get();
-    return Right(querySnapshot.docs);
-       
-  }catch (e){
-    return Left(ServerError(errMessage: e.toString()));
-  }
-}
 
   @override
-  Future<Either<Faliures, dynamic>> chooseDate({required BuildContext context}) async{
-    try{
+  Future<Either<Faliures, dynamic>> getDepts({required String userId}) async {
+    try {
+      CollectionReference debts = FirebaseFirestore.instance
+          .collection(Constant.adminCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Constant.collectionUsers)
+          .doc(userId)
+          .collection(Constant.collectionDepts);
+      QuerySnapshot querySnapshot = await debts.get();
+      return Right(querySnapshot.docs);
+    } catch (e) {
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Faliures, dynamic>> chooseDate(
+      {required BuildContext context}) async {
+    try {
       var date = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)));
-    String  formatDate = '${date!.day}/${date.month}/${date.year}';
-    return  Right(formatDate);
-    
-    }catch(e){
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime.now().add(Duration(days: 365)));
+      String formatDate = '${date!.day}/${date.month}/${date.year}';
+      return Right(formatDate);
+    } catch (e) {
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Faliures, void>> debtsPaidDone(
+      {required String deptID,required String userId,required String nameOfPiece ,required int price,required int count,required String dateOfAdded,required int totalPrice}) async {
+    try {
+      
+      CollectionReference debtsPaidDone = FirebaseFirestore.instance
+          .collection(Constant.adminCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Constant.collectionUsers)
+          .doc(userId)
+          .collection(Constant.collectionDeptPaid);
+
+      await debtsPaidDone.add({
+        'itemName': nameOfPiece,
+        'itemPrice': price,
+        'quantity': count,
+        'totalPrice': totalPrice,
+        'debtDate': dateOfAdded,
+        'paidDate': DateTime.now().toString(),
+      });
+
+      return const Right(null);
+    } catch (e) {
       return Left(ServerError(errMessage: e.toString()));
     }
   }

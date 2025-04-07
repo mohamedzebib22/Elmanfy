@@ -48,7 +48,8 @@ class ShowProductDetailsSection extends StatelessWidget {
                         priceOfThePiece: deptList[index]['itemPrice'],
                         count: deptList[index]['quantity'],
                         historyOfReligion: deptList[index]['debtDate'],
-                        totalPrice: deptList[index]['totalPrice']);
+                        totalPrice: deptList[index]['totalPrice'], 
+                        deptID: deptList[index]['id'],);
                   }),
             );
           }

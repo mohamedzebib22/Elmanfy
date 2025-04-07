@@ -7,4 +7,5 @@ abstract class  AddUserRepo {
   Future<Either<Faliures,void>> addDept({required String userId,required String nameOfPiece ,required int price,required int count,required String dateOfAdded,required int totalPrice});
   Future<Either<Faliures,dynamic>> getDepts({required String userId});
   Future<Either<Faliures,dynamic>> chooseDate({required BuildContext context});
+  Future<Either<Faliures,void>> debtsPaidDone({required String deptID,required String userId,required String nameOfPiece ,required int price,required int count,required String dateOfAdded,required int totalPrice});
 }

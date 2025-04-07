@@ -33,6 +33,7 @@ class Constant {
  static const String adminCollection ='Admin';
  static const String collectionUsers ='users';
  static const String collectionDepts ='Depts';
+ static const String collectionDeptPaid='Debtspaid';
  
  static const String deleteUser ='حذف زبون';
  static const String deleteUserConfirm =' هل تريد فعلا حذف هذا العميل';
