@@ -1,5 +1,5 @@
-import 'package:elmanfy/Features/home_page/data/cubits/cubit/get_depts_done_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/cubit/get_depts_done_state.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_dept_done/get_depts_done_state.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/payment_done.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';

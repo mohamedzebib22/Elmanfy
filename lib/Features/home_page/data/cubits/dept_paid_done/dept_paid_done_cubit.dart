@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -14,7 +15,9 @@ class DeptPaidDoneCubit extends Cubit<DeptPaidDoneState> {
    required int count,
    required String dateOfAdded,
    required int totalPrice,
+   required BuildContext context
    })async{
+
     emit(DeptPaidDoneLoading());
     var either = await addUserRepo.debtsPaidDone(deptID: deptId,
      userId: userId, 
@@ -29,6 +32,7 @@ class DeptPaidDoneCubit extends Cubit<DeptPaidDoneState> {
     }, (response){
     print('=======Done Dept==========');
       emit(DeptPaidDoneSucsess());
+     // Navigator.pop(context);
     });
   }
 }

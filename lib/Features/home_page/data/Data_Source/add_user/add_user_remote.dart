@@ -19,7 +19,7 @@ abstract class AddUserRemote {
     required BuildContext context,
   });
 
-  
+
   Future<Either<Faliures, void>> debtsPaidDone(
       {required String deptID,
       required String userId,
@@ -30,4 +30,5 @@ abstract class AddUserRemote {
       required int totalPrice});
 
   Future<Either<Faliures,dynamic>> getDeptsDone({required String userId});
+  Future<Either<Faliures, void>> deleteDeptDone({required String userId, required String deptId});
 }

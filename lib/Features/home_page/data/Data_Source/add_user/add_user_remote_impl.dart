@@ -51,7 +51,7 @@ class AddUserRemoteImpl implements AddUserRemote {
           .doc(userId)
           .collection(Constant.collectionDepts);
       DocumentReference debtDoc = debts.doc();
-      await debts.add({
+      await debtDoc.set({
         'itemName': nameOfPiece,
         'itemPrice': price,
         'quantity': count,
@@ -100,9 +100,14 @@ class AddUserRemoteImpl implements AddUserRemote {
 
   @override
   Future<Either<Faliures, void>> debtsPaidDone(
-      {required String deptID,required String userId,required String nameOfPiece ,required int price,required int count,required String dateOfAdded,required int totalPrice}) async {
+      {required String deptID,
+      required String userId,
+      required String nameOfPiece,
+      required int price,
+      required int count,
+      required String dateOfAdded,
+      required int totalPrice}) async {
     try {
-      
       CollectionReference debtsPaidDone = FirebaseFirestore.instance
           .collection(Constant.adminCollection)
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -124,23 +129,41 @@ class AddUserRemoteImpl implements AddUserRemote {
       return Left(ServerError(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Faliures, dynamic>> getDeptsDone({required String userId}) async{
-   try{
-    CollectionReference debtsPaidDone = FirebaseFirestore.instance
+  Future<Either<Faliures, dynamic>> getDeptsDone(
+      {required String userId}) async {
+    try {
+      CollectionReference debtsPaidDone = FirebaseFirestore.instance
           .collection(Constant.adminCollection)
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection(Constant.collectionUsers)
           .doc(userId)
           .collection(Constant.collectionDeptPaid);
 
-    QuerySnapshot snapshot = await debtsPaidDone.get();
-    return Right(snapshot.docs);
-    
-   }catch(e){
-    return Left(ServerError(errMessage: e.toString()));
-   }
-      
+      QuerySnapshot snapshot = await debtsPaidDone.get();
+      return Right(snapshot.docs);
+    } catch (e) {
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Faliures, void>> deleteDeptDone(
+      {required String userId, required String deptId}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(Constant.adminCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Constant.collectionUsers)
+          .doc(userId)
+          .collection(Constant.collectionDepts)
+          .doc(deptId)
+          .delete();
+
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerError(errMessage: e.toString()));
+    }
   }
 }

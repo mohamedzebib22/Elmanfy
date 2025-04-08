@@ -45,5 +45,11 @@ class AddUserImpl implements AddUserRepo {
     var either = await addUserRemote.getDeptsDone(userId: userId);
     return either.fold((error)=>Left(error), (response)=>Right(response));
   }
-
+  
+  @override
+  Future<Either<Faliures, void>> deleteDeptDone({required String userId, required String deptId})async {
+    var either = await addUserRemote.deleteDeptDone(userId: userId, deptId: deptId);
+    return either.fold((error)=>Left(error), (response)=>Right(response));
+  }
+  
 }

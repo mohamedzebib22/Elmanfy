@@ -2,7 +2,9 @@ import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_passwor
 import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts.dart';
@@ -31,6 +33,8 @@ void main() async {
        BlocProvider(create:(context)  => getIt<ForegetPasswordCubit>()),
        BlocProvider(create:(context)  => getIt<AddUserCubit>()),
        BlocProvider(create:(context)  => getIt<AddDeptCubit>()),
+       BlocProvider(create:(context)  => getIt<DeleteDeptCubit>()),
+       BlocProvider(create:(context)  => getIt<GetDeptCubit >()),
     
       // BlocProvider(create:(context)  => getIt<AddDeptCubit>()),
     ],

@@ -36,6 +36,9 @@ class Constant {
  static const String collectionDeptPaid='Debtspaid';
  static const String pleaseWeait= 'الرجاء الانتطار جارى التحميل';
  static const String loading='Loading!!!!' ;
+
+ static const String isPayment='هل تم دفع المبلغ وتريد السداد' ;
+
  
  static const String deleteUser ='حذف زبون';
  static const String deleteUserConfirm =' هل تريد فعلا حذف هذا العميل';

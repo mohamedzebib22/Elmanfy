@@ -25,14 +25,16 @@ import '../../Features/home_page/data/cubits/add_dept/add_dept_cubit.dart'
     as _i106;
 import '../../Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart'
     as _i483;
-import '../../Features/home_page/data/cubits/cubit/get_depts_done_cubit.dart'
-    as _i571;
+import '../../Features/home_page/data/cubits/cubit/delete_dept_cubit.dart'
+    as _i47;
 import '../../Features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart'
     as _i1020;
 import '../../Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart'
     as _i967;
 import '../../Features/home_page/data/cubits/get_dept/get_dept_cubit.dart'
     as _i578;
+import '../../Features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart'
+    as _i907;
 import '../../Features/home_page/data/Data_Source/add_user/add_user_remote.dart'
     as _i781;
 import '../../Features/home_page/data/Data_Source/add_user/add_user_remote_impl.dart'
@@ -107,8 +109,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i578.GetDeptCubit(gh<_i692.AddUserRepo>()));
     gh.factory<_i1020.DeptPaidDoneCubit>(
         () => _i1020.DeptPaidDoneCubit(gh<_i692.AddUserRepo>()));
-    gh.factory<_i571.GetDeptsDoneCubit>(
-        () => _i571.GetDeptsDoneCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i907.GetDeptsDoneCubit>(
+        () => _i907.GetDeptsDoneCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i47.DeleteDeptCubit>(
+        () => _i47.DeleteDeptCubit(gh<_i692.AddUserRepo>()));
     return this;
   }
 }
