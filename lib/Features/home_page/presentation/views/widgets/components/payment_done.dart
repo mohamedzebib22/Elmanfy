@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 
 class PaymentDone extends StatelessWidget {
   const PaymentDone({
-    super.key,
+    super.key, required this.totalPrice, required this.nameOfType, required this.price, required this.count,
     
   });
-
-
+  final int totalPrice;
+  final String nameOfType;
+  final int price;
+  final int count;
   @override
   Widget build(BuildContext context) {
      var width = MediaQuery.of(context).size.width;
@@ -22,13 +24,13 @@ class PaymentDone extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            'المجموع :${500}',
+            'المجموع :$totalPrice',
             style: CustomStyleText.bold18Primary,
           ),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: width * 0.02, vertical: height * 0.02),
-            child: DebtDetails(),
+            child: DebtDetails(nameOfType: nameOfType, price: price, count: count),
           ),
         ],
       ),

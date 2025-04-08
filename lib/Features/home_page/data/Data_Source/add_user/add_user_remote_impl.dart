@@ -124,4 +124,23 @@ class AddUserRemoteImpl implements AddUserRemote {
       return Left(ServerError(errMessage: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Faliures, dynamic>> getDeptsDone({required String userId}) async{
+   try{
+    CollectionReference debtsPaidDone = FirebaseFirestore.instance
+          .collection(Constant.adminCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Constant.collectionUsers)
+          .doc(userId)
+          .collection(Constant.collectionDeptPaid);
+
+    QuerySnapshot snapshot = await debtsPaidDone.get();
+    return Right(snapshot.docs);
+    
+   }catch(e){
+    return Left(ServerError(errMessage: e.toString()));
+   }
+      
+  }
 }

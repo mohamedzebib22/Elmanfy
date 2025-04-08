@@ -39,5 +39,11 @@ class AddUserImpl implements AddUserRepo {
     var either = await addUserRemote.debtsPaidDone(deptID: deptID, userId: userId, nameOfPiece: nameOfPiece, price: price, count: count, dateOfAdded: dateOfAdded, totalPrice: totalPrice);
     return either.fold((error)=>Left(error), (response)=>Right(response));
   }
+  
+  @override
+  Future<Either<Faliures, dynamic>> getDeptsDone({required String userId}) async{
+    var either = await addUserRemote.getDeptsDone(userId: userId);
+    return either.fold((error)=>Left(error), (response)=>Right(response));
+  }
 
 }

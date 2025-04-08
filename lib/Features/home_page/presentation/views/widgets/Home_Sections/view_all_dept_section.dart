@@ -10,16 +10,21 @@ class ViewAllDeptSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    String id = args['id'];
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, PaidDebtsPage.id);
+        Navigator.pushNamed(context, PaidDebtsPage.id, arguments:{
+          'id' : id,
+        });
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.white, width: 1),
         ),
-        child: Row(
+        child:const Row(
           children: [
             Icon(
               Icons.arrow_back,

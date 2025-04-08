@@ -18,7 +18,16 @@ abstract class AddUserRemote {
   Future<Either<Faliures, dynamic>> chooseDate({
     required BuildContext context,
   });
+
+  
   Future<Either<Faliures, void>> debtsPaidDone(
-      {required String deptID,required String userId,required String nameOfPiece ,required int price,required int count,required String dateOfAdded,required int totalPrice
-     });
+      {required String deptID,
+      required String userId,
+      required String nameOfPiece,
+      required int price,
+      required int count,
+      required String dateOfAdded,
+      required int totalPrice});
+
+  Future<Either<Faliures,dynamic>> getDeptsDone({required String userId});
 }

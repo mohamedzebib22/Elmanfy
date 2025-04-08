@@ -1,6 +1,7 @@
 import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_icon_button.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custome_product_details.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
@@ -44,7 +45,7 @@ class ProductDetails extends StatelessWidget {
               children: [
                 CustomIconButton(
                   title: Constant.discount,
-                  iconName: Icon(
+                  iconName:const Icon(
                     Icons.sell_sharp,
                     color: Colors.white,
                   ),
@@ -59,19 +60,12 @@ class ProductDetails extends StatelessWidget {
                   builder: (context, state) {
                      return CustomIconButton(
                       title: Constant.payment,
-                      iconName: state is DeptPaidDoneLoading ? Center(child: CircularProgressIndicator(),): Icon(
+                      iconName: state is DeptPaidDoneLoading ?const Center(child: CircularProgressIndicator(),):const Icon(
                         Icons.payment_sharp,
                         color: Colors.white,
                       ),
                       buttonColor: Colors.green,
                       onTap: () {
-                        print('===${args['id']}======');
-                        print('===$nameOfThePiece======');
-                        print('===$priceOfThePiece======');
-                        print('===$count======');
-                        print('===$historyOfReligion======');
-                        print('===$totalPrice======');
-                        print('===$deptID======');
                         viewModel.deptDone(deptId: deptID,
                          userId: args['id'], 
                          nameOfPiece: nameOfThePiece,
@@ -89,7 +83,7 @@ class ProductDetails extends StatelessWidget {
                 ),
                 CustomIconButton(
                   title: Constant.delete,
-                  iconName: Icon(
+                  iconName:const Icon(
                     Icons.delete_sharp,
                     color: Colors.white,
                   ),
@@ -99,37 +93,11 @@ class ProductDetails extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: height * 0.02, horizontal: width * 0.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                CustomText(
-                  title: '${Constant.nameOfThePiece}:$nameOfThePiece',
-                  textStyle: CustomStyleText.bold16Black,
-                ),
-                CustomText(
-                  title: '${Constant.priceOfThePiece}:$priceOfThePiece',
-                  textStyle: CustomStyleText.bold16Black,
-                ),
-                CustomText(
-                  title: '${Constant.count}:$count',
-                  textStyle: CustomStyleText.bold16Black,
-                ),
-                CustomText(
-                  title: '${Constant.historyOfReligion}:$historyOfReligion',
-                  textStyle: CustomStyleText.bold16Black,
-                ),
-                CustomText(
-                  title: '${Constant.totalPrice}:$totalPrice',
-                  textStyle: CustomStyleText.bold18Primary,
-                ),
-              ],
-            ),
-          ),
+          CustomeProductDetails(nameOfThePiece: nameOfThePiece, priceOfThePiece: priceOfThePiece, count: count, historyOfReligion: historyOfReligion, totalPrice: totalPrice),
         ],
       ),
     );
   }
 }
+
+

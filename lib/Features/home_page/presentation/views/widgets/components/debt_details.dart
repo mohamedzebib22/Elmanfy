@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 
 class DebtDetails extends StatelessWidget {
   const DebtDetails({
-    super.key,
+    super.key, required this.nameOfType, required this.price, required this.count,
   });
-
+  final String nameOfType;
+  final int price;
+  final int count;
+  
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -17,15 +20,15 @@ class DebtDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         CustomText(
-          title: 'كيبورد',
+          title: nameOfType,
           textStyle: CustomStyleText.bold18Primary,
         ),
         CustomText(
-          title: 'المبلغ:${100}',
+          title: 'المبلغ:$price',
           textStyle: CustomStyleText.bold18Primary,
         ),
         CustomText(
-          title: 'الكمية:${5}',
+          title: 'الكمية:$count',
           textStyle: CustomStyleText.bold18Primary,
         ),
         CustomBotton(
