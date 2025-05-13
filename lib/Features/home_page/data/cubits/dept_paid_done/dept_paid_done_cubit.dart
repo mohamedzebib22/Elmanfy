@@ -1,12 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
 import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
+import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
+import 'package:elmanfy/core/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class DeptPaidDoneCubit extends Cubit<DeptPaidDoneState> {
   DeptPaidDoneCubit(this.addUserRepo) : super(DeptPaidDoneInitial());
+  // DeleteDeptCubit deleteItem = getIt<>(); 
   final AddUserRepo addUserRepo;
   deptDone({required String deptId,
    required String userId,
@@ -15,6 +19,8 @@ class DeptPaidDoneCubit extends Cubit<DeptPaidDoneState> {
    required int count,
    required String dateOfAdded,
    required int totalPrice,
+   required String fullName,
+   required String phone,
    required BuildContext context
    })async{
 
@@ -32,6 +38,7 @@ class DeptPaidDoneCubit extends Cubit<DeptPaidDoneState> {
     }, (response){
     print('=======Done Dept==========');
       emit(DeptPaidDoneSucsess());
+     DeleteDeptCubit.get(context).deleteDeptFromFireStore(userId: userId, deptId: deptId, fullName: fullName, phone: phone, dateOfAdded: dateOfAdded, context: context);
      // Navigator.pop(context);
     });
   }

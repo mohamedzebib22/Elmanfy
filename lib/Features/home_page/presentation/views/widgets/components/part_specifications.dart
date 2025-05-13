@@ -76,6 +76,7 @@ class ProductDetails extends StatelessWidget {
                             ),
                       buttonColor: Colors.green,
                       onTap: () {
+                        
                         viewModel.deptDone(
                             context: context,
                             deptId: deptID,
@@ -84,7 +85,9 @@ class ProductDetails extends StatelessWidget {
                             price: priceOfThePiece,
                             count: count,
                             dateOfAdded: historyOfReligion,
-                            totalPrice: totalPrice);
+                            totalPrice: totalPrice, 
+                            fullName:args['full_name'], 
+                            phone: args['phone']);
                       },
                     );
                   },

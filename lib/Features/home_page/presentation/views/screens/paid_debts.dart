@@ -15,6 +15,11 @@ class PaidDebtsPage extends StatelessWidget {
   static String id = 'PaidDebtsPage';
   @override
   Widget build(BuildContext context) {
+
+    String formattedDateTime(String rawDateTime) {
+  DateTime dt = DateTime.parse(rawDateTime);
+  return dt.toString().split('.')[0]; 
+}
     var args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     GetDeptsDoneCubit viewModel = getIt<GetDeptsDoneCubit>();
@@ -50,7 +55,8 @@ class PaidDebtsPage extends StatelessWidget {
                               totalPrice: deptList[index]['totalPrice'],
                              nameOfType: deptList[index]['itemName'],
                               price: deptList[index]['itemPrice'], 
-                              count: deptList[index]['quantity'],);
+                              count: deptList[index]['quantity'], 
+                              dateOfPaid:formattedDateTime(deptList[index]['paidDate']));
                           }),
                     )
                   ],

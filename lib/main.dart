@@ -68,6 +68,7 @@ class _ElmanfyState extends State<Elmanfy> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.ligtTheme,
+      locale: Locale('ar'),
       routes: {
         LoginPage.id: (context) => const LoginPage(),
         RegisterPage.id: (context) =>const RegisterPage(),

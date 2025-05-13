@@ -14,14 +14,13 @@ class CustomIconButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
+        
         color: buttonColor,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width*0.02),
+          padding: EdgeInsets.symmetric(horizontal: width*0.04,vertical: height*0.008),
           child: Row(
           children: [
-            IconButton(onPressed: (){
-             
-            }, icon: iconName),
+           iconName,
             Text(title,style:const TextStyle(color: Colors.white),)
           ],
               ),

@@ -23,24 +23,24 @@ class CustomerDetailsBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DetailsCardUser(),
+         const DetailsCardUser(),
           SizedBox(
             height: height * 0.02,
           ),
-          CustomDivider(),
+          const CustomDivider(),
           SizedBox(
             height: height * 0.02,
           ),
-          Center(child: CustomText(title: Constant.debts)),
-          ShowProductDetailsSection(),
+          const Center(child: CustomText(title: Constant.debts)),
+         const ShowProductDetailsSection(),
           SizedBox(
             height: height * 0.02,
           ),
-          CustomDivider(),
+         const CustomDivider(),
           SizedBox(
             height: height * 0.02,
           ),
-          Row(
+         const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [ViewAllDeptSection(), AddDeptSection()],
           ),

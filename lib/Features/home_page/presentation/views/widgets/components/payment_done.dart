@@ -7,13 +7,14 @@ import 'package:flutter/material.dart';
 
 class PaymentDone extends StatelessWidget {
   const PaymentDone({
-    super.key, required this.totalPrice, required this.nameOfType, required this.price, required this.count,
+    super.key, required this.totalPrice, required this.nameOfType, required this.price, required this.count, required this.dateOfPaid,
     
   });
   final int totalPrice;
   final String nameOfType;
   final int price;
   final int count;
+  final String dateOfPaid;
   @override
   Widget build(BuildContext context) {
      var width = MediaQuery.of(context).size.width;
@@ -30,7 +31,7 @@ class PaymentDone extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: width * 0.02, vertical: height * 0.02),
-            child: DebtDetails(nameOfType: nameOfType, price: price, count: count),
+            child: DebtDetails(nameOfType: nameOfType, price: price, count: count, dateOfPaid: dateOfPaid,),
           ),
         ],
       ),

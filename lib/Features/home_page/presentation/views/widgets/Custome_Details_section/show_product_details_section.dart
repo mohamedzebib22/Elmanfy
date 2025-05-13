@@ -25,14 +25,14 @@ class ShowProductDetailsSection extends StatelessWidget {
       // viewModel..getDepts(userId: args['id']),
       builder: (context, state) {
         if (state is GetDeptLodaing) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is GetDeptSucsess) {
           var deptList = viewModel.data;
 
           if (deptList.isEmpty) {
-            return Center(
+            return const Center(
               child: Text(
                 Constant.noDebtsCurrently,
                 style: CustomStyleText.whiteColorBold,
