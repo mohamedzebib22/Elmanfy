@@ -68,6 +68,7 @@ class InputRegisterDataSection extends StatelessWidget {
                   height: height * 0.02,
                 ),
                 CustomTextFeild(
+                  keyboardType: TextInputType.emailAddress,
                   controller: RegisterCubit.get(context).userEmail,
                   validator: (email) {
                     if (email == null || email.isEmpty) {

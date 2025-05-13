@@ -36,7 +36,7 @@ class InputDataSection extends StatelessWidget {
                 height: height / 6,
               ),
               CustomTextFeild(
-               
+               keyboardType: TextInputType.emailAddress,
                 validator: (email) {
                   if (email == null || email.isEmpty) {
                     return 'برجاء ادخال الايميل';

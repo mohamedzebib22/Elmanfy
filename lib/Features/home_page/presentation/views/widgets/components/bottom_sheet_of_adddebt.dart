@@ -48,6 +48,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
+                keyboardType: TextInputType.number,
                 controller: AddDeptCubit.get(context).count,
                 hintColor: Colors.white,
                 hintText: Constant.count,
@@ -60,6 +61,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
+                keyboardType: TextInputType.number,
                   controller: AddDeptCubit.get(context).price,
                   hintColor: Colors.white,
                   hintText: Constant.priceOfThePiece,
@@ -71,6 +73,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
+              
                 controller: AddDeptCubit.get(context).dateOfAdded,
                 hintColor: Colors.white,
                 hintText: Constant.historyOfReligion,
@@ -82,7 +85,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                     onPressed: () {
                       AddDeptCubit.get(context).chooseDate(context: context);
                     },
-                    icon: Icon(
+                    icon:const Icon(
                       Icons.event,
                       color: Colors.white,
                     )),
@@ -91,7 +94,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                 height: height * 0.04,
               ),
               state is AddDeptLoading
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(),
                     )
                   : CustomBotton(

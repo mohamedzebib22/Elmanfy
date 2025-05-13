@@ -21,12 +21,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+late String initialRoute;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseAuth.instance.authStateChanges().listen((user){
+    if(user == null){
+      initialRoute = LoginPage.id;
+    }else{
+      initialRoute = HomePage.id;
+    }
+  });
   runApp(MultiBlocProvider(
     providers: [
        BlocProvider(create:(context)  => getIt<RegisterCubit>()),
@@ -78,7 +86,7 @@ class _ElmanfyState extends State<Elmanfy> {
         PaidDebtsPage.id: (context) => const PaidDebtsPage(),
         // SubmitDeleteItem.id: (context) => const SubmitDeleteItem(),
       },
-      initialRoute: LoginPage.id,
+      initialRoute: initialRoute,
     );
   }
 }

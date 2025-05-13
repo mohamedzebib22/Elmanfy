@@ -45,6 +45,7 @@ class BottomSheetOfUsers extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
+                  keyboardType: TextInputType.phone,
                   controller: AddUserCubit.get(context).phone,
                   hintColor: Colors.white,
                   hintText: Constant.phoneNumber,
@@ -56,6 +57,7 @@ class BottomSheetOfUsers extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFeild(
+       
                 controller: AddUserCubit.get(context).dateOfAdded,
                 hintColor: Colors.white,
                 hintText: Constant.dateOfAdded,

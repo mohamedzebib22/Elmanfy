@@ -20,6 +20,7 @@ class CustomTextFeild extends StatelessWidget {
       this.controller,
       this.isFill = false,
       this.security = false,
+      this.keyboardType,
       this.fillColor = Colors.transparent,
       this.validator});
 
@@ -38,10 +39,12 @@ class CustomTextFeild extends StatelessWidget {
   Color? fillColor;
   Color? textStyleColor;
   Color? foucusBorder;
+  TextInputType? keyboardType;
   Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       style: TextStyle(color: textStyleColor,),
       obscureText: security,
       initialValue: text,
