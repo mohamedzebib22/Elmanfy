@@ -15,10 +15,10 @@ import 'package:quickalert/quickalert.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({
-    super.key,
+    super.key, required this.menuDrawer,
   });
 
-
+  final VoidCallback menuDrawer;
   @override
   Widget build(BuildContext context) {
     GetUserCubit viewModel = getIt<GetUserCubit>();
@@ -32,7 +32,7 @@ class HomePageBody extends StatelessWidget {
           SizedBox(height: height * 0.02),
           SearchSection(onTap: (title ) { 
             viewModel.searchProduct(title);
-           },),
+           }, menuDrawer: menuDrawer,),
           SizedBox(height: height * 0.02),
           BlocBuilder<GetUserCubit, GetAndDeleteUserState>(
             bloc: viewModel..getUsersFromeFireStore(),

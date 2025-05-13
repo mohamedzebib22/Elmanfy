@@ -42,6 +42,7 @@ class ShowProductDetailsSection extends StatelessWidget {
             return Expanded(
               child: ListView.builder(
                   itemCount: deptList.length,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ProductDetails(
                       nameOfThePiece: deptList[index]['itemName'],

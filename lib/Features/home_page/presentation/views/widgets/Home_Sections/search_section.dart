@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 
 class SearchSection extends StatelessWidget {
   const SearchSection({
-    super.key, required this.onTap,
+    super.key, required this.onTap, required this.menuDrawer,
   });
   final Function(String) onTap;
+  final VoidCallback menuDrawer;
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        IconButton(onPressed: menuDrawer, icon: const Icon(Icons.menu,color: Colors.white,size: 30,)),
         Expanded(
-            child: CustomTextFeild(
-            onChanged: onTap,
-          hintText: 'Search',
-          isFill: true,
-          fillColor: Colors.white,
-        )),
-        Icon(
-          Icons.search_off_sharp,
-          color: Colors.white,
+          child: CustomTextFeild(
+          onChanged: onTap,
+                hintText: 'Search',
+                isFill: true,
+                fillColor: Colors.white,
+                sufix: const Icon(Icons.search_sharp),
+                
+              ),
         ),
       ],
     );

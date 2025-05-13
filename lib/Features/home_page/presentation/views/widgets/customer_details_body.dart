@@ -23,24 +23,40 @@ class CustomerDetailsBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-         const DetailsCardUser(),
-          SizedBox(
-            height: height * 0.02,
-          ),
+          Expanded(
+              child: CustomScrollView(
+               physics:BouncingScrollPhysics(),
+            slivers: [
+              const SliverToBoxAdapter(
+                child: DetailsCardUser(),
+              ),
+              const SliverToBoxAdapter(
+                child: CustomDivider(),
+              ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: height * 0.02,
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: Center(child: CustomText(title: Constant.debts)),
+              ),
+              const SliverFillRemaining(
+                child: ShowProductDetailsSection(),
+              ),
+            
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: height * 0.02,
+                ),
+              )
+            ],
+          )),
           const CustomDivider(),
           SizedBox(
             height: height * 0.02,
           ),
-          const Center(child: CustomText(title: Constant.debts)),
-         const ShowProductDetailsSection(),
-          SizedBox(
-            height: height * 0.02,
-          ),
-         const CustomDivider(),
-          SizedBox(
-            height: height * 0.02,
-          ),
-         const Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [ViewAllDeptSection(), AddDeptSection()],
           ),

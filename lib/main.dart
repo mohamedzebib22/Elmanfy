@@ -8,7 +8,6 @@ import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.d
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/screens/submit_delete_item.dart';
 import 'package:elmanfy/Features/login_page/data/cubit/login_cubit.dart';
 import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/Features/register_page/data/cubit/register_cubit.dart';
