@@ -46,7 +46,7 @@ class HomePageBody extends StatelessWidget {
                 var userList = viewModel.filterData;
                 print('========${userList.length}======');
                 if(userList.isEmpty){
-                  return Center(child: Text('لا نوجد ديون حاليا', style: CustomStyleText.whiteColorBold,),);
+                  return const Center(child: Text('لا نوجد ديون حاليا', style: CustomStyleText.whiteColorBold,),);
                 }else{
                   return Expanded(
                   child: ListView.builder(

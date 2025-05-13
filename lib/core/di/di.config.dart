@@ -101,18 +101,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i834.RegisterCubit>(
         () => _i834.RegisterCubit(gh<_i409.RegisterRepo>()));
     gh.factory<_i435.LoginCubit>(() => _i435.LoginCubit(gh<_i211.LoginRepo>()));
-    gh.factory<_i483.AddUserCubit>(
-        () => _i483.AddUserCubit(gh<_i692.AddUserRepo>()));
     gh.factory<_i106.AddDeptCubit>(
         () => _i106.AddDeptCubit(gh<_i692.AddUserRepo>()));
-    gh.factory<_i578.GetDeptCubit>(
-        () => _i578.GetDeptCubit(gh<_i692.AddUserRepo>()));
-    gh.factory<_i1020.DeptPaidDoneCubit>(
-        () => _i1020.DeptPaidDoneCubit(gh<_i692.AddUserRepo>()));
-    gh.factory<_i907.GetDeptsDoneCubit>(
-        () => _i907.GetDeptsDoneCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i483.AddUserCubit>(
+        () => _i483.AddUserCubit(gh<_i692.AddUserRepo>()));
     gh.factory<_i47.DeleteDeptCubit>(
         () => _i47.DeleteDeptCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i1020.DeptPaidDoneCubit>(
+        () => _i1020.DeptPaidDoneCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i578.GetDeptCubit>(
+        () => _i578.GetDeptCubit(gh<_i692.AddUserRepo>()));
+    gh.factory<_i907.GetDeptsDoneCubit>(
+        () => _i907.GetDeptsDoneCubit(gh<_i692.AddUserRepo>()));
     return this;
   }
 }

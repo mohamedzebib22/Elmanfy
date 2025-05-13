@@ -8,6 +8,7 @@ import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.d
 import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/Features/home_page/presentation/views/screens/paid_debts.dart';
+import 'package:elmanfy/Features/home_page/presentation/views/screens/submit_delete_item.dart';
 import 'package:elmanfy/Features/login_page/data/cubit/login_cubit.dart';
 import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/Features/register_page/data/cubit/register_cubit.dart';
@@ -68,12 +69,13 @@ class _ElmanfyState extends State<Elmanfy> {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.ligtTheme,
       routes: {
-        LoginPage.id: (context) => LoginPage(),
-        RegisterPage.id: (context) => RegisterPage(),
-        ForgetPasswordPage.id: (context) => ForgetPasswordPage(),
-        HomePage.id: (context) => HomePage(),
-        CustomerdetailsPage.id: (context) => CustomerdetailsPage(),
-        PaidDebtsPage.id: (context) => PaidDebtsPage(),
+        LoginPage.id: (context) => const LoginPage(),
+        RegisterPage.id: (context) =>const RegisterPage(),
+        ForgetPasswordPage.id: (context) => const ForgetPasswordPage(),
+        HomePage.id: (context) =>const HomePage(),
+        CustomerdetailsPage.id: (context) =>const CustomerdetailsPage(),
+        PaidDebtsPage.id: (context) => const PaidDebtsPage(),
+        // SubmitDeleteItem.id: (context) => const SubmitDeleteItem(),
       },
       initialRoute: LoginPage.id,
     );

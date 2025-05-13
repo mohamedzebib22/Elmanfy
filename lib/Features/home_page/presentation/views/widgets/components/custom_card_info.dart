@@ -19,9 +19,9 @@ class CustomCardInfo extends StatelessWidget {
       child: Row(children: [
         Row(children: [
           IconButton(onPressed: onTap, icon: Icon(Icons.delete_forever_sharp,color: Colors.red,)),
-          IconButton(onPressed: (){
-            Navigator.pushNamed(context, CustomerdetailsPage.id);
-          }, icon: Icon(Icons.edit_sharp,color: Colors.green,)),
+          // IconButton(onPressed: (){
+          //   Navigator.pushNamed(context, CustomerdetailsPage.id);
+          // }, icon: Icon(Icons.edit_sharp,color: Colors.green,)),
 
         ],),
         SizedBox(width: width*0.08,),

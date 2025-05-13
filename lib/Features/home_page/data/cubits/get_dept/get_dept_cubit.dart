@@ -13,11 +13,12 @@ class GetDeptCubit extends Cubit<GetDeptState> {
   final AddUserRepo addUserRepo;
   TextEditingController filterTitle= TextEditingController();
   List<QueryDocumentSnapshot> data = [];
-  static GetDeptCubit get(context) => BlocProvider.of(context);
+ // static GetDeptCubit get(context) => BlocProvider.of(context);
   
   getDepts({required String userId})async{
-    if(data.isEmpty){
-      emit(GetDeptLodaing());
+   
+    emit(GetDeptLodaing());
+    data.clear();
     var either = await addUserRepo.getDepts(userId: userId);
     return either.fold((error){
       emit(GetDeptFaliure(faliures: error));
@@ -25,7 +26,7 @@ class GetDeptCubit extends Cubit<GetDeptState> {
       data.addAll(response);
       emit(GetDeptSucsess());
     });
-    }
+    
     
   }
   

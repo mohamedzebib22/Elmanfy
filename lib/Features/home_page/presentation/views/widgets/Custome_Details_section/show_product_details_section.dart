@@ -17,11 +17,11 @@ class ShowProductDetailsSection extends StatelessWidget {
     var args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     GetDeptCubit viewModel = getIt<GetDeptCubit>();
-    if (viewModel.data.isEmpty) {
-      viewModel.getDepts(userId: args['id']);
-    }
+
+    Future.microtask(() => viewModel.getDepts(userId: args['id']));
+
     return BlocBuilder<GetDeptCubit, GetDeptState>(
-      bloc:viewModel,
+      bloc: viewModel,
       // viewModel..getDepts(userId: args['id']),
       builder: (context, state) {
         if (state is GetDeptLodaing) {
@@ -30,7 +30,7 @@ class ShowProductDetailsSection extends StatelessWidget {
           );
         } else if (state is GetDeptSucsess) {
           var deptList = viewModel.data;
-          
+
           if (deptList.isEmpty) {
             return Center(
               child: Text(
@@ -44,13 +44,14 @@ class ShowProductDetailsSection extends StatelessWidget {
                   itemCount: deptList.length,
                   itemBuilder: (context, index) {
                     return ProductDetails(
-                        nameOfThePiece: deptList[index]['itemName'],
-                        priceOfThePiece: deptList[index]['itemPrice'],
-                        count: deptList[index]['quantity'],
-                        historyOfReligion: deptList[index]['debtDate'],
-                        totalPrice: deptList[index]['totalPrice'], 
-                        deptID: deptList[index]['id'],
-                        );
+                      nameOfThePiece: deptList[index]['itemName'],
+                      priceOfThePiece: deptList[index]['itemPrice'],
+                      count: deptList[index]['quantity'],
+                      historyOfReligion: deptList[index]['debtDate'],
+                      totalPrice: deptList[index]['totalPrice'],
+                      deptID: deptList[index]['id'],
+                    
+                    );
                   }),
             );
           }
@@ -60,7 +61,7 @@ class ShowProductDetailsSection extends StatelessWidget {
           );
         }
         return Container(
-          child: Text(state.toString()),
+         
         );
       },
     );

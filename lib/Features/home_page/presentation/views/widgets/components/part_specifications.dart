@@ -29,7 +29,7 @@ class ProductDetails extends StatelessWidget {
   final String historyOfReligion;
   final int totalPrice;
   final String deptID;
-  
+
   @override
   Widget build(BuildContext context) {
     var args =
@@ -110,9 +110,13 @@ class ProductDetails extends StatelessWidget {
                               print(
                                   '====the id of user is ${args['id']},,,===the id of Dept is$deptID');
                               deleteDept.deleteDeptFromFireStore(
-                                  userId: args['id'],
-                                  deptId: deptID,
-                                  context: context);
+                                userId: args['id'],
+                                deptId: deptID,
+                                context: context,
+                                fullName: args['full_name'],
+                                phone: args['phone'],
+                                dateOfAdded: args['dateOfAdded'],
+                              );
                             },
                           );
                   },
