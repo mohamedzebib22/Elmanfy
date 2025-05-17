@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/cubit/delete_dept_state.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
+import 'package:elmanfy/features/home_page/data/Repos/add_user/add_user_repo.dart';
+import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_state.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart';
+import 'package:elmanfy/features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

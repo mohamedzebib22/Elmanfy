@@ -1,6 +1,6 @@
-import 'package:elmanfy/Features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_dept_done/get_depts_done_state.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/payment_done.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept_done/get_depts_done_state.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/components/payment_done.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
@@ -9,6 +9,7 @@ import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class PaidDebtsPage extends StatelessWidget {
   const PaidDebtsPage({super.key});

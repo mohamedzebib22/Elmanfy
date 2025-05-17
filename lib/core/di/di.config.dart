@@ -11,61 +11,61 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../Features/forget_password_page/data/cubit/foreget_password_cubit.dart'
+import '../../features/forget_password_page/data/cubit/foreget_password_cubit.dart'
     as _i1052;
-import '../../Features/forget_password_page/data/Data_Source/remote/foreget_password_impl.dart'
+import '../../features/forget_password_page/data/Data_Source/remote/foreget_password_impl.dart'
     as _i647;
-import '../../Features/forget_password_page/data/Data_Source/remote/forget_password_remote.dart'
+import '../../features/forget_password_page/data/Data_Source/remote/forget_password_remote.dart'
     as _i920;
-import '../../Features/forget_password_page/data/Repositories/forget_passwod_repo.dart'
+import '../../features/forget_password_page/data/Repositories/forget_passwod_repo.dart'
     as _i587;
-import '../../Features/forget_password_page/data/Repositories/forget_password_impl.dart'
+import '../../features/forget_password_page/data/Repositories/forget_password_impl.dart'
     as _i44;
-import '../../Features/home_page/data/cubits/add_dept/add_dept_cubit.dart'
+import '../../features/home_page/data/cubits/add_dept/add_dept_cubit.dart'
     as _i106;
-import '../../Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart'
+import '../../features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart'
     as _i483;
-import '../../Features/home_page/data/cubits/cubit/delete_dept_cubit.dart'
+import '../../features/home_page/data/cubits/cubit/delete_dept_cubit.dart'
     as _i47;
-import '../../Features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart'
+import '../../features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart'
     as _i1020;
-import '../../Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart'
+import '../../features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart'
     as _i967;
-import '../../Features/home_page/data/cubits/get_dept/get_dept_cubit.dart'
+import '../../features/home_page/data/cubits/get_dept/get_dept_cubit.dart'
     as _i578;
-import '../../Features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart'
+import '../../features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart'
     as _i907;
-import '../../Features/home_page/data/Data_Source/add_user/add_user_remote.dart'
+import '../../features/home_page/data/Data_Source/add_user/add_user_remote.dart'
     as _i781;
-import '../../Features/home_page/data/Data_Source/add_user/add_user_remote_impl.dart'
+import '../../features/home_page/data/Data_Source/add_user/add_user_remote_impl.dart'
     as _i413;
-import '../../Features/home_page/data/Data_Source/get_and_delete_user/get_and_delete_user_remote.dart'
+import '../../features/home_page/data/Data_Source/get_and_delete_user/get_and_delete_user_remote.dart'
     as _i594;
-import '../../Features/home_page/data/Data_Source/get_and_delete_user/get_and_delete_user_remote_impl.dart'
+import '../../features/home_page/data/Data_Source/get_and_delete_user/get_and_delete_user_remote_impl.dart'
     as _i640;
-import '../../Features/home_page/data/Repos/add_user/add_user_impl.dart'
+import '../../features/home_page/data/Repos/add_user/add_user_impl.dart'
     as _i607;
-import '../../Features/home_page/data/Repos/add_user/add_user_repo.dart'
+import '../../features/home_page/data/Repos/add_user/add_user_repo.dart'
     as _i692;
-import '../../Features/home_page/data/Repos/get_user/get_user_impl.dart'
+import '../../features/home_page/data/Repos/get_user/get_user_impl.dart'
     as _i282;
-import '../../Features/home_page/data/Repos/get_user/get_user_repo.dart'
+import '../../features/home_page/data/Repos/get_user/get_user_repo.dart'
     as _i1053;
-import '../../Features/login_page/data/cubit/login_cubit.dart' as _i435;
-import '../../Features/login_page/data/Data_Source/remote/login_remote.dart'
+import '../../features/login_page/data/cubit/login_cubit.dart' as _i435;
+import '../../features/login_page/data/Data_Source/remote/login_remote.dart'
     as _i765;
-import '../../Features/login_page/data/Data_Source/remote/login_remote_impl.dart'
+import '../../features/login_page/data/Data_Source/remote/login_remote_impl.dart'
     as _i1040;
-import '../../Features/login_page/data/Repositories/login_impl.dart' as _i113;
-import '../../Features/login_page/data/Repositories/login_repo.dart' as _i211;
-import '../../Features/register_page/data/cubit/register_cubit.dart' as _i834;
-import '../../Features/register_page/data/data_source/remote/register_user_remote.dart'
+import '../../features/login_page/data/Repositories/login_impl.dart' as _i113;
+import '../../features/login_page/data/Repositories/login_repo.dart' as _i211;
+import '../../features/register_page/data/cubit/register_cubit.dart' as _i834;
+import '../../features/register_page/data/data_source/remote/register_user_remote.dart'
     as _i908;
-import '../../Features/register_page/data/data_source/remote/register_user_remote_impl.dart'
+import '../../features/register_page/data/data_source/remote/register_user_remote_impl.dart'
     as _i452;
-import '../../Features/register_page/data/Repositories/register_impl.dart'
+import '../../features/register_page/data/Repositories/register_impl.dart'
     as _i68;
-import '../../Features/register_page/data/Repositories/register_repositories.dart'
+import '../../features/register_page/data/Repositories/register_repositories.dart'
     as _i409;
 
 extension GetItInjectableX on _i174.GetIt {

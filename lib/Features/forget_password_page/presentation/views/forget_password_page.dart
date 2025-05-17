@@ -1,6 +1,6 @@
-import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_password_cubit.dart';
-import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_password_state.dart';
-import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
+import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_cubit.dart';
+import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_state.dart';
+import 'package:elmanfy/features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';

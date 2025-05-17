@@ -1,4 +1,4 @@
-import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
+import 'package:elmanfy/features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';

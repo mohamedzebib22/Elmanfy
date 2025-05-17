@@ -1,6 +1,6 @@
-import 'package:elmanfy/Features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/add_dept/add_dept_state.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_state.dart';
+import 'package:elmanfy/features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';

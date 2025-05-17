@@ -1,8 +1,8 @@
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/Custome_Details_section/add_debt_section.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/Custome_Details_section/show_product_details_section.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/view_all_dept_section.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_divider.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/details_card_user.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/Custome_Details_section/add_debt_section.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/Custome_Details_section/show_product_details_section.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/Home_Sections/view_all_dept_section.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custom_divider.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/components/details_card_user.dart';
 
 import 'package:elmanfy/core/constants/constant.dart';
 

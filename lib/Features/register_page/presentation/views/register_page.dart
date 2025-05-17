@@ -1,6 +1,6 @@
-import 'package:elmanfy/Features/login_page/presentation/views/login_page.dart';
-import 'package:elmanfy/Features/login_page/presentation/views/widgets/sections/input_data_section.dart';
-import 'package:elmanfy/Features/register_page/presentation/views/widgets/register_page_body.dart';
+import 'package:elmanfy/features/login_page/presentation/views/login_page.dart';
+import 'package:elmanfy/features/login_page/presentation/views/widgets/sections/input_data_section.dart';
+import 'package:elmanfy/features/register_page/presentation/views/widgets/register_page_body.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';

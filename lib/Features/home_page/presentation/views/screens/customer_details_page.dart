@@ -1,4 +1,4 @@
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/customer_details_body.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/customer_details_body.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:flutter/material.dart';

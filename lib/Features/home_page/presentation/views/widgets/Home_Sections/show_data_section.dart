@@ -1,4 +1,4 @@
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_card_info.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custom_card_info.dart';
 import 'package:flutter/material.dart';
 
 class ShowDataSection extends StatelessWidget {

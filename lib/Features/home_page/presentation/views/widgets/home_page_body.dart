@@ -1,8 +1,8 @@
-import 'package:elmanfy/Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_state.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/screens/customer_details_page.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/Home_Sections/show_data_section.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_state.dart';
+import 'package:elmanfy/features/home_page/presentation/views/screens/customer_details_page.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/Home_Sections/search_section.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/Home_Sections/show_data_section.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';

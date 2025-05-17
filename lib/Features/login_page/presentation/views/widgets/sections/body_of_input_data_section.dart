@@ -1,5 +1,5 @@
-import 'package:elmanfy/Features/login_page/presentation/views/widgets/sections/forget_password_and_create_account_section.dart';
-import 'package:elmanfy/Features/login_page/presentation/views/widgets/sections/input_data_section.dart';
+import 'package:elmanfy/features/login_page/presentation/views/widgets/sections/forget_password_and_create_account_section.dart';
+import 'package:elmanfy/features/login_page/presentation/views/widgets/sections/input_data_section.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 

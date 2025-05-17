@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:elmanfy/Features/forget_password_page/data/Data_Source/remote/forget_password_remote.dart';
+import 'package:elmanfy/features/forget_password_page/data/Data_Source/remote/forget_password_remote.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';
 import 'package:firebase_auth/firebase_auth.dart';

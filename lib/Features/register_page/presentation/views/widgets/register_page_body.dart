@@ -1,4 +1,4 @@
-import 'package:elmanfy/Features/register_page/presentation/views/widgets/sections/input_register_data_sections.dart';
+import 'package:elmanfy/features/register_page/presentation/views/widgets/sections/input_register_data_sections.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:elmanfy/Features/forget_password_page/data/Repositories/forget_passwod_repo.dart';
-import 'package:elmanfy/Features/forget_password_page/data/cubit/foreget_password_state.dart';
+import 'package:elmanfy/features/forget_password_page/data/Repositories/forget_passwod_repo.dart';
+import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_state.dart';
 import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

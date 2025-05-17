@@ -1,10 +1,10 @@
-import 'package:elmanfy/Features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/cubit/delete_dept_state.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custom_icon_button.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/widgets/components/custome_product_details.dart';
+import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_state.dart';
+import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custom_icon_button.dart';
+import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custome_product_details.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';

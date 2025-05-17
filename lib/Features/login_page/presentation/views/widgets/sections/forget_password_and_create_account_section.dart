@@ -1,5 +1,5 @@
-import 'package:elmanfy/Features/forget_password_page/presentation/views/forget_password_page.dart';
-import 'package:elmanfy/Features/register_page/presentation/views/register_page.dart';
+import 'package:elmanfy/features/forget_password_page/presentation/views/forget_password_page.dart';
+import 'package:elmanfy/features/register_page/presentation/views/register_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';

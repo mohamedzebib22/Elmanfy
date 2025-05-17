@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:elmanfy/Features/home_page/data/Repos/add_user/add_user_repo.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
-import 'package:elmanfy/Features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
+import 'package:elmanfy/features/home_page/data/Repos/add_user/add_user_repo.dart';
+import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
+import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:elmanfy/Features/home_page/presentation/views/screens/home_page.dart';
-import 'package:elmanfy/Features/register_page/data/Repositories/register_repositories.dart';
-import 'package:elmanfy/Features/register_page/data/cubit/register_state.dart';
+import 'package:elmanfy/features/home_page/presentation/views/screens/home_page.dart';
+import 'package:elmanfy/features/register_page/data/Repositories/register_repositories.dart';
+import 'package:elmanfy/features/register_page/data/cubit/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
