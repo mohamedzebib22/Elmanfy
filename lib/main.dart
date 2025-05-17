@@ -1,3 +1,4 @@
+import 'package:elmanfy/core/notification/local_notifications.dart';
 import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_cubit.dart';
 import 'package:elmanfy/features/forget_password_page/presentation/views/forget_password_page.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
@@ -24,10 +25,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 late String initialRoute;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   configureDependencies();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await LocalNotificationsServices.init();
   FirebaseAuth.instance.authStateChanges().listen((user){
     if(user == null){
       initialRoute = LoginPage.id;
