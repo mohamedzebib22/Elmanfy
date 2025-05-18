@@ -1,4 +1,5 @@
 import 'package:elmanfy/core/notification/local_notifications.dart';
+import 'package:elmanfy/core/notification/work_manager_services.dart';
 import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_cubit.dart';
 import 'package:elmanfy/features/forget_password_page/presentation/views/forget_password_page.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
@@ -21,6 +22,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 late String initialRoute;
 void main() async {
@@ -30,7 +34,20 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await LocalNotificationsServices.init();
+   await  WorkManagerServices().init();
+    LocalNotificationsServices.showBasicNotification();
+  await Future.wait([
+    //   WorkManagerServices.init(),
+    LocalNotificationsServices.init(),
+    LocalNotificationsServices.requestPermission(),
+   
+  ]);
+ 
+
+  
+  
+  
+  
   FirebaseAuth.instance.authStateChanges().listen((user){
     if(user == null){
       initialRoute = LoginPage.id;
@@ -90,7 +107,7 @@ class _ElmanfyState extends State<Elmanfy> {
         TestLocalNotification.id: (context) => const TestLocalNotification(),
         // SubmitDeleteItem.id: (context) => const SubmitDeleteItem(),
       },
-      initialRoute: initialRoute,
+      initialRoute: TestLocalNotification.id,
     );
   }
 }

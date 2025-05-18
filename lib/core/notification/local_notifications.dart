@@ -1,4 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 
 class LocalNotificationsServices {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -16,44 +23,70 @@ class LocalNotificationsServices {
       onDidReceiveBackgroundNotificationResponse: onTap,
     );
   }
+static Future<void> requestPermission() async {
+  final androidImplementation = flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
 
+  final granted = await androidImplementation?.requestNotificationsPermission(); // يجب أن تكون موجودة
+  print('🔔 Notification permission granted: $granted');
+}
+
+  
 
   //Todo BasicNotification
   static void showBasicNotification() async {
     NotificationDetails details = const NotificationDetails(
-        android: AndroidNotificationDetails(
-      'id 1',
-      'basic notification',
-      importance: Importance.max,
-      priority: Priority.high
-    ));
+        android: AndroidNotificationDetails('id 1', 'basic notification',
+            importance: Importance.max, priority: Priority.high));
     await flutterLocalNotificationsPlugin.show(
-        0, 
-        'Elmanfy',
-         'Add User Sucsess',
-          details,
-        payload: 'Payload Data');
-  }
-  //Todo RepeatedNotification
-  static void showRepeatedNotification() async {
-    NotificationDetails details = const NotificationDetails(
-        android: AndroidNotificationDetails(
-      'id 2',
-      'repeated notification',
-      importance: Importance.max,
-      priority: Priority.high
-    ));
-    await flutterLocalNotificationsPlugin.periodicallyShow(
-        0, 
-        'Elmanfy',
-         'Repeated Notification Sucsess',
-         RepeatInterval.everyMinute,
-          details,
-          androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle ,
+        0, 'Elmanfy', 'Add User Sucsess', details,
         payload: 'Payload Data');
   }
 
-  static void cacelNotification(int id)async{
+  //Todo RepeatedNotification
+  static void showRepeatedNotification() async {
+    NotificationDetails details = const NotificationDetails(
+        android: AndroidNotificationDetails('id 2', 'repeated notification',
+            importance: Importance.max, priority: Priority.high));
+    await flutterLocalNotificationsPlugin.periodicallyShow(1, 'Elmanfy',
+        'Repeated Notification Sucsess', RepeatInterval.everyMinute, details,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        payload: 'Payload Data');
+  }
+
+  //Todo SchduledNotification
+  static Future<void> showSchduledNotification() async {
+    NotificationDetails details = const NotificationDetails(
+        android: AndroidNotificationDetails('id 3', 'Schduled notification',
+            importance: Importance.max, priority: Priority.high));
+    tz.initializeTimeZones();
+    final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(currentTimeZone));
+    
+    log('The currentTimeZone is :$currentTimeZone ');
+  
+    // final scheduledDate = tz.TZDateTime(tz.local, 2025, 5, 18, 13, 35);
+    // final now = tz.TZDateTime.now(tz.local);
+    //log('⏰ الساعة الحالية: ${now.hour}:${now.minute}:${now.second}');
+    // if (scheduledDate.isBefore(now)) {
+    //   log('❌ التاريخ المحدد في الماضي أو نفس اللحظة الحالية. يرجى تحديد وقت مستقبلي.');
+    //   return;
+    // }
+
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      2,
+      'SchduledNotification',
+      'Test the SchduledNotification',
+     tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+      details,
+       payload: 'SchduledNotification',
+        
+      androidScheduleMode: AndroidScheduleMode.inexact,
+    );
+  }
+
+  static void cacelNotification(int id) async {
     await flutterLocalNotificationsPlugin.cancel(id);
   }
 }
+

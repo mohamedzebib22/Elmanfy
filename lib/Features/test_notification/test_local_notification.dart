@@ -20,7 +20,9 @@ class TestLocalNotification extends StatelessWidget {
           LocalNotificationsServices.cacelNotification(0);
         },
         ),
-        CustomBotton(title: 'schedualLocal'),
+        CustomBotton(title: 'schedualLocal' ,onTap: ()async{
+         await LocalNotificationsServices.showSchduledNotification();
+        },),
       ],),
     );
   }
