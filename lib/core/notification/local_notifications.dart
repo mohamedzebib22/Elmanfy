@@ -6,7 +6,6 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 class LocalNotificationsServices {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -23,15 +22,16 @@ class LocalNotificationsServices {
       onDidReceiveBackgroundNotificationResponse: onTap,
     );
   }
-static Future<void> requestPermission() async {
-  final androidImplementation = flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
 
-  final granted = await androidImplementation?.requestNotificationsPermission(); // يجب أن تكون موجودة
-  print('🔔 Notification permission granted: $granted');
-}
+  static Future<void> requestPermission() async {
+    final androidImplementation =
+        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
 
-  
+    final granted = await androidImplementation
+        ?.requestNotificationsPermission(); // يجب أن تكون موجودة
+    print('🔔 Notification permission granted: $granted');
+  }
 
   //Todo BasicNotification
   static void showBasicNotification() async {
@@ -39,7 +39,7 @@ static Future<void> requestPermission() async {
         android: AndroidNotificationDetails('id 1', 'basic notification',
             importance: Importance.max, priority: Priority.high));
     await flutterLocalNotificationsPlugin.show(
-        0, 'Elmanfy', 'Add User Sucsess', details,
+        0, 'المنفى', 'اهلا بك يرجى مراجعة كامل الديون الموجوده ', details,
         payload: 'Payload Data');
   }
 
@@ -58,13 +58,13 @@ static Future<void> requestPermission() async {
   static Future<void> showSchduledNotification() async {
     NotificationDetails details = const NotificationDetails(
         android: AndroidNotificationDetails('id 3', 'Schduled notification',
-            importance: Importance.max, priority: Priority.high));
+            importance: Importance.max, priority: Priority.max));
     tz.initializeTimeZones();
     final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(currentTimeZone));
-    
+
     log('The currentTimeZone is :$currentTimeZone ');
-  
+
     // final scheduledDate = tz.TZDateTime(tz.local, 2025, 5, 18, 13, 35);
     // final now = tz.TZDateTime.now(tz.local);
     //log('⏰ الساعة الحالية: ${now.hour}:${now.minute}:${now.second}');
@@ -74,19 +74,16 @@ static Future<void> requestPermission() async {
     // }
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      2,
-      'SchduledNotification',
-      'Test the SchduledNotification',
-     tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-      details,
-       payload: 'SchduledNotification',
-        
-      androidScheduleMode: AndroidScheduleMode.inexact,
-    );
+        2,
+        'scheduled title',
+        'scheduled body',
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        details,
+        androidScheduleMode: AndroidScheduleMode.inexact,
+        payload: 'PayloodData');
   }
 
   static void cacelNotification(int id) async {
     await flutterLocalNotificationsPlugin.cancel(id);
   }
 }
-

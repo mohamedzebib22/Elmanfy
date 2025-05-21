@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elmanfy/features/home_page/data/Repos/add_user/add_user_repo.dart';
@@ -13,21 +15,33 @@ class GetDeptCubit extends Cubit<GetDeptState> {
   final AddUserRepo addUserRepo;
   TextEditingController filterTitle= TextEditingController();
   List<QueryDocumentSnapshot> data = [];
+  double totalPrice = 0.0;
+
  // static GetDeptCubit get(context) => BlocProvider.of(context);
   
   getDepts({required String userId})async{
    
     emit(GetDeptLodaing());
     data.clear();
+    totalPrice = 0.0;
+
     var either = await addUserRepo.getDepts(userId: userId);
     return either.fold((error){
       emit(GetDeptFaliure(faliures: error));
     }, (response){
       data.addAll(response);
+     for (var doc in data) {
+      final value = double.tryParse(doc['totalPrice'].toString()) ?? 0.0;
+      totalPrice += value;
+    }
+    log('The total price is :$totalPrice');
       emit(GetDeptSucsess());
+     
     });
     
     
   }
-  
+
+   
 }
+

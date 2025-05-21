@@ -82,8 +82,7 @@ class ForgetPasswordPage extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 
-                                Navigator.pushReplacementNamed(
-                                    context, LoginPage.id);
+                                Navigator.pop(context);
                               },
                               child: const CustomText(
                                 title: Constant.backToLoginPage,

@@ -6,6 +6,7 @@ import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
     AddDeptCubit viewModel = getIt<AddDeptCubit>();
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-
+    GetDeptCubit getDeptCubit = getIt<GetDeptCubit>();
     return BlocBuilder<AddDeptCubit, AddDeptState>(
       bloc: viewModel,
       builder: (context, state) {
@@ -102,6 +103,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                       onTap: () {
                         AddDeptCubit.get(context)
                             .addDepts(id: userId, context: context);
+                 
                         AddDeptCubit.get(context).nameOfPiece.text = '';
                         AddDeptCubit.get(context).price.text = '';
                         AddDeptCubit.get(context).count.text = '';

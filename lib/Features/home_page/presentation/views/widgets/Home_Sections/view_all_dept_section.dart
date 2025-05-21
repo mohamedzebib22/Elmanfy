@@ -32,6 +32,7 @@ class ViewAllDeptSection extends StatelessWidget {
             ),
             Text(
               Constant.viewAllDebt,
+              
               style: CustomStyleText.whiteColorBold,
             ),
           ],

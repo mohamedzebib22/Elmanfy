@@ -35,7 +35,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
    await  WorkManagerServices().init();
-    LocalNotificationsServices.showBasicNotification();
+   
   await Future.wait([
     //   WorkManagerServices.init(),
     LocalNotificationsServices.init(),
@@ -107,7 +107,7 @@ class _ElmanfyState extends State<Elmanfy> {
         TestLocalNotification.id: (context) => const TestLocalNotification(),
         // SubmitDeleteItem.id: (context) => const SubmitDeleteItem(),
       },
-      initialRoute: TestLocalNotification.id,
+      initialRoute: initialRoute,
     );
   }
 }

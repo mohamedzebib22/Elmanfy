@@ -1,3 +1,5 @@
+import 'package:elmanfy/core/di/di.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/Custome_Details_section/add_debt_section.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/Custome_Details_section/show_product_details_section.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/Home_Sections/view_all_dept_section.dart';
@@ -16,6 +18,7 @@ class CustomerDetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Padding(
@@ -25,7 +28,7 @@ class CustomerDetailsBody extends StatelessWidget {
         children: [
           Expanded(
               child: CustomScrollView(
-               physics:BouncingScrollPhysics(),
+               physics:const BouncingScrollPhysics(),
             slivers: [
               const SliverToBoxAdapter(
                 child: DetailsCardUser(),
@@ -41,9 +44,7 @@ class CustomerDetailsBody extends StatelessWidget {
               const SliverToBoxAdapter(
                 child: Center(child: CustomText(title: Constant.debts)),
               ),
-              const SliverFillRemaining(
-                child: ShowProductDetailsSection(),
-              ),
+            const  ShowProductDetailsSection(),
             
               SliverToBoxAdapter(
                 child: SizedBox(
@@ -58,7 +59,8 @@ class CustomerDetailsBody extends StatelessWidget {
           ),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [ViewAllDeptSection(), AddDeptSection()],
+            children: [ViewAllDeptSection(), 
+            AddDeptSection()],
           ),
           SizedBox(
             height: height * 0.02,
