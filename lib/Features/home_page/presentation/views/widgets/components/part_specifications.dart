@@ -1,3 +1,4 @@
+import 'package:elmanfy/core/notification/local_notifications.dart';
 import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_state.dart';
 import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart';
@@ -50,13 +51,15 @@ class ProductDetails extends StatelessWidget {
             child: Column(
               children: [
                 CustomIconButton(
-                  title: Constant.discount,
+                  title: Constant.rememperPayment,
                   iconName: const Icon(
                     Icons.sell_sharp,
                     color: Colors.white,
                   ),
                   buttonColor: Colors.orange,
-                  onTap: () {},
+                  onTap: () {
+                    LocalNotificationsServices.showSchduledNotification();
+                  },
                 ),
                 SizedBox(
                   height: height * 0.001,

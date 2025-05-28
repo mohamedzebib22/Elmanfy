@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_state.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BottomSheetOfAdddebt extends StatelessWidget {
   const BottomSheetOfAdddebt({super.key, required this.userId});
   final String userId;
+  
   @override
   Widget build(BuildContext context) {
     AddDeptCubit viewModel = getIt<AddDeptCubit>();
@@ -23,7 +26,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
       bloc: viewModel,
       builder: (context, state) {
         return Container(
-          decoration: BoxDecoration(
+          decoration:const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/elmanfy.jpg'),
                   fit: BoxFit.fill)),
@@ -32,7 +35,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomText(title: Constant.addNewCustomer),
+            const  CustomText(title: Constant.addNewCustomer),
               SizedBox(
                 height: height * 0.04,
               ),
@@ -100,10 +103,12 @@ class BottomSheetOfAdddebt extends StatelessWidget {
                     )
                   : CustomBotton(
                       title: Constant.addDebt,
-                      onTap: () {
-                        AddDeptCubit.get(context)
+                      onTap: ()async {
+                       await AddDeptCubit.get(context)
                             .addDepts(id: userId, context: context);
-                 
+                     await getIt<GetDeptCubit>().getDepts(userId: userId);
+                      Navigator.pop(context);
+                      log('The new data is ${getIt<GetDeptCubit>().getDepts(userId: userId).toString()}');
                         AddDeptCubit.get(context).nameOfPiece.text = '';
                         AddDeptCubit.get(context).price.text = '';
                         AddDeptCubit.get(context).count.text = '';

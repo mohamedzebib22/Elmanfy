@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_state.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/part_specifications.dart';
@@ -12,7 +13,8 @@ class ShowProductDetailsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final viewModel = getIt<GetDeptCubit>();
 
     Future.microtask(() => viewModel.getDepts(userId: args['id']));
@@ -25,7 +27,7 @@ class ShowProductDetailsSection extends StatelessWidget {
             child: Center(child: CircularProgressIndicator()),
           );
         } else if (state is GetDeptSucsess) {
-          var deptList = viewModel.data;
+          var deptList = state.depts;
 
           if (deptList.isEmpty) {
             return const SliverToBoxAdapter(
@@ -41,14 +43,7 @@ class ShowProductDetailsSection extends StatelessWidget {
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return ProductDetails(
-                  nameOfThePiece: deptList[index]['itemName'],
-                  priceOfThePiece: deptList[index]['itemPrice'],
-                  count: deptList[index]['quantity'],
-                  historyOfReligion: deptList[index]['debtDate'],
-                  totalPrice: deptList[index]['totalPrice'],
-                  deptID: deptList[index]['id'],
-                );
+                return buildProductDetails(deptList, index);
               },
               childCount: deptList.length,
             ),
@@ -65,5 +60,16 @@ class ShowProductDetailsSection extends StatelessWidget {
       },
     );
   }
-}
 
+  ProductDetails buildProductDetails(
+      List<QueryDocumentSnapshot<Object?>> deptList, int index) {
+    return ProductDetails(
+      nameOfThePiece: deptList[index]['itemName'],
+      priceOfThePiece: deptList[index]['itemPrice'],
+      count: deptList[index]['quantity'],
+      historyOfReligion: deptList[index]['debtDate'],
+      totalPrice: deptList[index]['totalPrice'],
+      deptID: deptList[index]['id'],
+    );
+  }
+}

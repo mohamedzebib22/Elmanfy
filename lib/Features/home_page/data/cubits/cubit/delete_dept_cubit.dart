@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart';
 class DeleteDeptCubit extends Cubit<DeleteDeptState> {
   DeleteDeptCubit(this.addUserRepo) : super(DeleteDeptInitial());
   final AddUserRepo addUserRepo;
-  GetDeptCubit getDept = getIt<GetDeptCubit>();
+  
   static DeleteDeptCubit get(context) => BlocProvider.of(context);
 
   deleteDeptFromFireStore(

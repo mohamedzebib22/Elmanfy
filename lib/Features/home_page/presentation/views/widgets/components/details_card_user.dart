@@ -16,7 +16,7 @@ class DetailsCardUser extends StatefulWidget {
 }
 
 class _DetailsCardUserState extends State<DetailsCardUser> {
-  late GetDeptCubit viewModel;
+ // late GetDeptCubit viewModel;
   late Map<String, dynamic> args;
   bool isLoaded = false;
 
@@ -25,8 +25,9 @@ class _DetailsCardUserState extends State<DetailsCardUser> {
     super.didChangeDependencies();
     if (!isLoaded) {
       args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-      viewModel = getIt<GetDeptCubit>();
-      viewModel.getDepts(userId: args['id']);
+      // viewModel = getIt<GetDeptCubit>();
+      // viewModel.getDepts(userId: args['id']);
+      GetDeptCubit.get(context).getDepts(userId: args['id']);
       isLoaded = true;
     }
   }
@@ -37,9 +38,10 @@ class _DetailsCardUserState extends State<DetailsCardUser> {
     var height = MediaQuery.of(context).size.height;
 
     return BlocBuilder<GetDeptCubit, GetDeptState>(
-      bloc: viewModel,
+     // bloc: GetDeptCubit.get(context)..getDepts(userId: args['id']),
       builder: (context, state) {
-        final total = viewModel.totalPrice;
+        
+     
         return Card(
           color: const Color(0xffD6D6D6),
           child: Padding(
@@ -65,10 +67,10 @@ class _DetailsCardUserState extends State<DetailsCardUser> {
                 SizedBox(height: height * 0.02),
                 if (state is GetDeptLodaing)
                   const CircularProgressIndicator()
-                else
+                else if (state is GetDeptSucsess)
                   CustomText(
-                    title: 'اجمالى المبلغ : ${total.toStringAsFixed(2)}',
-                    textStyle: CustomStyleText.bold16Black,
+                    title: 'اجمالى المبلغ : ${state.totalPrice.toStringAsFixed(2)}',
+                    textStyle: CustomStyleText.primaryColorBold,
                   ),
               ],
             ),

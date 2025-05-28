@@ -17,9 +17,9 @@ class GetDeptCubit extends Cubit<GetDeptState> {
   List<QueryDocumentSnapshot> data = [];
   double totalPrice = 0.0;
 
- // static GetDeptCubit get(context) => BlocProvider.of(context);
+  static GetDeptCubit get(context) => BlocProvider.of(context);
   
-  getDepts({required String userId})async{
+ Future<void> getDepts({required String userId})async{
    
     emit(GetDeptLodaing());
     data.clear();
@@ -30,12 +30,12 @@ class GetDeptCubit extends Cubit<GetDeptState> {
       emit(GetDeptFaliure(faliures: error));
     }, (response){
       data.addAll(response);
-     for (var doc in data) {
+     for (var doc in response) {
       final value = double.tryParse(doc['totalPrice'].toString()) ?? 0.0;
       totalPrice += value;
     }
     log('The total price is :$totalPrice');
-      emit(GetDeptSucsess());
+      emit(GetDeptSucsess(depts: response, totalPrice: totalPrice));
      
     });
     
