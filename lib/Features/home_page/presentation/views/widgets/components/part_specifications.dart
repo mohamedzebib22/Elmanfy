@@ -52,7 +52,7 @@ class ProductDetails extends StatelessWidget {
                 CustomIconButton(
                   title: Constant.rememperPayment,
                   iconName: const Icon(
-                    Icons.sell_sharp,
+                    Icons.notification_important_sharp,
                     color: Colors.white,
                   ),
                   buttonColor: Colors.orange,

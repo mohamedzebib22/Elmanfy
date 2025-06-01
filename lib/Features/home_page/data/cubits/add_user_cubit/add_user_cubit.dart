@@ -12,14 +12,17 @@ class AddUserCubit extends Cubit<AddUserState> {
   final AddUserRepo addUserRepo;
   var selectDate;
   String userCollection = 'Users';
-
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   static AddUserCubit get(context) => BlocProvider.of(context);
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController dateOfAdded = TextEditingController();
 
+
+  
   addUser({required BuildContext context}) async {
     emit(AddUserLoading());
+
     var either = await addUserRepo.addUser(
         name: name.text.trim(),
         phone: phone.text.trim(),
@@ -31,19 +34,22 @@ class AddUserCubit extends Cubit<AddUserState> {
     }, (response) {
       print('========UserAdded Sucsess===========');
       emit(AddUserSucsess());
+      name.clear();
+      phone.clear();
+      dateOfAdded.clear();
       Navigator.pop(context);
     });
   }
 
-   chooseDate({required BuildContext context}) async {
-   var either =await addUserRepo.chooseDate(context: context );
-   return either.fold((error){
-    print('========date Not Added===========');
-    emit(AddUserFaliure(faliures: error));
-   }, (response){
-    print('========date Added Sucsess===========');
-    dateOfAdded.text = response;
-    emit(AddUserSucsess());
-   });
+  chooseDate({required BuildContext context}) async {
+    var either = await addUserRepo.chooseDate(context: context);
+    return either.fold((error) {
+      print('========date Not Added===========');
+      emit(AddUserFaliure(faliures: error));
+    }, (response) {
+      print('========date Added Sucsess===========');
+      dateOfAdded.text = response;
+      emit(AddUserSucsess());
+    });
   }
 }
