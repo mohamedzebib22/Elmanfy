@@ -26,6 +26,7 @@ class AddUserCubit extends Cubit<AddUserState> {
         dateOfAdded: dateOfAdded.text);
     return either.fold((error) {
       print('========User Not Added===========');
+      print('========erorr is :${error.errMessage}==========');
       emit(AddUserFaliure(faliures: error));
     }, (response) {
       print('========UserAdded Sucsess===========');

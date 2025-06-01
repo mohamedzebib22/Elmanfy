@@ -9,31 +9,52 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: AddUserRemote)
 class AddUserRemoteImpl implements AddUserRemote {
-  @override
-  Future<Either<Faliures, void>> addUser(
-      {required String name,
-      required String phone,
-      required String dateOfAdded}) async {
+ @override
+Future<Either<Faliures, void>> addUser({
+  required String name,
+  required String phone,
+  required String dateOfAdded,
+}) async {
+  try {
     String uid = FirebaseAuth.instance.currentUser!.uid;
-    DocumentReference users = FirebaseFirestore.instance
+
+    final usersRef = FirebaseFirestore.instance
         .collection(Constant.adminCollection)
         .doc(uid)
-        .collection(Constant.collectionUsers)
-        .doc();
-    String userId = users.id;
-    try {
-      await users.set({
-        'full_name': name,
-        'phone': phone,
-        'dateOfAdded': dateOfAdded,
-        'id': userId
-      });
+        .collection(Constant.collectionUsers);
 
-      return const Right(null);
-    } catch (e) {
-      return Left(ServerError(errMessage: e.toString()));
+  
+    final existingByName = await usersRef
+        .where('full_name', isEqualTo: name.trim())
+        .get();
+
+   
+    final existingByPhone = await usersRef
+        .where('phone', isEqualTo: phone.trim())
+        .get();
+
+    if (existingByName.docs.isNotEmpty || existingByPhone.docs.isNotEmpty) {
+      return Left(ServerError(
+          errMessage: 'المستخدم موجود بالفعل بالاسم أو رقم الهاتف'));
     }
+
+
+    DocumentReference users = usersRef.doc();
+    String userId = users.id;
+
+    await users.set({
+      'full_name': name,
+      'phone': phone,
+      'dateOfAdded': dateOfAdded,
+      'id': userId,
+    });
+
+    return const Right(null);
+  } catch (e) {
+    return Left(ServerError(errMessage: e.toString()));
   }
+}
+
 
   @override
   Future<Either<Faliures, void>> addDept(

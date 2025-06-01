@@ -1,3 +1,4 @@
+import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_user_cubit/add_user_state.dart';
 import 'package:elmanfy/core/constants/constant.dart';
@@ -6,6 +7,7 @@ import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickalert/quickalert.dart';
 
 class BottomSheetOfUsers extends StatelessWidget {
   const BottomSheetOfUsers({super.key});
@@ -20,7 +22,7 @@ class BottomSheetOfUsers extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage('assets/images/elmanfy.jpg'),
               fit: BoxFit.fill)),
-      child: BlocBuilder<AddUserCubit, AddUserState>(
+      child: BlocConsumer<AddUserCubit, AddUserState>(
        
         builder: (context, state) {
           return Column(
@@ -95,7 +97,17 @@ class BottomSheetOfUsers extends StatelessWidget {
               ),
             ],
           );
-        },
+        }, listener: (BuildContext context, AddUserState state) { 
+          if(state is AddUserFaliure){
+            ShowDialogMsg.showDialogtext(context: context, 
+            type: QuickAlertType.info,
+             title: 'تلميح',
+              body: 'الاسم موجود بالفعل او رقم الهاتف',
+               confirm: (){
+                Navigator.pop(context);
+               });
+          }
+         },
       ),
     );
   }
