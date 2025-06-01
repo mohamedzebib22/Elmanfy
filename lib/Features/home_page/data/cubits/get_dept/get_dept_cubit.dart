@@ -23,13 +23,14 @@ class GetDeptCubit extends Cubit<GetDeptState> {
    
     emit(GetDeptLodaing());
     data.clear();
-    totalPrice = 0.0;
+   
 
     var either = await addUserRepo.getDepts(userId: userId);
     return either.fold((error){
       emit(GetDeptFaliure(faliures: error));
     }, (response){
       data.addAll(response);
+      totalPrice = 0.0;
      for (var doc in response) {
       final value = double.tryParse(doc['totalPrice'].toString()) ?? 0.0;
       totalPrice += value;

@@ -31,13 +31,13 @@ class DeleteDeptCubit extends Cubit<DeleteDeptState> {
       emit(DeleteDeptFaliures(faliures: error));
     }, (response) {
       emit(DeleteDeptSucsess());
-      // GetDeptCubit.get(context).getDepts(userId: userId);
+      GetDeptCubit.get(context).getDepts(userId: userId);
       // getDept.getDepts(userId: userId);
-      Navigator.pushReplacementNamed(
-        context,
-        CustomerdetailsPage.id,
-        arguments: {"id": userId,"full_name":fullName,"phone":phone,"dateOfAdded":dateOfAdded},
-      );
+      // Navigator.pushReplacementNamed(
+      //   context,
+      //   CustomerdetailsPage.id,
+      //   arguments: {"id": userId,"full_name":fullName,"phone":phone,"dateOfAdded":dateOfAdded},
+      // );
     });
   }
 }

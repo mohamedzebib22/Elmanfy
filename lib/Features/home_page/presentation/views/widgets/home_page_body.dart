@@ -71,9 +71,9 @@ class HomePageBody extends StatelessWidget {
                             type: QuickAlertType.warning, 
                             title: Constant.deleteUser,
                              body: Constant.deleteUserConfirm, 
-                             confirm: (){
-                              viewModel.deleteUser(id: '${userList[index].id}', context: context);
-                          
+                             confirm: ()async{
+                             await viewModel.deleteUser(id: '${userList[index].id}', context: context);
+                              Navigator.pop(context);
                              }) ;
                            },
                         ),

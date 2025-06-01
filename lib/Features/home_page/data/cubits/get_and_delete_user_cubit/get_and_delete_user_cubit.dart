@@ -22,7 +22,7 @@ class GetUserCubit extends Cubit<GetAndDeleteUserState> {
     return either.fold((error) {
       emit(GetUserFailuer(faliures: error));
     }, (response) {
-      data.addAll(response);
+      data = List.from(response);
       filterData = List.from(data);
       emit(GetUserSucsess());
     });
@@ -35,8 +35,8 @@ class GetUserCubit extends Cubit<GetAndDeleteUserState> {
     }, (response){
       print('==========User Delete Sucsess===========');
       emit(GetUserSucsess());
-     
-      Navigator.pushNamedAndRemoveUntil(context, HomePage.id, (route) => false);
+      getUsersFromeFireStore();
+      //Navigator.pushNamedAndRemoveUntil(context, HomePage.id, (route) => false);
     });
   }
   searchProduct(String title) {

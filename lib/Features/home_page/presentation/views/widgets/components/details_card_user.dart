@@ -70,7 +70,7 @@ class _DetailsCardUserState extends State<DetailsCardUser> {
                 else if (state is GetDeptSucsess)
                   CustomText(
                     title: 'اجمالى المبلغ : ${state.totalPrice.toStringAsFixed(2)}',
-                    textStyle: CustomStyleText.primaryColorBold,
+                    textStyle: CustomStyleText.bold18Primary,
                   ),
               ],
             ),

@@ -58,7 +58,20 @@ class ProductDetails extends StatelessWidget {
                   ),
                   buttonColor: Colors.orange,
                   onTap: () {
-                    LocalNotificationsServices.showSchduledNotification();
+                    ShowDialogMsg.showDialogtext(
+                        context: context,
+                        type: QuickAlertType.info,
+                        title: ' تاكيد تذكير الدفع',
+                        body: 'هل تريد التذكير بدفع هذا العنصر خلال اسبوع',
+                        confirm: () {
+                          LocalNotificationsServices.showSchduledNotification(
+                              id: args['id'].hashCode,
+                              title: args['full_name'],
+                              body: 'برجاء الاتصال على الزبون لسداد هذا الدين');
+
+                            print('تم تطبيق التذكير بنجاح');
+                            Navigator.pop(context);
+                        });
                   },
                 ),
                 SizedBox(
@@ -79,7 +92,6 @@ class ProductDetails extends StatelessWidget {
                             ),
                       buttonColor: Colors.green,
                       onTap: () {
-                        
                         viewModel.deptDone(
                             context: context,
                             deptId: deptID,
@@ -88,8 +100,8 @@ class ProductDetails extends StatelessWidget {
                             price: priceOfThePiece,
                             count: count,
                             dateOfAdded: historyOfReligion,
-                            totalPrice: totalPrice, 
-                            fullName:args['full_name'], 
+                            totalPrice: totalPrice,
+                            fullName: args['full_name'],
                             phone: args['phone']);
                       },
                     );

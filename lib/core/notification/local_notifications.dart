@@ -55,7 +55,7 @@ class LocalNotificationsServices {
   }
 
   //Todo SchduledNotification
-  static Future<void> showSchduledNotification() async {
+  static Future<void> showSchduledNotification({required int id,required String title, required String body}) async {
     NotificationDetails details = const NotificationDetails(
         android: AndroidNotificationDetails('id 3', 'Schduled notification',
             importance: Importance.max, priority: Priority.max));
@@ -74,10 +74,10 @@ class LocalNotificationsServices {
     // }
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        2,
-        'scheduled title',
-        'scheduled body',
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        id,
+        title,
+        body,
+        tz.TZDateTime.now(tz.local).add(const Duration(days: 7)),
         details,
         androidScheduleMode: AndroidScheduleMode.inexact,
         payload: 'PayloodData');

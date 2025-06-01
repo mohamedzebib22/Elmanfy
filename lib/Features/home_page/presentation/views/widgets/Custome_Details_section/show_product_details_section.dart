@@ -15,12 +15,12 @@ class ShowProductDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    final viewModel = getIt<GetDeptCubit>();
+    // final viewModel = getIt<GetDeptCubit>();
 
-    Future.microtask(() => viewModel.getDepts(userId: args['id']));
+    // Future.microtask(() => viewModel.getDepts(userId: args['id']));
 
     return BlocBuilder<GetDeptCubit, GetDeptState>(
-      bloc: viewModel,
+      bloc: GetDeptCubit.get(context)..getDepts(userId: args['id']),
       builder: (context, state) {
         if (state is GetDeptLodaing) {
           return const SliverToBoxAdapter(
