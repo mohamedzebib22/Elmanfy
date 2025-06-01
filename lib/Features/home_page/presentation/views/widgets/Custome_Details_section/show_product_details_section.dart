@@ -3,7 +3,6 @@ import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.d
 import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_state.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/part_specifications.dart';
 import 'package:elmanfy/core/constants/constant.dart';
-import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

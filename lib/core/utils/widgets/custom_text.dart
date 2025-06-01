@@ -10,6 +10,7 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoSizeText(
    title,
+   textDirection: TextDirection.rtl,
   style:textStyle,
   minFontSize: 18,
   maxLines: 4,

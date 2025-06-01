@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/add_dept/add_dept_state.dart';
-import 'package:elmanfy/features/home_page/data/cubits/add_user_cubit/add_user_cubit.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
@@ -19,9 +18,7 @@ class BottomSheetOfAdddebt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AddDeptCubit viewModel = getIt<AddDeptCubit>();
-    var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    GetDeptCubit getDeptCubit = getIt<GetDeptCubit>();
     return BlocBuilder<AddDeptCubit, AddDeptState>(
       bloc: viewModel,
       builder: (context, state) {

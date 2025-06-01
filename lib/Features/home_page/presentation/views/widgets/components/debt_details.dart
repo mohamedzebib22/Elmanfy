@@ -19,8 +19,7 @@ class DebtDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    
     return Column(
       
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -43,10 +42,7 @@ class DebtDetails extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 3,
         ),
-        // CustomText(
-        //   title: 'تاريخ الدفع:$dateOfPaid',
-        //   textStyle: CustomStyleText.bold18Primary,
-        // ),
+       
         CustomBotton(
           title: Constant.payTheAmount,
           onTap: () {},

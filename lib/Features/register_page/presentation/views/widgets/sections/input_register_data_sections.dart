@@ -8,17 +8,15 @@ import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class InputRegisterDataSection extends StatelessWidget {
-  InputRegisterDataSection({super.key});
+  const InputRegisterDataSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    RegisterCubit viewModel = getIt<RegisterCubit>();
+  
 
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -36,7 +34,7 @@ class InputRegisterDataSection extends StatelessWidget {
           listener: (context, state) {
             if (state is RegisterSucsess) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('register Sucsess')));
+                  .showSnackBar(const SnackBar(content: Text('register Sucsess')));
             } else if (state is RegisterFailuer) {
               ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.faliures.errMessage)));
@@ -126,7 +124,7 @@ class InputRegisterDataSection extends StatelessWidget {
                   height: height * 0.04,
                 ),
                 state is RegisterLoading
-                    ? Center(
+                    ?const  Center(
                         child: CircularProgressIndicator(),
                       )
                     : CustomBotton(

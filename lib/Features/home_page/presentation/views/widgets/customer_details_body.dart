@@ -1,5 +1,3 @@
-import 'package:elmanfy/core/di/di.dart';
-import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/Custome_Details_section/add_debt_section.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/Custome_Details_section/show_product_details_section.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/Home_Sections/view_all_dept_section.dart';

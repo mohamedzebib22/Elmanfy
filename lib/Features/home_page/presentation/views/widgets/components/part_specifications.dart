@@ -3,7 +3,6 @@ import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_cubit.d
 import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_state.dart';
 import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
-import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custom_icon_button.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custome_product_details.dart';
 import 'package:elmanfy/core/constants/constant.dart';
@@ -68,8 +67,6 @@ class ProductDetails extends StatelessWidget {
                               id: args['id'].hashCode,
                               title: args['full_name'],
                               body: 'برجاء الاتصال على الزبون لسداد هذا الدين');
-
-                            print('تم تطبيق التذكير بنجاح');
                             Navigator.pop(context);
                         });
                   },

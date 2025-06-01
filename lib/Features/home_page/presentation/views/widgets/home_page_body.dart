@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_and_delete_user_cubit/get_and_delete_user_state.dart';
 import 'package:elmanfy/features/home_page/presentation/views/screens/customer_details_page.dart';
@@ -15,7 +16,8 @@ import 'package:quickalert/quickalert.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({
-    super.key, required this.menuDrawer,
+    super.key,
+    required this.menuDrawer,
   });
 
   final VoidCallback menuDrawer;
@@ -30,59 +32,53 @@ class HomePageBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: height * 0.02),
-          SearchSection(onTap: (title ) { 
-            viewModel.searchProduct(title);
-           }, menuDrawer: menuDrawer,),
+          SearchSection(
+            onTap: (title) {
+              viewModel.searchProduct(title);
+            },
+            menuDrawer: menuDrawer,
+          ),
           SizedBox(height: height * 0.02),
           BlocBuilder<GetUserCubit, GetAndDeleteUserState>(
             bloc: viewModel..getUsersFromeFireStore(),
             builder: (context, state) {
-              
               if (state is GetUserLoading) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (state is GetUserSucsess) {
                 var userList = viewModel.filterData;
-                print('========${userList.length}======');
-                if(userList.isEmpty){
-                  return const Center(child: Text('لا نوجد ديون حاليا', style: CustomStyleText.whiteColorBold,),);
-                }else{
+
+                if (userList.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'لا نوجد ديون حاليا',
+                      style: CustomStyleText.whiteColorBold,
+                    ),
+                  );
+                } else {
                   return Expanded(
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: userList.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, CustomerdetailsPage.id,arguments: {
-                            'full_name' :userList[index]['full_name'],
-                            'phone' :userList[index]['phone'],
-                            'dateOfAdded' :userList[index]['dateOfAdded'],
-                            'id' :userList[index]['id'],
-                          });
-                        },
-                        child: ShowDataSection(
-                          name: '${userList[index]['full_name']}',
-                          phone: '${userList[index]['phone']}',
-                          dateOfAdded: '${userList[index]['dateOfAdded']}', 
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: userList.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
                           onTap: () {
-                            ShowDialogMsg.showDialogtext(context: context, 
-                            type: QuickAlertType.warning, 
-                            title: Constant.deleteUser,
-                             body: Constant.deleteUserConfirm, 
-                             confirm: ()async{
-                             await viewModel.deleteUser(id: '${userList[index].id}', context: context);
-                              Navigator.pop(context);
-                             }) ;
-                           },
-                        ),
-                      );
-                    },
-                  ),
-                );
+                            Navigator.pushNamed(context, CustomerdetailsPage.id,
+                                arguments: {
+                                  'full_name': userList[index]['full_name'],
+                                  'phone': userList[index]['phone'],
+                                  'dateOfAdded': userList[index]['dateOfAdded'],
+                                  'id': userList[index]['id'],
+                                });
+                          },
+                          child: buildShowDataSection(
+                              userList, index, context, viewModel),
+                        );
+                      },
+                    ),
+                  );
                 }
-                
               } else if (state is GetUserFailuer) {
                 return Center(
                   child: Column(
@@ -91,15 +87,14 @@ class HomePageBody extends StatelessWidget {
                       CustomBotton(
                         title: 'اعادة المحاولة',
                         onTap: () {
-                         viewModel
-                              .getUsersFromeFireStore();
+                          viewModel.getUsersFromeFireStore();
                         },
                       )
                     ],
                   ),
                 );
               }
-              return  Container(
+              return Container(
                 child: const Text('Some Thing Went Wrong'),
               );
             },
@@ -112,6 +107,30 @@ class HomePageBody extends StatelessWidget {
           // ),
         ],
       ),
+    );
+  }
+
+  ShowDataSection buildShowDataSection(
+      List<QueryDocumentSnapshot<Object?>> userList,
+      int index,
+      BuildContext context,
+      GetUserCubit viewModel) {
+    return ShowDataSection(
+      name: '${userList[index]['full_name']}',
+      phone: '${userList[index]['phone']}',
+      dateOfAdded: '${userList[index]['dateOfAdded']}',
+      onTap: () {
+        ShowDialogMsg.showDialogtext(
+            context: context,
+            type: QuickAlertType.warning,
+            title: Constant.deleteUser,
+            body: Constant.deleteUserConfirm,
+            confirm: () async {
+              await viewModel.deleteUser(
+                  id: '${userList[index].id}', context: context);
+              Navigator.pop(context);
+            });
+      },
     );
   }
 }

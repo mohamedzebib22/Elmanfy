@@ -19,7 +19,7 @@ class AddDeptSection extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             isScrollControlled:true,
-            backgroundColor:Color(0xff19181E), 
+            backgroundColor:const Color(0xff19181E), 
             context: context, builder: (context){
             return Padding(
               padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -27,7 +27,7 @@ class AddDeptSection extends StatelessWidget {
             );
           });
         },
-        child: Center(
+        child: const Center(
           child: Text(Constant.addDebt,
               style: CustomStyleText.bold18Primary),
         ),

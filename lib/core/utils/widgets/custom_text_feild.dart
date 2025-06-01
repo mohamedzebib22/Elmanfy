@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 typedef MyValidator = String? Function(String?)?;
 
 class CustomTextFeild extends StatelessWidget {
-  CustomTextFeild(
+   CustomTextFeild(
       {super.key,
       required this.hintText,
       this.prefix,

@@ -5,7 +5,6 @@ import 'package:elmanfy/features/home_page/data/cubits/get_and_delete_user_cubit
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/errors/faliures.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -44,3 +43,4 @@ class GetUserRemoteImpl implements GetUserRemote{
   } 
 
 }
+

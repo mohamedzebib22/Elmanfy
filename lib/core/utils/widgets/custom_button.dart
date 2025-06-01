@@ -12,7 +12,6 @@ class CustomBotton extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return SizedBox(
       height: height*0.08,

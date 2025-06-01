@@ -1,6 +1,5 @@
 import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_cubit.dart';
 import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_state.dart';
-import 'package:elmanfy/features/login_page/presentation/views/login_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
@@ -70,7 +69,7 @@ class ForgetPasswordPage extends StatelessWidget {
                             SizedBox(
                               height: height * 0.04,
                             ),
-                          state is ForegetPasswordLoading ? Center(child: CircularProgressIndicator(),) :  CustomBotton(
+                          state is ForegetPasswordLoading ? const Center(child: CircularProgressIndicator(),) :  CustomBotton(
                               title: Constant.sendLink,
                               onTap: () {
                                 ForegetPasswordCubit.get(context).foregetPassword(context: context);

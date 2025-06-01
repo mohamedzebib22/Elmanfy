@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elmanfy/core/constants/constant.dart';
-import 'package:elmanfy/core/di/di.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
@@ -16,7 +14,7 @@ class DetailsCardUser extends StatefulWidget {
 }
 
 class _DetailsCardUserState extends State<DetailsCardUser> {
- // late GetDeptCubit viewModel;
+ 
   late Map<String, dynamic> args;
   bool isLoaded = false;
 
@@ -25,8 +23,7 @@ class _DetailsCardUserState extends State<DetailsCardUser> {
     super.didChangeDependencies();
     if (!isLoaded) {
       args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-      // viewModel = getIt<GetDeptCubit>();
-      // viewModel.getDepts(userId: args['id']);
+      
       GetDeptCubit.get(context).getDepts(userId: args['id']);
       isLoaded = true;
     }
@@ -38,7 +35,6 @@ class _DetailsCardUserState extends State<DetailsCardUser> {
     var height = MediaQuery.of(context).size.height;
 
     return BlocBuilder<GetDeptCubit, GetDeptState>(
-     // bloc: GetDeptCubit.get(context)..getDepts(userId: args['id']),
       builder: (context, state) {
         
      

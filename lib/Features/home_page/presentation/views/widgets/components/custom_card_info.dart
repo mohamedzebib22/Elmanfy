@@ -1,4 +1,3 @@
-import 'package:elmanfy/features/home_page/presentation/views/screens/customer_details_page.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text.dart';
@@ -12,16 +11,14 @@ class CustomCardInfo extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Card(
-      color: Color(0xffD6D6D6),
+      color:const Color(0xffD6D6D6),
       child: Row(children: [
         Row(children: [
-          IconButton(onPressed: onTap, icon: Icon(Icons.delete_forever_sharp,color: Colors.red,)),
-          // IconButton(onPressed: (){
-          //   Navigator.pushNamed(context, CustomerdetailsPage.id);
-          // }, icon: Icon(Icons.edit_sharp,color: Colors.green,)),
+          IconButton(onPressed: onTap, icon: const Icon(Icons.delete_forever_sharp,color: Colors.red,)),
+          
 
         ],),
         SizedBox(width: width*0.08,),

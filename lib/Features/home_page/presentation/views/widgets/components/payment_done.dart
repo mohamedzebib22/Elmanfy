@@ -1,8 +1,5 @@
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/debt_details.dart';
-import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/custom_style_text.dart';
-import 'package:elmanfy/core/utils/widgets/custom_button.dart';
-import 'package:elmanfy/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class PaymentDone extends StatelessWidget {

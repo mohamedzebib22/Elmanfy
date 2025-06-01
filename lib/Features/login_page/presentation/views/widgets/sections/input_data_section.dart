@@ -1,11 +1,9 @@
-import 'package:elmanfy/features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/features/login_page/data/cubit/login_cubit.dart';
 import 'package:elmanfy/features/login_page/data/cubit/login_state.dart';
 import 'package:elmanfy/core/constants/constant.dart';
 import 'package:elmanfy/core/theme/app_color.dart';
 import 'package:elmanfy/core/utils/widgets/custom_button.dart';
 import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,14 +12,13 @@ class InputDataSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if(state is LoginSucsess){
            ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Login Sucsess')));
+              .showSnackBar(const SnackBar(content: Text('Login Sucsess')));
         }else if(state is LoginFailure){
            ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.faliures.errMessage)));
@@ -74,7 +71,7 @@ class InputDataSection extends StatelessWidget {
               SizedBox(
                 height: height * 0.04,
               ),
-            state is LoginLoading ? Center(child: CircularProgressIndicator(),):  CustomBotton(
+            state is LoginLoading ?const Center(child: CircularProgressIndicator(),):  CustomBotton(
                 title: Constant.login,
                 onTap: () {
                 
