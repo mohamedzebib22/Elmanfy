@@ -11,6 +11,11 @@ class CustomerdetailsPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: const Icon(Icons.arrow_back,color: Colors.white,)),
           title: const Text(
             Constant.customerDetails,
             style: TextStyle(color: Colors.white),

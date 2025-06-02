@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:elmanfy/features/forget_password_page/data/Repositories/forget_passwod_repo.dart';
 import 'package:elmanfy/features/forget_password_page/data/cubit/foreget_password_state.dart';
 import 'package:elmanfy/core/utils/widgets/show_dialog_msg.dart';
+import 'package:elmanfy/features/login_page/presentation/views/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -29,7 +30,7 @@ class ForegetPasswordCubit extends Cubit<ForegetPasswordState> {
           type: QuickAlertType.error,
           title: 'ارسال الرمز',
           body: error.errMessage,
-          confirm: () {});
+          confirm: () {Navigator.pushReplacementNamed(context, LoginPage.id);});
     }, (response) {
       print('========Send Email Sucsess=========');
       emit(ForegetPasswordSucsess());
@@ -38,7 +39,9 @@ class ForegetPasswordCubit extends Cubit<ForegetPasswordState> {
           type: QuickAlertType.confirm,
           title: 'ارسال الرمز',
           body: response.toString(),
-          confirm: () {});
+          confirm: () {
+            Navigator.pushReplacementNamed(context, LoginPage.id);
+          });
     });
   }
 }
