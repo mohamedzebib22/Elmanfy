@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elmanfy/core/utils/functions/create_pdf.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_dept_done/get_depts_done_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/get_dept_done/get_depts_done_state.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/payment_done.dart';
@@ -25,6 +26,11 @@ class PaidDebtsPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: (){
+          CreatePdf.generatePdf( deptList: viewModel.data, customerName: args['full_name']);
+        },
+        child: Icon(Icons.picture_as_pdf_sharp),
+        ),
           appBar: AppBar(
             leading: InkWell(
               onTap: (){
@@ -59,7 +65,8 @@ class PaidDebtsPage extends StatelessWidget {
                               return buildPaymentDone(
                                   deptList, index, formattedDateTime);
                             }),
-                      )
+                      ),
+
                     ],
                   );
                 } else if (state is GetDeptsDoneFaluire) {

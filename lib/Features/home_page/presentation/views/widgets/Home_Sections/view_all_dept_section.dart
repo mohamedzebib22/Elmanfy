@@ -17,6 +17,7 @@ class ViewAllDeptSection extends StatelessWidget {
       onTap: (){
         Navigator.pushNamed(context, PaidDebtsPage.id, arguments:{
           'id' : id,
+          'full_name' :args['full_name']
         });
       },
       child: Container(
