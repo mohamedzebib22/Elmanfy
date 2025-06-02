@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:elmanfy/core/notification/local_notifications.dart';
+import 'package:elmanfy/core/utils/widgets/custom_text_feild.dart';
 import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/cubit/delete_dept_state.dart';
 import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_cubit.dart';
 import 'package:elmanfy/features/home_page/data/cubits/dept_paid_done/dept_paid_done_state.dart';
+import 'package:elmanfy/features/home_page/data/cubits/get_dept/get_dept_cubit.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custom_icon_button.dart';
 import 'package:elmanfy/features/home_page/presentation/views/widgets/components/custome_product_details.dart';
 import 'package:elmanfy/core/constants/constant.dart';
@@ -57,18 +61,8 @@ class ProductDetails extends StatelessWidget {
                   ),
                   buttonColor: Colors.orange,
                   onTap: () {
-                    ShowDialogMsg.showDialogtext(
-                        context: context,
-                        type: QuickAlertType.info,
-                        title: ' تاكيد تذكير الدفع',
-                        body: 'هل تريد التذكير بدفع هذا العنصر خلال اسبوع',
-                        confirm: () {
-                          LocalNotificationsServices.showSchduledNotification(
-                              id: args['id'].hashCode,
-                              title: args['full_name'],
-                              body: 'برجاء الاتصال على الزبون لسداد هذا الدين');
-                            Navigator.pop(context);
-                        });
+                    buildShowDialog(context, args);
+                   
                   },
                 ),
                 SizedBox(
@@ -148,5 +142,45 @@ class ProductDetails extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<dynamic> buildShowDialog(
+      BuildContext context, Map<String, dynamic> args) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('تاكيد تذكير الدفع'),
+            content: CustomTextFeild(
+              keyboardType: TextInputType.number,
+              hintText: 'برجاء ادخال عدد  الايام',
+              controller: GetDeptCubit.get(context).notifictionRememper,
+            ),
+            actions: [
+              TextButton(
+                child: const Text('إلغاء'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('موافق'),
+                onPressed: () {
+                  print(
+                      '${int.parse(GetDeptCubit.get(context).notifictionRememper.text)}');
+                  log('===The id is :${DateTime.now().millisecondsSinceEpoch % 2147483647} ===');
+                  LocalNotificationsServices.showSchduledNotification(
+                      id: DateTime.now().millisecondsSinceEpoch % 2147483647,
+                      title: args['full_name'],
+                      body: 'برجاء الاتصال على الزبون لسداد هذا الدين',
+                      numberOfDay: int.parse(
+                          GetDeptCubit.get(context).notifictionRememper.text));
+                  GetDeptCubit.get(context).notifictionRememper.clear();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }

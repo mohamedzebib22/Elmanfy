@@ -17,15 +17,21 @@ class BottomSheetOfAdddebt extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+   
+    
     AddDeptCubit viewModel = getIt<AddDeptCubit>();
     var height = MediaQuery.of(context).size.height;
+     var width = MediaQuery.of(context).size.width;
     return BlocBuilder<AddDeptCubit, AddDeptState>(
       bloc: viewModel,
       builder: (context, state) {
         return Container(
-          decoration:const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/elmanfy.jpg'),
+          padding: EdgeInsets.symmetric(horizontal: width*0.02),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+              image:const DecorationImage(
+                  image: AssetImage('assets/images/elmanfy.jpg',),
+                  
                   fit: BoxFit.fill)),
           child: Column(
             children: [

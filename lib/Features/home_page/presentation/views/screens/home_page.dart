@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               showModalBottomSheet(
                   isScrollControlled: true,
-                  backgroundColor: const Color(0xff19181E),
+                  backgroundColor:  Colors.transparent,
                   context: context,
                   builder: (context) {
                     return Padding(

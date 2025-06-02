@@ -55,7 +55,7 @@ class LocalNotificationsServices {
   }
 
   //Todo SchduledNotification
-  static Future<void> showSchduledNotification({required int id,required String title, required String body}) async {
+  static Future<void> showSchduledNotification({required int id,required String title, required String body, required int numberOfDay}) async {
     NotificationDetails details = const NotificationDetails(
         android: AndroidNotificationDetails('id 3', 'Schduled notification',
             importance: Importance.max, priority: Priority.max));
@@ -77,7 +77,7 @@ class LocalNotificationsServices {
         id,
         title,
         body,
-        tz.TZDateTime.now(tz.local).add(const Duration(days: 7)),
+        tz.TZDateTime.now(tz.local).add( Duration(days: numberOfDay)),
         details,
         androidScheduleMode: AndroidScheduleMode.inexact,
         payload: 'PayloodData');

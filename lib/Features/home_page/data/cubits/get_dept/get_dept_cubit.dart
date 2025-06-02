@@ -14,6 +14,8 @@ class GetDeptCubit extends Cubit<GetDeptState> {
   GetDeptCubit(this.addUserRepo) : super(GetDeptInitial());
   final AddUserRepo addUserRepo;
   TextEditingController filterTitle= TextEditingController();
+  TextEditingController notifictionRememper= TextEditingController();
+
   List<QueryDocumentSnapshot> data = [];
   double totalPrice = 0.0;
 

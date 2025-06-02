@@ -17,9 +17,10 @@ class BottomSheetOfUsers extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: width * 0.04),
-      decoration: const BoxDecoration(
-          image: DecorationImage(
+    padding: EdgeInsets.symmetric(horizontal: width*0.02),
+      decoration:  BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+          image:const DecorationImage(
               image: AssetImage('assets/images/elmanfy.jpg'),
               fit: BoxFit.fill)),
       child: BlocConsumer<AddUserCubit, AddUserState>(

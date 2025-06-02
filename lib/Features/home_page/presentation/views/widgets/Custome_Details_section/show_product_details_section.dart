@@ -39,13 +39,12 @@ class ShowProductDetailsSection extends StatelessWidget {
             );
           }
 
-          return SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return buildProductDetails(deptList, index);
-              },
-              childCount: deptList.length,
-            ),
+          return SliverList.builder(
+            addRepaintBoundaries: true,
+            itemCount: deptList.length,
+             itemBuilder: (BuildContext context, int index) { 
+              return buildProductDetails(deptList, index);
+             },
           );
         } else if (state is GetDeptFaliure) {
           return SliverToBoxAdapter(
@@ -68,7 +67,7 @@ class ShowProductDetailsSection extends StatelessWidget {
       count: deptList[index]['quantity'],
       historyOfReligion: deptList[index]['debtDate'],
       totalPrice: deptList[index]['totalPrice'],
-      deptID: deptList[index]['id'],
+      deptID: deptList[index]['id']
     );
   }
 }
