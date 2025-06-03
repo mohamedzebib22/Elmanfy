@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quickalert/quickalert.dart';
 
 class ShowDialogMsg {
@@ -14,7 +13,7 @@ class ShowDialogMsg {
     required VoidCallback confirm,
   }) {
     QuickAlert.show(
-        cancelBtnTextStyle: TextStyle(color: Color(0xff101127), fontSize: 20),
+        cancelBtnTextStyle: const TextStyle(color: Color(0xff101127), fontSize: 20),
         context: context,
         type: type,
         title: title,

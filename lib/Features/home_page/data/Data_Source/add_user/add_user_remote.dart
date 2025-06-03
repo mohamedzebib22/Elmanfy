@@ -31,4 +31,15 @@ abstract class AddUserRemote {
 
   Future<Either<Faliures,dynamic>> getDeptsDone({required String userId});
   Future<Either<Faliures, void>> deleteDeptDone({required String userId, required String deptId});
+  Future<Either<Faliures, void>> partialPayment({
+  required String deptId,
+  required String userId,
+  required String nameOfPiece,
+  required int price,
+  required int count,
+  required String dateOfAdded,
+  required int totalPrice,
+  required int paidAmount,
+});
+
 }

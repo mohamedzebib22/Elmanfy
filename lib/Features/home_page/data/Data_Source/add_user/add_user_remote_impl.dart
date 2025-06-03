@@ -187,4 +187,65 @@ Future<Either<Faliures, void>> addUser({
       return Left(ServerError(errMessage: e.toString()));
     }
   }
+  
+//-------------------------------------------------------------
+  @override
+Future<Either<Faliures, void>> partialPayment({
+  required String deptId,
+  required String userId,
+  required String nameOfPiece,
+  required int price,
+  required int count,
+  required String dateOfAdded,
+  required int totalPrice,
+  required int paidAmount,
+}) async {
+  try {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final adminRef = FirebaseFirestore.instance
+        .collection(Constant.adminCollection)
+        .doc(uid)
+        .collection(Constant.collectionUsers)
+        .doc(userId);
+
+    final paidRef = adminRef.collection(Constant.collectionDeptPaid);
+    final currentDeptRef = adminRef.collection(Constant.collectionDepts).doc(deptId);
+
+    final remaining = totalPrice - paidAmount;
+    if (remaining <= 0) {
+      return Left(ServerError(errMessage: 'المبلغ المدفوع أكبر من أو يساوي إجمالي الدين'));
+    }
+
+    final newQuantity = (remaining / price).ceil();
+
+    // 1. أضف دفعة مدفوعة جديدة
+    await paidRef.add({
+      'itemName': nameOfPiece,
+      'itemPrice': price,
+      'quantity': count,
+      'totalPrice': paidAmount,
+      'debtDate': dateOfAdded,
+      'paidDate': DateTime.now().toString(),
+    });
+
+    // 2. احذف الدين القديم
+    await currentDeptRef.delete();
+
+    // 3. أضف دين جديد بالمبلغ المتبقي
+    final newDebtRef = adminRef.collection(Constant.collectionDepts).doc();
+    await newDebtRef.set({
+      'itemName': nameOfPiece,
+      'itemPrice': price,
+      'quantity': newQuantity,
+      'totalPrice': remaining,
+      'debtDate': dateOfAdded,
+      'id': newDebtRef.id,
+    });
+
+    return  Right('تم الدفع جزء من المبلغ قيمتة :$remaining');
+  } catch (e) {
+    return Left(ServerError(errMessage: e.toString()));
+  }
+}
+
 }

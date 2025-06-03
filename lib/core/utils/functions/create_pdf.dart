@@ -9,8 +9,6 @@ class CreatePdf {
       
      {required List<QueryDocumentSnapshot<Object?>> deptList,required String customerName}) async {
     final pdf = pw.Document();
-
-   
     final fontData = await rootBundle.load('assets/fonts/Cairo-Regular.ttf');
     final arabicFont = pw.Font.ttf(fontData);
 

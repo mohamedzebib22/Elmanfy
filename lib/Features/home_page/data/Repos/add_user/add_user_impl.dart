@@ -52,4 +52,10 @@ class AddUserImpl implements AddUserRepo {
     return either.fold((error)=>Left(error), (response)=>Right(response));
   }
   
+  @override
+  Future<Either<Faliures, void>> partialPayment({required String deptId, required String userId, required String nameOfPiece, required int price, required int count, required String dateOfAdded, required int totalPrice, required int paidAmount}) async{
+    var either = await addUserRemote.partialPayment(deptId: deptId, userId: userId, nameOfPiece: nameOfPiece, price: price, count: count, dateOfAdded: dateOfAdded, totalPrice: totalPrice, paidAmount: paidAmount);
+    return either.fold((error) => Left(error), (response) =>Right(response));
+  }
+  
 }
