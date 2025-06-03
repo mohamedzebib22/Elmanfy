@@ -218,7 +218,7 @@ Future<Either<Faliures, void>> partialPayment({
 
     final newQuantity = (remaining / price).ceil();
 
-    // 1. أضف دفعة مدفوعة جديدة
+ 
     await paidRef.add({
       'itemName': nameOfPiece,
       'itemPrice': price,
@@ -228,10 +228,10 @@ Future<Either<Faliures, void>> partialPayment({
       'paidDate': DateTime.now().toString(),
     });
 
-    // 2. احذف الدين القديم
+  
     await currentDeptRef.delete();
 
-    // 3. أضف دين جديد بالمبلغ المتبقي
+   
     final newDebtRef = adminRef.collection(Constant.collectionDepts).doc();
     await newDebtRef.set({
       'itemName': nameOfPiece,
