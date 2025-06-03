@@ -15,7 +15,7 @@ class GetUserRemoteImpl implements GetUserRemote{
   
    try{
     String uid = FirebaseAuth.instance.currentUser!.uid;
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(Constant.adminCollection).doc(uid).collection(Constant.collectionUsers).get();
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(Constant.adminCollection).doc(uid).collection(Constant.collectionUsers).orderBy('dateOfAdded', descending: true).get();
     return  Right(querySnapshot.docs);
    }catch(e){
     return Left(ServerError(errMessage: e.toString()));

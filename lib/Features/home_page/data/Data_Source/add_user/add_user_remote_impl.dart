@@ -96,7 +96,7 @@ Future<Either<Faliures, void>> addUser({
           .collection(Constant.collectionUsers)
           .doc(userId)
           .collection(Constant.collectionDepts);
-      QuerySnapshot querySnapshot = await debts.get();
+      QuerySnapshot querySnapshot = await debts.orderBy('debtDate', descending: true).get();
       return Right(querySnapshot.docs);
     } catch (e) {
       return Left(ServerError(errMessage: e.toString()));
@@ -162,7 +162,7 @@ Future<Either<Faliures, void>> addUser({
           .doc(userId)
           .collection(Constant.collectionDeptPaid);
 
-      QuerySnapshot snapshot = await debtsPaidDone.get();
+      QuerySnapshot snapshot = await debtsPaidDone.orderBy('paidDate', descending: true).get();
       return Right(snapshot.docs);
     } catch (e) {
       return Left(ServerError(errMessage: e.toString()));
