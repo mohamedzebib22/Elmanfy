@@ -20,7 +20,7 @@ class RegisterUserRemoteImpl implements RegisterUserRemote {
         password: password,
       );
       print('=============RegisterSucsess==========');
-     
+     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
       return Right(credential);
       
     } on FirebaseAuthException catch (e) {

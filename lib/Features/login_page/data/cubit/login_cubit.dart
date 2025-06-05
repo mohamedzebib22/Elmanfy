@@ -11,31 +11,33 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginRepo) : super(LoginInitial());
 
   final LoginRepo loginRepo;
-  TextEditingController email= TextEditingController();
-  TextEditingController password= TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool obscurePassword = true;
   static LoginCubit get(context) => BlocProvider.of(context);
-
 
   void togglePasswordVisibility() {
     obscurePassword = !obscurePassword;
     emit(LoginInitial());
   }
 
-
-  loginUser({required BuildContext context})async{
-  
-    if(formkey.currentState!.validate()){
-        emit(LoginLoading());
-      var either = await loginRepo.loginUser(email: email.text.trim(), password: password.text);
-    return either.fold((error){
-      emit(LoginFailure(faliures: error));
-    }, (response){
-      emit(LoginSucsess());
-      //Navigator.pushReplacementNamed(context, HomePage.id);
-    });
+  loginUser({required BuildContext context}) async {
+    if (formkey.currentState!.validate()) {
+      emit(LoginLoading());
+      var either = await loginRepo.loginUser(
+          email: email.text.trim(), password: password.text);
+      return either.fold((error) {
+        emit(LoginFailure(faliures: error));
+      }, (response) {
+        emit(LoginSucsess());
+        //Navigator.pushReplacementNamed(context, HomePage.id);
+      });
     }
-    
+  }
+
+  bool isValidEmail(String email) {
+    final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+    return emailRegex.hasMatch(email);
   }
 }

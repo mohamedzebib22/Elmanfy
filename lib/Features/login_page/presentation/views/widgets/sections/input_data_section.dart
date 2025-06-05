@@ -41,7 +41,10 @@ class InputDataSection extends StatelessWidget {
                 validator: (email) {
                   if (email == null || email.isEmpty) {
                     return 'برجاء ادخال الايميل';
-                  } else {
+                  }else if(!LoginCubit.get(context).isValidEmail(email)){
+                    return 'البريد الالكترونى غير صالح';
+                  }
+                   else {
                     return null;
                   }
                 },

@@ -39,11 +39,12 @@ class RegisterCubit extends Cubit<RegisterState> {
         await registerRepo.registerUser(email: userEmail.text.trim(), password: userPassword.text);
     return either.fold((error) {
       emit(RegisterFailuer(faliures: error));
-    }, (response) async{
-     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+      return false;
+    }, (response) {
+     
       emit(RegisterSucsess());
      
-      
+      return true;
     });
   }
   addAdminToFirestore()async{
@@ -56,4 +57,9 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterSucsess());
     });
   }
+
+  bool isValidEmail(String email) {
+  final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+  return emailRegex.hasMatch(email);
+}
 }

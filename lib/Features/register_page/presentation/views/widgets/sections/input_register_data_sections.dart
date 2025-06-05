@@ -68,8 +68,11 @@ class InputRegisterDataSection extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   controller: RegisterCubit.get(context).userEmail,
                   validator: (email) {
-                    if (email == null || email.isEmpty) {
+                    if (email == null || email.trim().isEmpty) {
                       return 'برجاء ادخال الايميل';
+                    } else if (!RegisterCubit.get(context)
+                        .isValidEmail(email.trim())) {
+                      return 'البريد الإلكتروني غير صالح';
                     } else {
                       return null;
                     }
@@ -95,7 +98,7 @@ class InputRegisterDataSection extends StatelessWidget {
                   },
                   hintText: Constant.password,
                   sufix: InkWell(
-                    onTap: (){
+                    onTap: () {
                       RegisterCubit.get(context).togglePasswordVisibility1();
                     },
                     child: Icon(
@@ -124,7 +127,7 @@ class InputRegisterDataSection extends StatelessWidget {
                   },
                   hintText: Constant.submitPassword,
                   sufix: InkWell(
-                    onTap: (){
+                    onTap: () {
                       RegisterCubit.get(context).togglePasswordVisibility2();
                     },
                     child: Icon(
@@ -149,9 +152,12 @@ class InputRegisterDataSection extends StatelessWidget {
                               .formkey
                               .currentState!
                               .validate()) {
-                            await RegisterCubit.get(context).register();
-                            await RegisterCubit.get(context)
-                                .addAdminToFirestore();
+                            final registerCubit = RegisterCubit.get(context);
+                            final result = await registerCubit.register();
+                            
+                            if (result == true) {
+                              await registerCubit.addAdminToFirestore();
+                            }
                           }
                         },
                       ),
