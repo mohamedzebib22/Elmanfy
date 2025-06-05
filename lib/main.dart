@@ -52,8 +52,11 @@ void main() async {
   FirebaseAuth.instance.authStateChanges().listen((user){
     if(user == null){
       initialRoute = LoginPage.id;
-    }else{
+    }else if(FirebaseAuth.instance.currentUser!.emailVerified == true){
       initialRoute = HomePage.id;
+    }
+    else{
+      initialRoute = LoginPage.id;
     }
   });
   runApp(MultiBlocProvider(

@@ -16,8 +16,6 @@ class InputRegisterDataSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Form(
@@ -33,8 +31,9 @@ class InputRegisterDataSection extends StatelessWidget {
         child: BlocConsumer<RegisterCubit, RegisterState>(
           listener: (context, state) {
             if (state is RegisterSucsess) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(content: Text('register Sucsess')));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Register Sucsess, Please verify Your Email')));
+              Navigator.pushReplacementNamed(context, LoginPage.id);
             } else if (state is RegisterFailuer) {
               ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.faliures.errMessage)));
@@ -85,6 +84,7 @@ class InputRegisterDataSection extends StatelessWidget {
                   height: height * 0.02,
                 ),
                 CustomTextFeild(
+                  security: RegisterCubit.get(context).obscurePassword1,
                   controller: RegisterCubit.get(context).userPassword,
                   validator: (password) {
                     if (password == null || password.isEmpty) {
@@ -94,15 +94,23 @@ class InputRegisterDataSection extends StatelessWidget {
                     }
                   },
                   hintText: Constant.password,
-                  sufix: const Icon(
-                    Icons.visibility_off_sharp,
-                    color: AppColor.primaryColor,
+                  sufix: InkWell(
+                    onTap: (){
+                      RegisterCubit.get(context).togglePasswordVisibility1();
+                    },
+                    child: Icon(
+                      RegisterCubit.get(context).obscurePassword1
+                          ? Icons.visibility_off_sharp
+                          : Icons.visibility,
+                      color: AppColor.primaryColor,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: height * 0.02,
                 ),
                 CustomTextFeild(
+                  security: RegisterCubit.get(context).obscurePassword2,
                   controller: RegisterCubit.get(context).userRePaswword,
                   validator: (rePassword) {
                     if (rePassword == null || rePassword.isEmpty) {
@@ -115,27 +123,35 @@ class InputRegisterDataSection extends StatelessWidget {
                     }
                   },
                   hintText: Constant.submitPassword,
-                  sufix: const Icon(
-                    Icons.visibility_off_sharp,
-                    color: AppColor.primaryColor,
+                  sufix: InkWell(
+                    onTap: (){
+                      RegisterCubit.get(context).togglePasswordVisibility2();
+                    },
+                    child: Icon(
+                      RegisterCubit.get(context).obscurePassword2
+                          ? Icons.visibility_off_sharp
+                          : Icons.visibility,
+                      color: AppColor.primaryColor,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: height * 0.04,
                 ),
                 state is RegisterLoading
-                    ?const  Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : CustomBotton(
                         title: Constant.createAccount,
-                        onTap: ()async {
+                        onTap: () async {
                           if (RegisterCubit.get(context)
                               .formkey
                               .currentState!
                               .validate()) {
-                          await  RegisterCubit.get(context).register(context: context);
-                          await  RegisterCubit.get(context).addAdminToFirestore();
+                            await RegisterCubit.get(context).register();
+                            await RegisterCubit.get(context)
+                                .addAdminToFirestore();
                           }
                         },
                       ),

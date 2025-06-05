@@ -30,11 +30,13 @@ class RegisterUserRemoteImpl implements RegisterUserRemote {
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
         return Left(Faliures(errMessage:'The account already exists for that email.' ));
+      }else{
+         return Left(Faliures(errMessage:e.code ));
       }
     } catch (e) {
       return Left(Faliures(errMessage: e.toString()));
     }
-     return Left(Faliures(errMessage: 'An unexpected error occurred.'));
+  
   }
   
   @override

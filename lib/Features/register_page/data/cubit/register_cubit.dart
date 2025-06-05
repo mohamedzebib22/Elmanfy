@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:elmanfy/features/home_page/presentation/views/screens/home_page.dart';
 import 'package:elmanfy/features/register_page/data/Repositories/register_repositories.dart';
 import 'package:elmanfy/features/register_page/data/cubit/register_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -18,20 +19,31 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController userRePaswword = TextEditingController();
   var formkey = GlobalKey<FormState>();
 
+  bool obscurePassword1 = true;
+  bool obscurePassword2= true;
   static RegisterCubit get(context) => BlocProvider.of(context);
 
+  void togglePasswordVisibility1(){
+    obscurePassword1 = !obscurePassword1;
+    emit(RegisterInitial());
+  }
+  void togglePasswordVisibility2(){
+    obscurePassword2 = !obscurePassword2;
+    emit(RegisterInitial());
+  }
+
   register(
-      {
-      required BuildContext context}) async {
+      ) async {
     emit(RegisterLoading());
     var either =
         await registerRepo.registerUser(email: userEmail.text.trim(), password: userPassword.text);
     return either.fold((error) {
       emit(RegisterFailuer(faliures: error));
-    }, (response) {
+    }, (response) async{
+     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
       emit(RegisterSucsess());
      
-      Navigator.pushReplacementNamed(context, HomePage.id);
+      
     });
   }
   addAdminToFirestore()async{

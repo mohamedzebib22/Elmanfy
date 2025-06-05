@@ -14,7 +14,15 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController email= TextEditingController();
   TextEditingController password= TextEditingController();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  bool obscurePassword = true;
   static LoginCubit get(context) => BlocProvider.of(context);
+
+
+  void togglePasswordVisibility() {
+    obscurePassword = !obscurePassword;
+    emit(LoginInitial());
+  }
+
 
   loginUser({required BuildContext context})async{
   
@@ -25,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginFailure(faliures: error));
     }, (response){
       emit(LoginSucsess());
-      Navigator.pushReplacementNamed(context, HomePage.id);
+      //Navigator.pushReplacementNamed(context, HomePage.id);
     });
     }
     
