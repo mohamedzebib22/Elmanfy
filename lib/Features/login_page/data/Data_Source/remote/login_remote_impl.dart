@@ -16,13 +16,15 @@ class LoginRemoteImpl implements LoginRemote {
       return Right(credential);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
         return Left(ServerError(errMessage: 'No user found for that email.'));
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
         return Left(ServerError(errMessage: 'Wrong password provided for that user.'));
+      }else{
+        return Left(ServerError(errMessage: 'Please check Email and password'));
       }
+    } 
+    catch (e){
+      return Left(ServerError(errMessage: e.toString()));
     }
-    return Left(ServerError(errMessage: 'Opps Some Thing Went Wrong Please Try Again'));
   }
 }
