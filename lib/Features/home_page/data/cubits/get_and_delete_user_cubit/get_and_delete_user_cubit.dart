@@ -13,8 +13,8 @@ class GetUserCubit extends Cubit<GetAndDeleteUserState> {
   final GetUserRepo getUserRepo;
   List<QueryDocumentSnapshot> data = [];
   List<QueryDocumentSnapshot> filterData = [];
-  TextEditingController filterTitle = TextEditingController();
-  //static GetUserCubit get(context) => BlocProvider.of(context);
+ 
+  static GetUserCubit get(context) => BlocProvider.of(context);
 
   getUsersFromeFireStore() async {
     emit(GetUserLoading());
